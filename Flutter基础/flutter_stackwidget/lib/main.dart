@@ -27,6 +27,16 @@ class MyStack extends StatelessWidget {
           backgroundImage: new NetworkImage('http://img5.mtime.cn/CMS/News/2019/09/08/215707.17506241_620X620.jpg'),
           radius: 150.0,
         ),
+        new Positioned(
+            top: 10.0,
+            left: 100.0,
+            child: new Text('🤡🤡🤡🤡🤡')
+        ),
+        new Positioned(
+        top: 250.0,
+        left: 120.0,
+        child: new Text('🤡🤡🤡🤡🤡')
+        ),
         new Container(
           decoration: BoxDecoration(
             color: Colors.black54,
