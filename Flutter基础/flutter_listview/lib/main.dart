@@ -11,25 +11,28 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(
           title: Text('List View Widget'),
         ),
-        body: ListView(
-          children: <Widget>[
-            ListTile(
-              leading: Icon(Icons.person),
-              title: Text('person'),
-            ),
-            ListTile(
-              leading: Icon(Icons.perm_camera_mic),
-              title: Text('perm_camera_mic'),
-            ),
-            ListTile(
-              leading: Icon(Icons.access_alarm),
-              title: Text('access_alarm'),
-            ),
-            Image.network('http://jspang.com/static/upload/20181030/cETrXVG2NPDHD_3T0GMzsnmc.png'),
-            Image.network('http://blogimages.jspang.com/flutter_ad2.jpg')
-          ],
+        body: Center(
+          child: Container(
+            height: 200.0,
+            child: MyList(),
+          ),
         ),
       ),
+    );
+  }
+}
+
+class MyList extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return ListView(
+      scrollDirection: Axis.horizontal,
+      children: <Widget>[
+        new Container(width: 180.0, color: Colors.lightBlue,),
+        new Container(width: 180.0, color: Colors.deepOrangeAccent,),
+        new Container(width: 180.0, color: Colors.deepPurple,),
+        new Container(width: 180.0, color: Colors.lightGreenAccent,),
+      ],
     );
   }
 }
