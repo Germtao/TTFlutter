@@ -16,10 +16,13 @@ class MyApp extends StatelessWidget {
               color: Colors.redAccent,
               child: new Text('Red Button'),
             ),
-            new RaisedButton(
-              onPressed: (){},
-              color: Colors.orangeAccent,
-              child: new Text('Orange Button'),
+            /// 灵活布局
+            Expanded(
+              child: new RaisedButton(
+                onPressed: (){},
+                color: Colors.orangeAccent,
+                child: new Text('Orange Button'),
+              ),
             ),
             new RaisedButton(
               onPressed: (){},
