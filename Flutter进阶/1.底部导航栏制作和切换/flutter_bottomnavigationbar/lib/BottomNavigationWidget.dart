@@ -31,7 +31,7 @@ class _BottomNavigationWidgetState extends State<BottomNavigationWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ,
+      body: pagesList[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         items: [
           BottomNavigationBarItem(
@@ -51,6 +51,14 @@ class _BottomNavigationWidgetState extends State<BottomNavigationWidget> {
               title: Text('Profile', style: TextStyle(color: _bottomNavigationBarItemColor),)
           )
         ],
+        currentIndex: _currentIndex,
+        selectedIconTheme: IconThemeData(opacity: 1.0),
+        unselectedIconTheme: IconThemeData(opacity: 0.5),
+        onTap: (int index) {
+          setState(() {
+            _currentIndex = index;
+          });
+        },
       ),
     );
   }
