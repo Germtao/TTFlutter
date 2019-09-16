@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'keep_alive.dart';
 
 void main() => runApp(MyApp());
 
@@ -52,11 +53,16 @@ class _KeepAliveState extends State<KeepAlive>
               icon: Icon(Icons.directions_bike),
             )
           ],
+          indicatorSize: TabBarIndicatorSize.label,
         ),
       ),
       body: TabBarView(
         controller: _tabController,
-        children: <Widget>[Text('汽车'), Text('火车'), Text('自行车')],
+        children: <Widget>[
+          MyHomePage(),
+          MyHomePage(),
+          MyHomePage(),
+        ],
       ),
     );
   }
