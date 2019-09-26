@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'basic_widget(基础控件)/state_manage.dart';
+import 'basic_widget(基础控件)/text_widget.dart';
 
 class Entry {
   final String title;
@@ -36,13 +37,19 @@ class EntryItem extends StatelessWidget {
   }
 
   void _pushPage(Entry root) {
+    Widget _pageWidget;
     switch (root.title) {
-      case "状态管理":
-        Navigator.of(_context)
-            .push(MaterialPageRoute(builder: (context) => StateManager()));
+      case '状态管理':
+        _pageWidget = StateManager();
+        break;
+      case '文本、字体样式':
+        _pageWidget = TextWidget();
         break;
       default:
+        break;
     }
+    Navigator.of(_context)
+        .push(MaterialPageRoute(builder: (context) => _pageWidget));
   }
 
   @override
