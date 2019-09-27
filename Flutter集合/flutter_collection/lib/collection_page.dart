@@ -95,7 +95,14 @@ class CollectionPage extends StatelessWidget {
         Entry('单选框和复选框'),
         Entry('输入框和表单'),
         Entry('进度指示器')
-      ])
+      ]),
+      Entry('布局类控件', <Entry>[
+        Entry('线性布局(Row、Column)'),
+        Entry('弹性布局(Flex)'),
+        Entry('流式布局(Wrap、Flow)'),
+        Entry('层叠布局(Stack、Positioned)'),
+        Entry('对齐与相对定位(Align)'),
+      ]),
     ]),
   ];
 
