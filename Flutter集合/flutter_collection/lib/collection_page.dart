@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'basic_widget(基础控件)/state_manage.dart';
 import 'basic_widget(基础控件)/text_widget.dart';
+import 'basic_widget(基础控件)/button_widget.dart';
 
 class Entry {
   final String title;
@@ -44,6 +45,9 @@ class EntryItem extends StatelessWidget {
         break;
       case '文本、字体样式':
         _pageWidget = TextWidget();
+        break;
+      case '按钮':
+        _pageWidget = ButtonWidget();
         break;
       default:
         break;
