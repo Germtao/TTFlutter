@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'basic_widget(基础控件)/state_manage.dart';
 import 'basic_widget(基础控件)/text_widget.dart';
 import 'basic_widget(基础控件)/button_widget.dart';
+import 'basic_widget(基础控件)/image_widget.dart';
 
 class Entry {
   final String title;
@@ -10,11 +11,16 @@ class Entry {
   Entry(this.title, [this.children = const <Entry>[]]);
 }
 
-class EntryItem extends StatelessWidget {
+class EntryItem extends StatefulWidget {
   EntryItem(this.entry);
 
   final Entry entry;
 
+  @override
+  _EntryItemState createState() => _EntryItemState();
+}
+
+class _EntryItemState extends State<EntryItem> {
   BuildContext _context;
 
   Widget _buildTiles(Entry root) {
@@ -49,6 +55,9 @@ class EntryItem extends StatelessWidget {
       case '按钮':
         _pageWidget = ButtonWidget();
         break;
+      case '图片和Icon':
+        _pageWidget = ImageWidget();
+        break;
       default:
         break;
     }
@@ -59,7 +68,7 @@ class EntryItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     _context = context;
-    return _buildTiles(entry);
+    return _buildTiles(widget.entry);
   }
 }
 
