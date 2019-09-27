@@ -5,6 +5,7 @@ import 'basic_widget(基础控件)/button_widget.dart';
 import 'basic_widget(基础控件)/image_widget.dart';
 import 'basic_widget(基础控件)/switch_checkbox_widget.dart';
 import 'basic_widget(基础控件)/textfield_widget.dart';
+import 'basic_widget(基础控件)/progress_indicator_widget.dart';
 
 class Entry {
   final String title;
@@ -65,6 +66,9 @@ class _EntryItemState extends State<EntryItem> {
         break;
       case '输入框和表单':
         _pageWidget = TextFieldWidget();
+        break;
+      case '进度指示器':
+        _pageWidget = ProgressIndicatorWidget();
         break;
       default:
         break;
