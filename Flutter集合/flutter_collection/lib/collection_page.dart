@@ -3,6 +3,7 @@ import 'basic_widget(基础控件)/state_manage.dart';
 import 'basic_widget(基础控件)/text_widget.dart';
 import 'basic_widget(基础控件)/button_widget.dart';
 import 'basic_widget(基础控件)/image_widget.dart';
+import 'basic_widget(基础控件)/switch_checkbox_widget.dart';
 
 class Entry {
   final String title;
@@ -57,6 +58,9 @@ class _EntryItemState extends State<EntryItem> {
         break;
       case '图片和Icon':
         _pageWidget = ImageWidget();
+        break;
+      case '单选框和复选框':
+        _pageWidget = SwitchAndCheckBoxWidget();
         break;
       default:
         break;
