@@ -7,6 +7,8 @@ import 'basic_widget(基础控件)/switch_checkbox_widget.dart';
 import 'basic_widget(基础控件)/textfield_widget.dart';
 import 'basic_widget(基础控件)/progress_indicator_widget.dart';
 
+import 'layout_widget(布局控件)/linear_layout.dart';
+
 class Entry {
   final String title;
   final List<Entry> children;
@@ -69,6 +71,9 @@ class _EntryItemState extends State<EntryItem> {
         break;
       case '进度指示器':
         _pageWidget = ProgressIndicatorWidget();
+        break;
+      case '线性布局(Row、Column)':
+        _pageWidget = LinearLayout();
         break;
       default:
         break;
