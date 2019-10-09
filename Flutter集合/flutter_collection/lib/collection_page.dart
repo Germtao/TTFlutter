@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_collection/layout_widget(%E5%B8%83%E5%B1%80%E6%8E%A7%E4%BB%B6)/flex_layout.dart';
+import 'package:flutter_collection/layout_widget(%E5%B8%83%E5%B1%80%E6%8E%A7%E4%BB%B6)/wrap_and_flox_layout.dart';
 import 'basic_widget(基础控件)/state_manage.dart';
 import 'basic_widget(基础控件)/text_widget.dart';
 import 'basic_widget(基础控件)/button_widget.dart';
@@ -78,6 +79,9 @@ class _EntryItemState extends State<EntryItem> {
         break;
       case '弹性布局(Flex)':
         _pageWidget = FlexLayout();
+        break;
+      case '流式布局(Wrap、Flow)':
+        _pageWidget = WrapAndFloxLayout();
         break;
       default:
         break;
