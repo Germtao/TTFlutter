@@ -12,6 +12,7 @@ class StackAndPositionedLayout extends StatelessWidget {
         constraints: BoxConstraints.expand(),
         child: Stack(
           alignment: Alignment.center, // 指定未定位或部分定位widget的对齐方式
+          fit: StackFit.expand, // 未定位widget占满Stack整个空间
           children: <Widget>[
             Container(
               child: Text(
