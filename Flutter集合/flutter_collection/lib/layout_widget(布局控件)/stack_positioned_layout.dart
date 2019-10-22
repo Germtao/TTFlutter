@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 // 层叠布局
+// Stack 允许子组件堆叠，而 Positioned 用于根据 Stack 的四个角来确定子组件的
 class StackAndPositionedLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

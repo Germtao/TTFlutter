@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_collection/layout_widget(%E5%B8%83%E5%B1%80%E6%8E%A7%E4%BB%B6)/align_layout.dart';
 import 'package:flutter_collection/layout_widget(%E5%B8%83%E5%B1%80%E6%8E%A7%E4%BB%B6)/flex_layout.dart';
 import 'package:flutter_collection/layout_widget(%E5%B8%83%E5%B1%80%E6%8E%A7%E4%BB%B6)/stack_positioned_layout.dart';
 import 'package:flutter_collection/layout_widget(%E5%B8%83%E5%B1%80%E6%8E%A7%E4%BB%B6)/wrap_and_flox_layout.dart';
@@ -86,6 +87,9 @@ class _EntryItemState extends State<EntryItem> {
         break;
       case '层叠布局(Stack、Positioned)':
         _pageWidget = StackAndPositionedLayout();
+        break;
+      case '对齐与相对定位(Align)':
+        _pageWidget = AlignLayout();
         break;
       default:
         break;
