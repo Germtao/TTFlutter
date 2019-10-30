@@ -7,6 +7,16 @@ class SizedBoxWidget extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('SizedBox'),
+        actions: <Widget>[
+          SizedBox(
+            width: 20.0,
+            height: 20.0,
+            child: CircularProgressIndicator(
+              strokeWidth: 3.0,
+              valueColor: AlwaysStoppedAnimation(Colors.white70),
+            ),
+          ),
+        ],
       ),
       // body: SizedBox(
       //   width: 200.0,
