@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_collection/container_widget(%E5%AE%B9%E5%99%A8%E7%B1%BB%E6%8E%A7%E4%BB%B6)/padding_widget.dart';
 import 'package:flutter_collection/layout_widget(%E5%B8%83%E5%B1%80%E6%8E%A7%E4%BB%B6)/align_layout.dart';
 import 'package:flutter_collection/layout_widget(%E5%B8%83%E5%B1%80%E6%8E%A7%E4%BB%B6)/flex_layout.dart';
 import 'package:flutter_collection/layout_widget(%E5%B8%83%E5%B1%80%E6%8E%A7%E4%BB%B6)/stack_positioned_layout.dart';
@@ -91,6 +92,11 @@ class _EntryItemState extends State<EntryItem> {
       case '对齐与相对定位(Align)':
         _pageWidget = AlignLayout();
         break;
+
+      // 容器类控件
+      case '填充(Padding)':
+        _pageWidget = PaddingWidget();
+        break;
       default:
         break;
     }
@@ -123,6 +129,9 @@ class CollectionPage extends StatelessWidget {
         Entry('流式布局(Wrap、Flow)'),
         Entry('层叠布局(Stack、Positioned)'),
         Entry('对齐与相对定位(Align)'),
+      ]),
+      Entry('容器类控件', <Entry>[
+        Entry('填充(Padding)'),
       ]),
     ]),
   ];
