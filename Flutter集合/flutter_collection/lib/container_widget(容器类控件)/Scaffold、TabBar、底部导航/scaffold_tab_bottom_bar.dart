@@ -23,8 +23,19 @@ class ScaffoldPageRoute extends StatefulWidget {
   _ScaffoldPageRouteState createState() => _ScaffoldPageRouteState();
 }
 
-class _ScaffoldPageRouteState extends State<ScaffoldPageRoute> {
+class _ScaffoldPageRouteState extends State<ScaffoldPageRoute>
+    with SingleTickerProviderStateMixin {
   int _selectedIndex = 1;
+
+  TabController _tabController;
+  List tabs = ['新闻', '历史', '图片'];
+
+  @override
+  void initState() {
+    super.initState();
+    // 创建tabController
+    _tabController = TabController(length: tabs.length, vsync: this);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,6 +65,13 @@ class _ScaffoldPageRouteState extends State<ScaffoldPageRoute> {
           },
         ),
         backgroundColor: Colors.blueAccent,
+        // tabbar菜单
+        bottom: TabBar(
+          controller: _tabController,
+          tabs: tabs.map((e) => Tab(text: e)).toList(), // Tab可自定义
+          indicatorColor: Colors.white,
+          indicatorSize: TabBarIndicatorSize.label,
+        ),
       ),
       backgroundColor: Colors.white,
       // 抽屉
