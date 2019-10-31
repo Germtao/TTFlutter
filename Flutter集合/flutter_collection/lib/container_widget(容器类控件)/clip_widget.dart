@@ -56,9 +56,28 @@ class ClipTestRoute extends StatelessWidget {
                 Text('clip test', style: TextStyle(color: Colors.red)),
               ],
             ),
+
+            DecoratedBox(
+              decoration: BoxDecoration(color: Colors.red),
+              child: ClipRect(
+                clipper: MyClipper(),
+                child: avatar,
+              ),
+            ),
           ],
         ),
       ),
     );
   }
+}
+
+// 剪裁是在layout完成后的绘制阶段进行的，所以不会影响组件的大小，这和Transform原理是相似的
+
+// 自定义剪裁
+class MyClipper extends CustomClipper<Rect> {
+  @override
+  Rect getClip(Size size) => Rect.fromLTWH(10.0, 15.0, 40.0, 30.0);
+
+  @override
+  bool shouldReclip(CustomClipper<Rect> oldClipper) => false;
 }
