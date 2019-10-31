@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_collection/container_widget(%E5%AE%B9%E5%99%A8%E7%B1%BB%E6%8E%A7%E4%BB%B6)/%E5%B0%BA%E5%AF%B8%E9%99%90%E5%88%B6%E7%B1%BB%E6%8E%A7%E4%BB%B6/box_widget.dart';
+import 'package:flutter_collection/container_widget(%E5%AE%B9%E5%99%A8%E7%B1%BB%E6%8E%A7%E4%BB%B6)/Scaffold%E3%80%81TabBar%E3%80%81%E5%BA%95%E9%83%A8%E5%AF%BC%E8%88%AA/scaffold_tab_bottom_bar.dart';
 import 'package:flutter_collection/container_widget(%E5%AE%B9%E5%99%A8%E7%B1%BB%E6%8E%A7%E4%BB%B6)/container_widget.dart';
 import 'package:flutter_collection/container_widget(%E5%AE%B9%E5%99%A8%E7%B1%BB%E6%8E%A7%E4%BB%B6)/decorated_box_widget.dart';
 import 'package:flutter_collection/container_widget(%E5%AE%B9%E5%99%A8%E7%B1%BB%E6%8E%A7%E4%BB%B6)/padding_widget.dart';
@@ -113,6 +114,9 @@ class _EntryItemState extends State<EntryItem> {
       case 'Container容器':
         _pageWidget = ContainerWidget();
         break;
+      case 'Scaffold、TabBar、底部导航':
+        _pageWidget = ScaffoldPageRoute();
+        break;
       default:
         break;
     }
@@ -151,7 +155,8 @@ class CollectionPage extends StatelessWidget {
         Entry('尺寸限制类容器'),
         Entry('装饰容器(DecoratedBox)'),
         Entry('变换(Transform)'),
-        Entry('Container容器')
+        Entry('Container容器'),
+        Entry('Scaffold、TabBar、底部导航'),
       ]),
     ]),
   ];
