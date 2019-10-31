@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_collection/container_widget(%E5%AE%B9%E5%99%A8%E7%B1%BB%E6%8E%A7%E4%BB%B6)/%E5%B0%BA%E5%AF%B8%E9%99%90%E5%88%B6%E7%B1%BB%E6%8E%A7%E4%BB%B6/box_widget.dart';
+import 'package:flutter_collection/container_widget(%E5%AE%B9%E5%99%A8%E7%B1%BB%E6%8E%A7%E4%BB%B6)/container_widget.dart';
+import 'package:flutter_collection/container_widget(%E5%AE%B9%E5%99%A8%E7%B1%BB%E6%8E%A7%E4%BB%B6)/decorated_box_widget.dart';
 import 'package:flutter_collection/container_widget(%E5%AE%B9%E5%99%A8%E7%B1%BB%E6%8E%A7%E4%BB%B6)/padding_widget.dart';
+import 'package:flutter_collection/container_widget(%E5%AE%B9%E5%99%A8%E7%B1%BB%E6%8E%A7%E4%BB%B6)/transform_widget.dart';
 import 'package:flutter_collection/layout_widget(%E5%B8%83%E5%B1%80%E6%8E%A7%E4%BB%B6)/align_layout.dart';
 import 'package:flutter_collection/layout_widget(%E5%B8%83%E5%B1%80%E6%8E%A7%E4%BB%B6)/flex_layout.dart';
 import 'package:flutter_collection/layout_widget(%E5%B8%83%E5%B1%80%E6%8E%A7%E4%BB%B6)/stack_positioned_layout.dart';
@@ -101,6 +104,9 @@ class _EntryItemState extends State<EntryItem> {
       case '尺寸限制类容器':
         _pageWidget = BoxWidget();
         break;
+      case '装饰容器(DecoratedBox)':
+        _pageWidget = DecoratedBoxWidget();
+        break;
       default:
         break;
     }
@@ -137,6 +143,9 @@ class CollectionPage extends StatelessWidget {
       Entry('容器类控件', <Entry>[
         Entry('填充(Padding)'),
         Entry('尺寸限制类容器'),
+        Entry('装饰容器(DecoratedBox)'),
+        Entry('变换(Transform)'),
+        Entry('Container容器')
       ]),
     ]),
   ];
