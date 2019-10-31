@@ -107,6 +107,9 @@ class _EntryItemState extends State<EntryItem> {
       case '装饰容器(DecoratedBox)':
         _pageWidget = DecoratedBoxWidget();
         break;
+      case '变换(Transform)':
+        _pageWidget = TransformWidget();
+        break;
       default:
         break;
     }
