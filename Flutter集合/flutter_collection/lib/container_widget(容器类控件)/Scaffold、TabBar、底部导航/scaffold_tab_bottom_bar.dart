@@ -73,6 +73,20 @@ class _ScaffoldPageRouteState extends State<ScaffoldPageRoute>
           indicatorSize: TabBarIndicatorSize.label,
         ),
       ),
+      body: TabBarView(
+        controller: _tabController,
+        // 创建Tab页
+        children: tabs.map((e) {
+          return Container(
+            alignment: Alignment.center,
+            child: Text(
+              e,
+              textScaleFactor: 5,
+              style: TextStyle(color: Colors.black),
+            ),
+          );
+        }).toList(),
+      ),
       backgroundColor: Colors.white,
       // 抽屉
       drawer: MyDrawer(),
