@@ -91,30 +91,34 @@ class _ScaffoldPageRouteState extends State<ScaffoldPageRoute>
       // 抽屉
       drawer: MyDrawer(),
       // 底部导航
-      bottomNavigationBar: BottomNavigationBar(
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            title: Text('家'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.business),
-            title: Text('公司'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.school),
-            title: Text('学校'),
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        fixedColor: Colors.blueAccent,
-        onTap: _onItemTapped,
-      ),
+      // bottomNavigationBar: BottomNavigationBar(
+      //   items: <BottomNavigationBarItem>[
+      //     BottomNavigationBarItem(
+      //       icon: Icon(Icons.home),
+      //       title: Text('家'),
+      //     ),
+      //     BottomNavigationBarItem(
+      //       icon: Icon(Icons.business),
+      //       title: Text('公司'),
+      //     ),
+      //     BottomNavigationBarItem(
+      //       icon: Icon(Icons.school),
+      //       title: Text('学校'),
+      //     ),
+      //   ],
+      //   currentIndex: _selectedIndex,
+      //   fixedColor: Colors.blueAccent,
+      //   onTap: _onItemTapped,
+      // ),
+      bottomNavigationBar: customBottomBar,
       // 悬浮按钮
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
+        backgroundColor: Colors.blueAccent,
+        foregroundColor: Colors.white,
         onPressed: _onAdd,
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 
@@ -125,4 +129,17 @@ class _ScaffoldPageRouteState extends State<ScaffoldPageRoute>
   }
 
   void _onAdd() {}
+
+  Widget customBottomBar = BottomAppBar(
+    color: Colors.blueAccent,
+    shape: CircularNotchedRectangle(), // 底部导航栏打一个圆形的洞
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround, // 均分底部导航栏横向空间
+      children: <Widget>[
+        IconButton(icon: Icon(Icons.home)),
+        SizedBox(), // 中间位置空出
+        IconButton(icon: Icon(Icons.business)),
+      ],
+    ),
+  );
 }
