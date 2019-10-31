@@ -38,6 +38,21 @@ class _ScaffoldPageRouteState extends State<ScaffoldPageRoute> {
             onPressed: () {},
           ),
         ],
+        // 自定义左item
+        leading: Builder(
+          builder: (context) {
+            return IconButton(
+              icon: Icon(
+                Icons.dashboard,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                // 打开抽屉菜单
+                Scaffold.of(context).openDrawer();
+              },
+            );
+          },
+        ),
         backgroundColor: Colors.blueAccent,
       ),
       backgroundColor: Colors.white,
