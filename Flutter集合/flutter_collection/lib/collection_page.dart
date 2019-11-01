@@ -1,15 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_collection/container_widget(%E5%AE%B9%E5%99%A8%E7%B1%BB%E6%8E%A7%E4%BB%B6)/%E5%B0%BA%E5%AF%B8%E9%99%90%E5%88%B6%E7%B1%BB%E6%8E%A7%E4%BB%B6/box_widget.dart';
-import 'package:flutter_collection/container_widget(%E5%AE%B9%E5%99%A8%E7%B1%BB%E6%8E%A7%E4%BB%B6)/Scaffold%E3%80%81TabBar%E3%80%81%E5%BA%95%E9%83%A8%E5%AF%BC%E8%88%AA/scaffold_tab_bottom_bar.dart';
-import 'package:flutter_collection/container_widget(%E5%AE%B9%E5%99%A8%E7%B1%BB%E6%8E%A7%E4%BB%B6)/clip_widget.dart';
-import 'package:flutter_collection/container_widget(%E5%AE%B9%E5%99%A8%E7%B1%BB%E6%8E%A7%E4%BB%B6)/container_widget.dart';
-import 'package:flutter_collection/container_widget(%E5%AE%B9%E5%99%A8%E7%B1%BB%E6%8E%A7%E4%BB%B6)/decorated_box_widget.dart';
-import 'package:flutter_collection/container_widget(%E5%AE%B9%E5%99%A8%E7%B1%BB%E6%8E%A7%E4%BB%B6)/padding_widget.dart';
-import 'package:flutter_collection/container_widget(%E5%AE%B9%E5%99%A8%E7%B1%BB%E6%8E%A7%E4%BB%B6)/transform_widget.dart';
-import 'package:flutter_collection/layout_widget(%E5%B8%83%E5%B1%80%E6%8E%A7%E4%BB%B6)/align_layout.dart';
-import 'package:flutter_collection/layout_widget(%E5%B8%83%E5%B1%80%E6%8E%A7%E4%BB%B6)/flex_layout.dart';
-import 'package:flutter_collection/layout_widget(%E5%B8%83%E5%B1%80%E6%8E%A7%E4%BB%B6)/stack_positioned_layout.dart';
-import 'package:flutter_collection/layout_widget(%E5%B8%83%E5%B1%80%E6%8E%A7%E4%BB%B6)/wrap_and_flox_layout.dart';
+
 import 'basic_widget(基础控件)/state_manage.dart';
 import 'basic_widget(基础控件)/text_widget.dart';
 import 'basic_widget(基础控件)/button_widget.dart';
@@ -19,6 +9,20 @@ import 'basic_widget(基础控件)/textfield_widget.dart';
 import 'basic_widget(基础控件)/progress_indicator_widget.dart';
 
 import 'layout_widget(布局控件)/linear_layout.dart';
+import 'layout_widget(布局控件)/flex_layout.dart';
+import 'layout_widget(布局控件)/stack_positioned_layout.dart';
+import 'layout_widget(布局控件)/wrap_and_flox_layout.dart';
+import 'layout_widget(布局控件)/align_layout.dart';
+
+import 'container_widget(容器类控件)/padding_widget.dart';
+import 'container_widget(容器类控件)/container_widget.dart';
+import 'container_widget(容器类控件)/decorated_box_widget.dart';
+import 'container_widget(容器类控件)/transform_widget.dart';
+import 'container_widget(容器类控件)/clip_widget.dart';
+import 'container_widget(容器类控件)/尺寸限制类控件/box_widget.dart';
+import 'container_widget(容器类控件)/Scaffold、TabBar、底部导航/scaffold_tab_bottom_bar.dart';
+
+import '可滚动控件/single_child_scroll_view.dart';
 
 class Entry {
   final String title;
@@ -121,6 +125,11 @@ class _EntryItemState extends State<EntryItem> {
       case '剪裁(Clip)':
         _pageWidget = ClipTestRoute();
         break;
+
+      // 可滚动控件
+      case 'SingleChildScrollView':
+        _pageWidget = SingleChildScrollViewTestRoute();
+        break;
       default:
         break;
     }
@@ -162,6 +171,9 @@ class CollectionPage extends StatelessWidget {
         Entry('Container容器'),
         Entry('Scaffold、TabBar、底部导航'),
         Entry('剪裁(Clip)')
+      ]),
+      Entry('可滚动控件', <Entry>[
+        Entry('SingleChildScrollView'),
       ]),
     ]),
   ];
