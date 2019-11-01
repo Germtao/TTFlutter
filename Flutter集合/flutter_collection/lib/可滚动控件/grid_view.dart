@@ -30,7 +30,9 @@ class GridViewTestRoute extends StatelessWidget {
       // body: _gridViewWithFixedCrossAxisCountEuqal,
 
       // body: _gridViewWithMaxCrossAxisExtent,
-      body: _gridViewWithMaxCrossAxisExtentEuqal,
+      // body: _gridViewWithMaxCrossAxisExtentEuqal,
+
+      body: InfiniteGridView(),
     );
   }
 
@@ -106,4 +108,55 @@ class GridViewTestRoute extends StatelessWidget {
       Icon(Icons.free_breakfast, color: Colors.redAccent),
     ],
   );
+}
+
+// 实现：从一个异步数据源（如网络）分批获取一些 Icon
+class InfiniteGridView extends StatefulWidget {
+  @override
+  _InfiniteGridViewState createState() => _InfiniteGridViewState();
+}
+
+class _InfiniteGridViewState extends State<InfiniteGridView> {
+  List<IconData> _icons = []; // 保存Icon数据
+
+  @override
+  void initState() {
+    super.initState();
+    // 初始化数据
+    _retrieveIcons();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return GridView.builder(
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 3,
+      ),
+      itemCount: _icons.length,
+      itemBuilder: (context, index) {
+        // 如果显示到最后一个并且Icon总数小于200时继续获取数据
+        if (index == _icons.length - 1 && _icons.length < 200) {
+          _retrieveIcons();
+        }
+
+        return Icon(_icons[index], color: Colors.blueAccent);
+      },
+    );
+  }
+
+  // 模拟异步获取数据
+  void _retrieveIcons() {
+    Future.delayed(Duration(milliseconds: 200)).then((e) {
+      setState(() {
+        _icons.addAll([
+          Icons.ac_unit,
+          Icons.airport_shuttle,
+          Icons.all_inclusive,
+          Icons.beach_access,
+          Icons.cake,
+          Icons.free_breakfast,
+        ]);
+      });
+    });
+  }
 }
