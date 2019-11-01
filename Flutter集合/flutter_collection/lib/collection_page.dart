@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_collection/%E5%8F%AF%E6%BB%9A%E5%8A%A8%E6%8E%A7%E4%BB%B6/custom_scroll_view.dart';
 
 import 'basic_widget(基础控件)/state_manage.dart';
 import 'basic_widget(基础控件)/text_widget.dart';
@@ -26,6 +25,8 @@ import 'container_widget(容器类控件)/Scaffold、TabBar、底部导航/scaff
 import '可滚动控件/single_child_scroll_view.dart';
 import '可滚动控件/list_view.dart';
 import '可滚动控件/grid_view.dart';
+import '可滚动控件/custom_scroll_view.dart';
+import '可滚动控件/scroll_controller.dart';
 
 class Entry {
   final String title;
@@ -142,6 +143,9 @@ class _EntryItemState extends State<EntryItem> {
       case 'CustomScrollView':
         _pageWidget = CustomScrollViewTestRoute();
         break;
+      case 'ScrollController滚动监听':
+        _pageWidget = ScrollControllerTestRoute();
+        break;
       default:
         break;
     }
@@ -189,6 +193,7 @@ class CollectionPage extends StatelessWidget {
         Entry('ListView'),
         Entry('GridView'),
         Entry('CustomScrollView'),
+        Entry('ScrollController滚动监听')
       ]),
     ]),
   ];
