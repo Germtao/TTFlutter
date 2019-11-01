@@ -23,6 +23,7 @@ import 'container_widget(容器类控件)/尺寸限制类控件/box_widget.dart'
 import 'container_widget(容器类控件)/Scaffold、TabBar、底部导航/scaffold_tab_bottom_bar.dart';
 
 import '可滚动控件/single_child_scroll_view.dart';
+import '可滚动控件/list_view.dart';
 
 class Entry {
   final String title;
@@ -130,6 +131,9 @@ class _EntryItemState extends State<EntryItem> {
       case 'SingleChildScrollView':
         _pageWidget = SingleChildScrollViewTestRoute();
         break;
+      case 'ListView':
+        _pageWidget = ListViewTextRoute();
+        break;
       default:
         break;
     }
@@ -174,6 +178,7 @@ class CollectionPage extends StatelessWidget {
       ]),
       Entry('可滚动控件', <Entry>[
         Entry('SingleChildScrollView'),
+        Entry('ListView'),
       ]),
     ]),
   ];

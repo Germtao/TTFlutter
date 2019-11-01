@@ -136,9 +136,15 @@ class _ScaffoldPageRouteState extends State<ScaffoldPageRoute>
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround, // 均分底部导航栏横向空间
       children: <Widget>[
-        IconButton(icon: Icon(Icons.home)),
+        IconButton(
+          icon: Icon(Icons.home),
+          onPressed: () {},
+        ),
         SizedBox(), // 中间位置空出
-        IconButton(icon: Icon(Icons.business)),
+        IconButton(
+          icon: Icon(Icons.business),
+          onPressed: () {},
+        ),
       ],
     ),
   );
