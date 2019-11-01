@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_collection/%E5%8F%AF%E6%BB%9A%E5%8A%A8%E6%8E%A7%E4%BB%B6/custom_scroll_view.dart';
 
 import 'basic_widget(基础控件)/state_manage.dart';
 import 'basic_widget(基础控件)/text_widget.dart';
@@ -138,6 +139,9 @@ class _EntryItemState extends State<EntryItem> {
       case 'GridView':
         _pageWidget = GridViewTestRoute();
         break;
+      case 'CustomScrollView':
+        _pageWidget = CustomScrollViewTestRoute();
+        break;
       default:
         break;
     }
@@ -184,6 +188,7 @@ class CollectionPage extends StatelessWidget {
         Entry('SingleChildScrollView'),
         Entry('ListView'),
         Entry('GridView'),
+        Entry('CustomScrollView'),
       ]),
     ]),
   ];
