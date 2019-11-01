@@ -1,3 +1,4 @@
+import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 
 // ListView是最常用的可滚动组件之一，它可以沿一个方向线性排布所有子组件，并且它也支持基于Sliver的延迟构建模型
@@ -24,7 +25,7 @@ ListView({
 })
  */
 
-class ListViewTextRoute extends StatelessWidget {
+class ListViewTestRoute extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,7 +34,8 @@ class ListViewTextRoute extends StatelessWidget {
       ),
       // body: _listView1,
       // body: _listView2,
-      body: _listView3,
+      // body: _listView3,
+      body: InfiniteListView(),
     );
   }
 
@@ -89,4 +91,83 @@ class ListViewTextRoute extends StatelessWidget {
           : Divider(color: Colors.greenAccent);
     },
   );
+}
+
+// 实现：无限加载列表
+class InfiniteListView extends StatefulWidget {
+  @override
+  _InfiniteListViewState createState() => _InfiniteListViewState();
+}
+
+class _InfiniteListViewState extends State<InfiniteListView> {
+  // 表尾标记
+  static const loadingTag = '##loading##';
+  var _words = <String>[loadingTag];
+
+  // 检索数据
+  void _retrieveData() {
+    Future.delayed(Duration(seconds: 2)).then((e) {
+      _words.insertAll(
+        _words.length - 1,
+        // 每次生成20个单词
+        generateWordPairs().take(20).map((e) => e.asPascalCase).toList(),
+      );
+
+      setState(() {
+        // //重新构建列表
+      });
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _retrieveData();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: <Widget>[
+        ListTile(title: Text('英文单词')),
+        Expanded(child: initListView()),
+      ],
+    );
+  }
+
+  Widget initListView() {
+    return ListView.separated(
+      itemCount: _words.length,
+      itemBuilder: (context, index) {
+        // 如果到表尾
+        if (_words[index] == loadingTag) {
+          // 不足100条，继续获取数据
+          if (_words.length - 1 < 100) {
+            _retrieveData();
+
+            // 加载时像是loading...
+            return Container(
+              padding: const EdgeInsets.all(16.0),
+              alignment: Alignment.center,
+              child: SizedBox(
+                width: 24.0,
+                height: 24.0,
+                child: CircularProgressIndicator(strokeWidth: 2.0),
+              ),
+            );
+          } else {
+            // 已经加载了100条数据，不再获取数据
+            return Container(
+              padding: const EdgeInsets.all(16.0),
+              alignment: Alignment.center,
+              child: Text('没有更多了', style: TextStyle(color: Colors.grey)),
+            );
+          }
+        }
+        // 显示单词列表
+        return ListTile(title: Text(_words[index]));
+      },
+      separatorBuilder: (context, index) => Divider(height: .0),
+    );
+  }
 }

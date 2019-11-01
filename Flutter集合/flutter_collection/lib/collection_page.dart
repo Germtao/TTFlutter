@@ -132,7 +132,7 @@ class _EntryItemState extends State<EntryItem> {
         _pageWidget = SingleChildScrollViewTestRoute();
         break;
       case 'ListView':
-        _pageWidget = ListViewTextRoute();
+        _pageWidget = ListViewTestRoute();
         break;
       default:
         break;
