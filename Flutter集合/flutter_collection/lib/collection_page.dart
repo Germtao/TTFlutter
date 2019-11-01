@@ -24,6 +24,7 @@ import 'container_widget(容器类控件)/Scaffold、TabBar、底部导航/scaff
 
 import '可滚动控件/single_child_scroll_view.dart';
 import '可滚动控件/list_view.dart';
+import '可滚动控件/grid_view.dart';
 
 class Entry {
   final String title;
@@ -134,6 +135,9 @@ class _EntryItemState extends State<EntryItem> {
       case 'ListView':
         _pageWidget = ListViewTestRoute();
         break;
+      case 'GridView':
+        _pageWidget = GridViewTestRoute();
+        break;
       default:
         break;
     }
@@ -179,6 +183,7 @@ class CollectionPage extends StatelessWidget {
       Entry('可滚动控件', <Entry>[
         Entry('SingleChildScrollView'),
         Entry('ListView'),
+        Entry('GridView'),
       ]),
     ]),
   ];
