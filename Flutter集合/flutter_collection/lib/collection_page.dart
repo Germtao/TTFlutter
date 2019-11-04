@@ -28,6 +28,8 @@ import '可滚动控件/grid_view.dart';
 import '可滚动控件/custom_scroll_view.dart';
 import '可滚动控件/scroll_controller.dart';
 
+import '功能型控件/will_pop_scope.dart';
+
 class Entry {
   final String title;
   final List<Entry> children;
@@ -146,6 +148,11 @@ class _EntryItemState extends State<EntryItem> {
       case 'ScrollController滚动监听':
         _pageWidget = ScrollControllerTestRoute();
         break;
+
+      // 功能型控件
+      case 'WillPopScope(导航返回拦截)':
+        _pageWidget = WillPopScopeTestRoute();
+        break;
       default:
         break;
     }
@@ -194,6 +201,9 @@ class CollectionPage extends StatelessWidget {
         Entry('GridView'),
         Entry('CustomScrollView'),
         Entry('ScrollController滚动监听')
+      ]),
+      Entry('功能型控件', <Entry>[
+        Entry('WillPopScope(导航返回拦截)'),
       ]),
     ]),
   ];
