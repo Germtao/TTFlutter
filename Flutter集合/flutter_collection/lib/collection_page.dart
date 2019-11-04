@@ -29,6 +29,7 @@ import '可滚动控件/custom_scroll_view.dart';
 import '可滚动控件/scroll_controller.dart';
 
 import '功能型控件/will_pop_scope.dart';
+import '功能型控件/inherited_widget(数据共享)/inherited_widget_test_route.dart';
 
 class Entry {
   final String title;
@@ -153,6 +154,9 @@ class _EntryItemState extends State<EntryItem> {
       case 'WillPopScope(导航返回拦截)':
         _pageWidget = WillPopScopeTestRoute();
         break;
+      case 'InheritedWidget(数据共享)':
+        _pageWidget = InheritedWidgetTestRoute();
+        break;
       default:
         break;
     }
@@ -204,6 +208,7 @@ class CollectionPage extends StatelessWidget {
       ]),
       Entry('功能型控件', <Entry>[
         Entry('WillPopScope(导航返回拦截)'),
+        Entry('InheritedWidget(数据共享)'),
       ]),
     ]),
   ];
