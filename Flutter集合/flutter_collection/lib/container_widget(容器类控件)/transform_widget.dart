@@ -29,7 +29,7 @@ class TransformWidget extends StatelessWidget {
   }
 
   // Matrix4是一个4D矩阵
-  Widget matrix4 = Container(
+  final Widget matrix4 = Container(
     color: Colors.black,
     child: Transform(
       alignment: Alignment.topRight, // 相对于坐标系原点的对齐方式
@@ -43,7 +43,7 @@ class TransformWidget extends StatelessWidget {
   );
 
   // 平移
-  Widget translate = DecoratedBox(
+  final Widget translate = DecoratedBox(
     decoration: BoxDecoration(color: Colors.red),
     // 默认原点为左上角，左移20像素，向上平移5像素
     child: Transform.translate(
@@ -56,7 +56,7 @@ class TransformWidget extends StatelessWidget {
   );
 
   // 旋转
-  Widget rotate = DecoratedBox(
+  final Widget rotate = DecoratedBox(
     decoration: BoxDecoration(color: Colors.red),
     child: Transform.rotate(
       angle: math.pi / 2,
@@ -68,7 +68,7 @@ class TransformWidget extends StatelessWidget {
   );
 
   // 缩放
-  Widget scale = DecoratedBox(
+  final Widget scale = DecoratedBox(
     decoration: BoxDecoration(color: Colors.red),
     child: Transform.scale(
       scale: 1.5,
@@ -80,7 +80,7 @@ class TransformWidget extends StatelessWidget {
   );
 
   // Transform的变换是应用在绘制阶段，而并不是应用在布局(layout)阶段
-  Widget example = Row(
+  final Widget example = Row(
     mainAxisAlignment: MainAxisAlignment.center,
     children: <Widget>[
       DecoratedBox(
@@ -101,7 +101,7 @@ class TransformWidget extends StatelessWidget {
   );
 
   // RotatedBox 类似Transform.rotate
-  Widget rotatedBox = Row(
+  final Widget rotatedBox = Row(
     mainAxisAlignment: MainAxisAlignment.center,
     children: <Widget>[
       DecoratedBox(
