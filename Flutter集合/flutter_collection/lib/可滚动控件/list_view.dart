@@ -42,7 +42,7 @@ class ListViewTestRoute extends StatelessWidget {
   // 1. 类似 SingleChildScrollView+Column 的效果
   // 可滚动组件通过一个List来作为其children属性时，只适用于子组件较少的情况，
   // 这是一个通用规律，并非ListView自己的特性，像GridView也是如此
-  Widget _listView1 = ListView(
+  final Widget _listView1 = ListView(
     shrinkWrap: true, // 是否根据子组件的总长度来设置ListView的长度
     padding: const EdgeInsets.all(20.0),
     children: <Widget>[
@@ -68,7 +68,7 @@ class ListViewTestRoute extends StatelessWidget {
     ...
   })
    */
-  Widget _listView2 = ListView.builder(
+  final Widget _listView2 = ListView.builder(
     itemCount: 100,
     itemExtent: 50.0, // 强制高度为50.0
     itemBuilder: (context, index) {
@@ -80,7 +80,7 @@ class ListViewTestRoute extends StatelessWidget {
 
   // 3. ListView.separated 可以在生成的列表项之间添加一个分割组件，
   // 它比ListView.builder多了一个separatorBuilder参数，该参数是一个分割组件生成器
-  Widget _listView3 = ListView.separated(
+  final Widget _listView3 = ListView.separated(
     itemCount: 100,
     itemBuilder: (context, index) {
       return ListTile(title: Text('$index'));

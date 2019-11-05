@@ -32,7 +32,7 @@ class UnConstrainedBoxWidget extends StatelessWidget {
     );
   }
 
-  Widget redBox = DecoratedBox(
+  final Widget redBox = DecoratedBox(
     decoration: BoxDecoration(color: Colors.red),
   );
 }

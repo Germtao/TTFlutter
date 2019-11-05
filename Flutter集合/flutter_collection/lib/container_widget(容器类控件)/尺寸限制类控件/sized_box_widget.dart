@@ -37,7 +37,7 @@ class SizedBoxWidget extends StatelessWidget {
   }
 
   // 定义一个redBox，它是一个背景颜色为红色的盒子，不指定它的宽度和高度
-  Widget redBox = DecoratedBox(
+  final Widget redBox = DecoratedBox(
     decoration: BoxDecoration(color: Colors.red),
   );
 }
