@@ -183,4 +183,4 @@ class _ChangeNotifierProviderState<T extends ChangeNotifier>
 
 可以看到`_ChangeNotifierProviderState`类的主要作用监听到共享状态（model）改变时重新构建Widget树。注意，在`_ChangeNotifierProviderState`类中调用`setState()`方法，`widget.child`始终是同一个，所以执行`build`时，`InheritedProvider`的`child`引用的始终是同一个子`widget`，所以`widget.child`并不会重新`build`，这也就相当于对`child`进行了缓存！当然如果`ChangeNotifierProvider`父级`Widget`重新`build`时，则其传入的`child`便有可能会发生变化。
 
-现在我们所需要的各个工具类都已完成，下面我们通过一个购物车的例子来看看怎么使用上面的这些类
+现在我们所需要的各个工具类都已完成，下面我们通过一个购物车的例子来看看怎么使用上面的这些类。
