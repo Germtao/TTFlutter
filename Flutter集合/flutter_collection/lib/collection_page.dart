@@ -32,6 +32,7 @@ import '功能型控件/will_pop_scope.dart';
 import '功能型控件/inherited_widget(数据共享)/inherited_widget_test_route.dart';
 import '功能型控件/Provider(跨控件状态共享)/购物车示例/cart_provider_route.dart';
 import '功能型控件/Theme(颜色和主题)/theme.dart';
+import '功能型控件/async_update_ui.dart';
 
 class Entry {
   final String title;
@@ -165,6 +166,9 @@ class _EntryItemState extends State<EntryItem> {
       case 'Theme(颜色和主题)':
         _pageWidget = ThemeTestRoute();
         break;
+      case 'FutureBuilder、StreamBuilder(异步更新UI)':
+        _pageWidget = AsyncUpdateUITestRoute();
+        break;
       default:
         break;
     }
@@ -219,6 +223,7 @@ class CollectionPage extends StatelessWidget {
         Entry('InheritedWidget(数据共享)'),
         Entry('Provider(跨控件状态共享)'),
         Entry('Theme(颜色和主题)'),
+        Entry('FutureBuilder、StreamBuilder(异步更新UI)'),
       ]),
     ]),
   ];
