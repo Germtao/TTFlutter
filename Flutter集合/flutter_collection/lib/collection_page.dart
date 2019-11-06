@@ -30,7 +30,8 @@ import '可滚动控件/scroll_controller.dart';
 
 import '功能型控件/will_pop_scope.dart';
 import '功能型控件/inherited_widget(数据共享)/inherited_widget_test_route.dart';
-import 'package:flutter_collection/功能型控件/Provider(跨控件状态共享)/购物车示例/cart_provider_route.dart';
+import '功能型控件/Provider(跨控件状态共享)/购物车示例/cart_provider_route.dart';
+import '功能型控件/Theme(颜色和主题)/theme.dart';
 
 class Entry {
   final String title;
@@ -161,6 +162,9 @@ class _EntryItemState extends State<EntryItem> {
       case 'Provider(跨控件状态共享)':
         _pageWidget = CartProviderRoute();
         break;
+      case 'Theme(颜色和主题)':
+        _pageWidget = ThemeTestRoute();
+        break;
       default:
         break;
     }
@@ -214,6 +218,7 @@ class CollectionPage extends StatelessWidget {
         Entry('WillPopScope(导航返回拦截)'),
         Entry('InheritedWidget(数据共享)'),
         Entry('Provider(跨控件状态共享)'),
+        Entry('Theme(颜色和主题)'),
       ]),
     ]),
   ];
