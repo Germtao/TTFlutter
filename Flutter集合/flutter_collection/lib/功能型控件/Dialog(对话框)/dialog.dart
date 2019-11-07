@@ -26,7 +26,7 @@ class _DialogTestRouteState extends State<DialogTestRoute> {
                 child: Text('对话框 1'),
                 onPressed: () async {
                   // 弹出对话框并等待其关闭
-                  bool delete = await showDeleteConfirmDialog1(context);
+                  bool delete = await showDeleteConfirmDialog1();
                   if (delete == null) {
                     print('取消删除');
                   } else {
@@ -38,20 +38,20 @@ class _DialogTestRouteState extends State<DialogTestRoute> {
               RaisedButton(
                 child: Text('对话框 (列表少)'),
                 onPressed: () {
-                  changeLanguage(context);
+                  changeLanguage();
                 },
               ),
               RaisedButton(
                 child: Text('对话框 (长列表)'),
                 onPressed: () {
-                  showListDialog(context);
+                  showListDialog();
                 },
               ),
               RaisedButton(
                 child: Text('自定义对话框'),
                 onPressed: () async {
                   // 弹出对话框并等待其关闭
-                  bool delete = await _showCustomDialog(context);
+                  bool delete = await _showCustomDialog();
                   if (delete == null) {
                     print('取消删除');
                   } else {
@@ -64,7 +64,33 @@ class _DialogTestRouteState extends State<DialogTestRoute> {
                 child: Text('对话框 2(复选框可点击)'),
                 onPressed: () async {
                   // 弹出对话框并等待其关闭
-                  bool delete = await showDeleteConfirmDialog2(context);
+                  bool delete = await showDeleteConfirmDialog2();
+                  if (delete == null) {
+                    print('取消删除');
+                  } else {
+                    print('"同时删除子目录: $delete"');
+                    // ... 删除文件
+                  }
+                },
+              ),
+              RaisedButton(
+                child: Text('对话框 3(复选框可点击)'),
+                onPressed: () async {
+                  // 弹出对话框并等待其关闭
+                  bool delete = await showDeleteConfirmDialog3();
+                  if (delete == null) {
+                    print('取消删除');
+                  } else {
+                    print('"同时删除子目录: $delete"');
+                    // ... 删除文件
+                  }
+                },
+              ),
+              RaisedButton(
+                child: Text('对话框 4(复选框可点击)'),
+                onPressed: () async {
+                  // 弹出对话框并等待其关闭
+                  bool delete = await showDeleteConfirmDialog4();
                   if (delete == null) {
                     print('取消删除');
                   } else {
@@ -97,7 +123,7 @@ class _DialogTestRouteState extends State<DialogTestRoute> {
   this.shape, // 对话框外形
 })
    */
-  Future<bool> showDeleteConfirmDialog1(BuildContext context) {
+  Future<bool> showDeleteConfirmDialog1() {
     return showDialog<bool>(
       context: context,
       builder: (context) {
@@ -125,7 +151,7 @@ class _DialogTestRouteState extends State<DialogTestRoute> {
     );
   }
 
-  Future<bool> showDeleteConfirmDialog2(BuildContext context) {
+  Future<bool> showDeleteConfirmDialog2() {
     withTree = false; // 默认复选框不选中
     return showDialog<bool>(
       context: context,
@@ -171,8 +197,112 @@ class _DialogTestRouteState extends State<DialogTestRoute> {
     );
   }
 
+  // 比对话框2更优、复用
+  Future<bool> showDeleteConfirmDialog3() {
+    withTree = false; // 默认复选框不选中
+    return showDialog<bool>(
+      context: context,
+      builder: (context) {
+        return Theme(
+          data: ThemeData(primaryColor: Colors.white),
+          child: AlertDialog(
+            title: Text('提示'),
+            content: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                Text('您确定要删除当前文件吗？'),
+                Row(
+                  children: <Widget>[
+                    Text('同时删除子目录？'),
+                    // 使用StatefulBuilder来构建StatefulWidget上下文
+                    StatefulBuilder(
+                      builder: (context, _setState) {
+                        return Checkbox(
+                          value: withTree,
+                          onChanged: (v) {
+                            _setState(() {
+                              withTree = v;
+                            });
+                          },
+                        );
+                      },
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            actions: <Widget>[
+              FlatButton(
+                child: Text('取消'),
+                onPressed: () => Navigator.of(context).pop(), // 关闭对话框
+              ),
+              FlatButton(
+                child: Text('删除'),
+                onPressed: () {
+                  // ... 执行删除操作
+                  Navigator.of(context).pop(true);
+                }, // 关闭对话框，并返回true
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  // 比 2、3 更优解
+  Future<bool> showDeleteConfirmDialog4() {
+    withTree = false; // 默认复选框不选中
+    return showDialog<bool>(
+      context: context,
+      builder: (context) {
+        return Theme(
+          data: ThemeData(primaryColor: Colors.white),
+          child: AlertDialog(
+            title: Text('提示'),
+            content: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                Text('您确定要删除当前文件吗？'),
+                Row(
+                  children: <Widget>[
+                    Text('同时删除子目录？'),
+                    Checkbox(
+                      value: withTree,
+                      onChanged: (v) {
+                        // 此时context为对话框UI的根Element，我们
+                        // 直接将对话框UI对应的Element标记为dirty
+                        (context as Element).markNeedsBuild();
+                        withTree = v;
+                      },
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            actions: <Widget>[
+              FlatButton(
+                child: Text('取消'),
+                onPressed: () => Navigator.of(context).pop(), // 关闭对话框
+              ),
+              FlatButton(
+                child: Text('删除'),
+                onPressed: () {
+                  // ... 执行删除操作
+                  Navigator.of(context).pop(true);
+                }, // 关闭对话框，并返回true
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
   // 2. SimpleDialog 它会展示一个列表，用于列表选择的场景
-  Future changeLanguage(BuildContext context) async {
+  Future changeLanguage() async {
     int i = await showDialog<int>(
       context: context,
       builder: (context) {
@@ -211,7 +341,7 @@ class _DialogTestRouteState extends State<DialogTestRoute> {
   }
 
   // 3. Dialog
-  Future showListDialog(BuildContext context) async {
+  Future showListDialog() async {
     int index = await showDialog<int>(
       context: context,
       builder: (context) {
@@ -232,7 +362,10 @@ class _DialogTestRouteState extends State<DialogTestRoute> {
           ],
         );
         // return AlertDialog(content: child); // 会报错
-        return Dialog(child: child); // == 下方效果
+        return Theme(
+          data: ThemeData(primaryColor: Colors.white),
+          child: Dialog(child: child),
+        ); // == 下方效果
         // return UnconstrainedBox(
         //   constrainedAxis: Axis.vertical,
         //   child: ConstrainedBox(
@@ -296,7 +429,7 @@ class _DialogTestRouteState extends State<DialogTestRoute> {
     );
   }
 
-  Future<bool> _showCustomDialog(BuildContext context) {
+  Future<bool> _showCustomDialog() {
     return showCustomDialog<bool>(
       context: context,
       builder: (context) {
