@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_collection/功能型控件/Dialog(对话框)/dialog_check_box.dart';
 
@@ -105,6 +107,13 @@ class _DialogTestRouteState extends State<DialogTestRoute> {
                 onPressed: () async {
                   var index = await _showModalBottomSheet();
                   print('$index');
+                },
+              ),
+              // Loading框
+              RaisedButton(
+                child: Text('Loading框'),
+                onPressed: () async {
+                  showLoadingDialog();
                 },
               ),
             ],
@@ -219,7 +228,7 @@ class _DialogTestRouteState extends State<DialogTestRoute> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                Text('您确定要删除当前文件吗？'),
+                Text('您确定要删��当前文件吗？'),
                 Row(
                   children: <Widget>[
                     Text('同时删除子目录？'),
@@ -484,6 +493,56 @@ class _DialogTestRouteState extends State<DialogTestRoute> {
               onTap: () => Navigator.of(context).pop(index),
             );
           },
+        );
+      },
+    );
+  }
+
+  // showBottomSheet 该方法会从设备底部向上弹出一个全屏的菜单列表
+  PersistentBottomSheetController<int> _showBottomSheet() {
+    return showBottomSheet<int>(
+      context: context,
+      builder: (context) {
+        return ListView.builder(
+          itemCount: 30,
+          itemBuilder: (context, index) {
+            return ListTile(
+              title: Text('$index'),
+              onTap: () {
+                print('$index');
+                Navigator.of(context).pop();
+              },
+            );
+          },
+        );
+      },
+    );
+  }
+
+  // Loading框
+  // 直接通过 showDialog + AlertDialog 来自定义
+  Future<Void> showLoadingDialog() {
+    showDialog(
+      context: context,
+      // barrierDismissible: false, // 点击遮罩不关闭对话框
+      builder: (context) {
+        return UnconstrainedBox(
+          constrainedAxis: Axis.vertical,
+          child: SizedBox(
+            width: 280,
+            child: AlertDialog(
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  CircularProgressIndicator(),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 26.0),
+                    child: Text('正在加载，请稍候...'),
+                  ),
+                ],
+              ),
+            ),
+          ),
         );
       },
     );
