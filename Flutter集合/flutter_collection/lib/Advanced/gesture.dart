@@ -18,6 +18,9 @@ class _GestureTestRouteState extends State<GestureTestRoute> {
   TapGestureRecognizer _tapGes = TapGestureRecognizer();
   bool _toggle = false; // 变色开关
 
+  double _top1 = 0.0;
+  double _left1 = 0.0;
+
   @override
   void dispose() {
     // 用到GestureRecognizer的话一定要调用其dispose方法释放资源
@@ -39,6 +42,7 @@ class _GestureTestRouteState extends State<GestureTestRoute> {
               _drag(),
               _scale(),
               _gestureForRichText(),
+              _bothDirectionOfDrag(),
             ],
           ),
         ),
@@ -144,6 +148,39 @@ class _GestureTestRouteState extends State<GestureTestRoute> {
               },
           ),
           TextSpan(text: '你好世界'),
+        ],
+      ),
+    );
+  }
+
+  // MARK: - 手势竞争和冲突
+  Widget _bothDirectionOfDrag() {
+    return Container(
+      width: 200.0,
+      height: 100.0,
+      color: Colors.red,
+      child: Stack(
+        children: <Widget>[
+          Positioned(
+            top: _top1,
+            left: _left1,
+            child: GestureDetector(
+              child: CircleAvatar(child: Text('A')),
+              // 垂直方向拖动事件
+              onVerticalDragUpdate: (details) {
+                setState(() {
+                  _top1 += details.delta.dy;
+                });
+              },
+
+              // 水平方向拖动事件
+              onHorizontalDragUpdate: (details) {
+                setState(() {
+                  _left1 += details.delta.dx;
+                });
+              },
+            ),
+          ),
         ],
       ),
     );
