@@ -139,6 +139,11 @@ class _EntryItemState extends State<EntryItem> {
       case '对话框':
         _pageWidget = DialogTestRoute();
         break;
+
+      // MARK: - 进阶篇
+      case '原始指针事件处理':
+        _pageWidget = PointerEventTestRoute();
+        break;
       default:
         break;
     }
@@ -195,6 +200,12 @@ class CollectionPage extends StatelessWidget {
         Entry('Theme(颜色和主题)'),
         Entry('FutureBuilder、StreamBuilder(异步更新UI)'),
         Entry('对话框'),
+      ]),
+    ]),
+    // 进阶篇
+    Entry('进阶篇', <Entry>[
+      Entry('事件处理与通知', <Entry>[
+        Entry('原始指针事件处理'),
       ]),
     ]),
   ];
