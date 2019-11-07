@@ -14,31 +14,44 @@ class _PointerEventTestRouteState extends State<PointerEventTestRoute> {
       data: ThemeData(primaryColor: Colors.blueAccent),
       child: Scaffold(
         appBar: AppBar(title: Text('原始指针事件处理')),
-        body: Stack(
-          children: <Widget>[
-            Listener(
-              child: ConstrainedBox(
-                constraints: BoxConstraints.tight(Size(300.0, 200.0)),
-                child: DecoratedBox(
-                  decoration: BoxDecoration(color: Colors.blue),
-                ),
+        // body: Stack(
+        //   children: <Widget>[
+        //     Listener(
+        //       child: ConstrainedBox(
+        //         constraints: BoxConstraints.tight(Size(300.0, 200.0)),
+        //         child: DecoratedBox(
+        //           decoration: BoxDecoration(color: Colors.blue),
+        //         ),
+        //       ),
+        //       onPointerDown: (event) => print('down - 0'),
+        //     ),
+        //     Listener(
+        //       child: ConstrainedBox(
+        //         constraints: BoxConstraints.tight(Size(200.0, 100.0)),
+        //         child: Center(
+        //           child: Text(
+        //             '左上角200*100范围内非文本区域点击',
+        //             style: TextStyle(color: Colors.white),
+        //           ),
+        //         ),
+        //       ),
+        //       onPointerDown: (event) => print('down - 1'),
+        //       behavior: HitTestBehavior.translucent,
+        //     ),
+        //   ],
+        // ),
+        body: Listener(
+          child: AbsorbPointer(
+            child: Listener(
+              child: Container(
+                color: Colors.red,
+                width: 200.0,
+                height: 100.0,
               ),
-              onPointerDown: (event) => print('down - 0'),
+              onPointerDown: (event) => print('in'),
             ),
-            Listener(
-              child: ConstrainedBox(
-                constraints: BoxConstraints.tight(Size(200.0, 100.0)),
-                child: Center(
-                  child: Text(
-                    '左上角200*100范围内非文本区域点击',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
-              ),
-              onPointerDown: (event) => print('down - 1'),
-              behavior: HitTestBehavior.translucent,
-            ),
-          ],
+          ),
+          onPointerDown: (event) => print('up'),
         ),
       ),
     );
