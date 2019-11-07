@@ -9,6 +9,11 @@ class GestureTestRoute extends StatefulWidget {
 class _GestureTestRouteState extends State<GestureTestRoute> {
   String _operation = "No Gesture detected!"; // 保存事件名
 
+  double _top = 0.0; // 距顶部的偏移
+  double _left = 0.0; // 距左边的偏移
+
+  double _width = 200.0; // 通过修改图片宽度来达到缩放效果
+
   @override
   Widget build(BuildContext context) {
     return Theme(
@@ -17,9 +22,11 @@ class _GestureTestRouteState extends State<GestureTestRoute> {
         appBar: AppBar(title: Text('手势识别')),
         body: Center(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
               _tap(),
+              _drag(),
+              _scale(),
             ],
           ),
         ),
@@ -51,5 +58,57 @@ class _GestureTestRouteState extends State<GestureTestRoute> {
     setState(() {
       _operation = text;
     });
+  }
+
+  // 拖动、滑动
+  Widget _drag() {
+    return Container(
+      width: 200.0,
+      height: 100.0,
+      color: Colors.red,
+      child: Stack(
+        children: <Widget>[
+          Positioned(
+            top: _top,
+            left: _left,
+            child: GestureDetector(
+              child: CircleAvatar(child: Text('A')),
+              // 手指按下时会触发此回调
+              onPanDown: (details) {
+                // 打印手指按下的位置(相对于屏幕)
+                print('用户手指按下：${details.globalPosition}');
+              },
+              // 手指滑动时会触发此回调
+              onPanUpdate: (details) {
+                // 用户手指滑动时，更新偏移，重新构建
+                setState(() {
+                  _left += details.delta.dx;
+                  _top += details.delta.dy;
+                });
+              },
+              onPanEnd: (details) {
+                // 打印滑动结束时在x、y轴上的速度
+                print(details.velocity);
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  // 缩放
+  Widget _scale() {
+    return GestureDetector(
+      // 指定宽度，高度自适应
+      child: Image.asset('images/scale.png', width: _width),
+      onScaleUpdate: (details) {
+        print(details.scale);
+        setState(() {
+          // 缩放倍数在0.8到10倍之间
+          _width = 200 * details.scale.clamp(.8, 10.0);
+        });
+      },
+    );
   }
 }
