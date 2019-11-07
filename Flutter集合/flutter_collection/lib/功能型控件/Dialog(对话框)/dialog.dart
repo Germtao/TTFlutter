@@ -252,6 +252,8 @@ class _DialogTestRouteState extends State<DialogTestRoute> {
   }
 
   // 比 2、3 更优解
+  // 只需要更新复选框的状态，而此时的context我们用的是对话框的根context，所以会导致整个对话框UI组件全部rebuild，
+  // 因此最好的做法是将context的“范围”缩小，也就是说只将Checkbox的Element标记为dirty
   Future<bool> showDeleteConfirmDialog4() {
     withTree = false; // 默认复选框不选中
     return showDialog<bool>(
@@ -269,13 +271,19 @@ class _DialogTestRouteState extends State<DialogTestRoute> {
                 Row(
                   children: <Widget>[
                     Text('同时删除子目录？'),
-                    Checkbox(
-                      value: withTree,
-                      onChanged: (v) {
-                        // 此时context为对话框UI的根Element，我们
-                        // 直接将对话框UI对应的Element标记为dirty
-                        (context as Element).markNeedsBuild();
-                        withTree = v;
+                    // 通过Builder来获得构建Checkbox的`context`，
+                    // 这是一种常用的缩小`context`范围的方式
+                    Builder(
+                      builder: (context) {
+                        return Checkbox(
+                          value: withTree,
+                          onChanged: (v) {
+                            // 此时context为对话框UI的根Element，我们
+                            // 直接将对话框UI对应的Element标记为dirty
+                            (context as Element).markNeedsBuild();
+                            withTree = v;
+                          },
+                        );
                       },
                     ),
                   ],
@@ -291,7 +299,7 @@ class _DialogTestRouteState extends State<DialogTestRoute> {
                 child: Text('删除'),
                 onPressed: () {
                   // ... 执行删除操作
-                  Navigator.of(context).pop(true);
+                  Navigator.of(context).pop(withTree);
                 }, // 关闭对话框，并返回true
               ),
             ],
