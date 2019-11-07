@@ -99,6 +99,14 @@ class _DialogTestRouteState extends State<DialogTestRoute> {
                   }
                 },
               ),
+              // 底部对话框
+              RaisedButton(
+                child: Text('底部列表对话框'),
+                onPressed: () async {
+                  var index = await _showModalBottomSheet();
+                  print('$index');
+                },
+              ),
             ],
           ),
         ),
@@ -457,6 +465,25 @@ class _DialogTestRouteState extends State<DialogTestRoute> {
               ),
             ],
           ),
+        );
+      },
+    );
+  }
+
+  // 其它类型的对话框
+  // 底部菜单列表模态对话框
+  Future<int> _showModalBottomSheet() {
+    return showModalBottomSheet<int>(
+      context: context,
+      builder: (context) {
+        return ListView.builder(
+          itemCount: 30,
+          itemBuilder: (context, index) {
+            return ListTile(
+              title: Text('$index'),
+              onTap: () => Navigator.of(context).pop(index),
+            );
+          },
         );
       },
     );
