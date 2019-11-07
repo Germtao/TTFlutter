@@ -31,4 +31,4 @@ export '功能型控件/inherited_widget(数据共享)/inherited_widget_test_rou
 export '功能型控件/Provider(跨控件状态共享)/购物车示例/cart_provider_route.dart';
 export '功能型控件/Theme(颜色和主题)/theme.dart';
 export '功能型控件/async_update_ui.dart';
-export '功能型控件/dialog.dart';
+export '功能型控件/Dialog(对话框)/dialog.dart';

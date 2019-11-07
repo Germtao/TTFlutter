@@ -1,9 +1,15 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_collection/功能型控件/Dialog(对话框)/dialog_check_box.dart';
 
 // 对话框
-class DialogTestRoute extends StatelessWidget {
+class DialogTestRoute extends StatefulWidget {
+  @override
+  _DialogTestRouteState createState() => _DialogTestRouteState();
+}
+
+class _DialogTestRouteState extends State<DialogTestRoute> {
+  bool withTree = false; // 复选框选中状态
+
   @override
   Widget build(BuildContext context) {
     return Theme(
@@ -30,13 +36,13 @@ class DialogTestRoute extends StatelessWidget {
                 },
               ),
               RaisedButton(
-                child: Text('对话框 2'),
+                child: Text('对话框 (列表少)'),
                 onPressed: () {
                   changeLanguage(context);
                 },
               ),
               RaisedButton(
-                child: Text('对话框 3(复选框可点击)'),
+                child: Text('对话框 (长列表)'),
                 onPressed: () {
                   showListDialog(context);
                 },
@@ -50,6 +56,19 @@ class DialogTestRoute extends StatelessWidget {
                     print('取消删除');
                   } else {
                     print('确认删除');
+                    // ... 删除文件
+                  }
+                },
+              ),
+              RaisedButton(
+                child: Text('对话框 2(复选框可点击)'),
+                onPressed: () async {
+                  // 弹出对话框并等待其关闭
+                  bool delete = await showDeleteConfirmDialog2(context);
+                  if (delete == null) {
+                    print('取消删除');
+                  } else {
+                    print('"同时删除子目录: $delete"');
                     // ... 删除文件
                   }
                 },
@@ -87,6 +106,52 @@ class DialogTestRoute extends StatelessWidget {
           child: AlertDialog(
             title: Text('提示'),
             content: Text('你确定要删除当前文件吗？想不想想不想想不想想不想选择啊'),
+            actions: <Widget>[
+              FlatButton(
+                child: Text('取消'),
+                onPressed: () => Navigator.of(context).pop(), // 关闭对话框
+              ),
+              FlatButton(
+                child: Text('删除'),
+                onPressed: () {
+                  // ... 执行删除操作
+                  Navigator.of(context).pop(true);
+                }, // 关闭对话框，并返回true
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  Future<bool> showDeleteConfirmDialog2(BuildContext context) {
+    withTree = false; // 默认复选框不选中
+    return showDialog<bool>(
+      context: context,
+      builder: (context) {
+        return Theme(
+          data: ThemeData(primaryColor: Colors.white),
+          child: AlertDialog(
+            title: Text('提示'),
+            content: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                Text('您确定要删除当前文件吗？'),
+                Row(
+                  children: <Widget>[
+                    Text('同时删除子目录？'),
+                    DialogCheckBox(
+                      value: withTree,
+                      onChanged: (v) {
+                        withTree = v;
+                      },
+                    ),
+                  ],
+                ),
+              ],
+            ),
             actions: <Widget>[
               FlatButton(
                 child: Text('取消'),
