@@ -1,5 +1,6 @@
 import 'dart:ffi';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_collection/功能型控件/Dialog(对话框)/dialog_check_box.dart';
 
@@ -116,6 +117,23 @@ class _DialogTestRouteState extends State<DialogTestRoute> {
                   showLoadingDialog();
                 },
               ),
+
+              // 日历选择 1
+              RaisedButton(
+                child: Text('日历选择 1'),
+                onPressed: () async {
+                  var date = await _showDatePicker1();
+                  print('$date');
+                },
+              ),
+              // 日历选择 2
+              RaisedButton(
+                child: Text('日历选择 2'),
+                onPressed: () async {
+                  var date = await _showDatePicker2();
+                  print('$date');
+                },
+              ),
             ],
           ),
         ),
@@ -228,7 +246,7 @@ class _DialogTestRouteState extends State<DialogTestRoute> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                Text('您确定要删��当前文件吗？'),
+                Text('您确定要删当前文件吗？'),
                 Row(
                   children: <Widget>[
                     Text('同时删除子目录？'),
@@ -462,7 +480,7 @@ class _DialogTestRouteState extends State<DialogTestRoute> {
           data: ThemeData.light(),
           child: AlertDialog(
             title: Text('提示'),
-            content: Text('您确定要删除当前文件吗？'),
+            content: Text('您��������������������������定要删除当前文件吗？'),
             actions: <Widget>[
               FlatButton(
                 child: Text('取消'),
@@ -542,6 +560,98 @@ class _DialogTestRouteState extends State<DialogTestRoute> {
                 ],
               ),
             ),
+          ),
+        );
+      },
+    );
+  }
+
+  // 日历选择 1
+  Future<DateTime> _showDatePicker1() {
+    var dateNow = DateTime.now();
+    return showDatePicker(
+      context: context,
+      initialDate: dateNow,
+      firstDate: dateNow,
+      lastDate: dateNow.add(
+        Duration(days: 30), // 未来30天可选
+      ),
+      builder: (context, child) {
+        return Theme(
+          data: ThemeData(primaryColor: Colors.white),
+          child: child,
+        );
+      },
+    );
+  }
+
+  // 日历选择 2
+  // iOS：showCupertinoModalPopup方法和CupertinoDatePicker控件来实现
+  Future<DateTime> _showDatePicker2() {
+    var dateNow = DateTime.now();
+    return showCupertinoModalPopup<DateTime>(
+      context: context,
+      builder: (context) {
+        return SizedBox(
+          height: 280,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Container(
+                height: 40.0,
+                color: Colors.white,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    FlatButton(
+                      splashColor: Colors.lightBlueAccent,
+                      onPressed: () {
+                        setState(() => Navigator.of(context).pop());
+                      },
+                      child: Text(
+                        '取消',
+                        style: TextStyle(color: Colors.grey),
+                      ),
+                    ),
+                    Container(
+                      alignment: Alignment.center,
+                      height: 40.0,
+                      child: Text(
+                        '请选择时间',
+                        style: TextStyle(
+                          color: Colors.black54,
+                          fontSize: 14.0,
+                          decoration: TextDecoration.none,
+                        ),
+                      ),
+                    ),
+                    FlatButton(
+                      splashColor: Colors.lightBlueAccent,
+                      onPressed: () {
+                        setState(() => Navigator.of(context).pop(dateNow));
+                      },
+                      child: Text(
+                        '确定',
+                        style: TextStyle(color: Colors.blueAccent),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Expanded(
+                child: CupertinoDatePicker(
+                  mode: CupertinoDatePickerMode.dateAndTime,
+                  minimumDate: dateNow,
+                  maximumDate: dateNow.add(
+                    Duration(days: 30),
+                  ),
+                  maximumYear: dateNow.year + 1,
+                  onDateTimeChanged: (value) {
+                    dateNow = value;
+                  },
+                ),
+              ),
+            ],
           ),
         );
       },
