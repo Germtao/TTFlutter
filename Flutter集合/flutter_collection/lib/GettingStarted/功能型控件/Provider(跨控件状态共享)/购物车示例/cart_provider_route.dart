@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_collection/功能型控件/Provider(跨控件状态共享)/change_notifier_provider.dart';
-import 'package:flutter_collection/功能型控件/Provider(跨控件状态共享)/购物车示例/cart_model.dart';
+import 'package:flutter_collection/GettingStarted/功能型控件/Provider(跨控件状态共享)/change_notifier_provider.dart';
+import 'package:flutter_collection/GettingStarted/功能型控件/Provider(跨控件状态共享)/购物车示例/cart_model.dart';
 
 class CartProviderRoute extends StatefulWidget {
   @override

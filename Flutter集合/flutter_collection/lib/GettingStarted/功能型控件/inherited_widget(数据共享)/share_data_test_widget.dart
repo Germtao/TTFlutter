@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_collection/功能型控件/inherited_widget(数据共享)/share_data_widget.dart';
+import 'package:flutter_collection/GettingStarted/功能型控件/inherited_widget(数据共享)/share_data_widget.dart';
 
 class ShareDataTestWidget extends StatefulWidget {
   @override

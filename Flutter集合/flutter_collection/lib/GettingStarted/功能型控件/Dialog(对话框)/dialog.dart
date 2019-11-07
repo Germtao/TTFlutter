@@ -2,7 +2,7 @@ import 'dart:ffi';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_collection/功能型控件/Dialog(对话框)/dialog_check_box.dart';
+import 'package:flutter_collection/GettingStarted/功能型控件/Dialog(对话框)/dialog_check_box.dart';
 
 // 对话框
 class DialogTestRoute extends StatefulWidget {
