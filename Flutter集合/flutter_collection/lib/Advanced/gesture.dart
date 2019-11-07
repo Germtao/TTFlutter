@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 // 手势识别
@@ -14,6 +15,16 @@ class _GestureTestRouteState extends State<GestureTestRoute> {
 
   double _width = 200.0; // 通过修改图片宽度来达到缩放效果
 
+  TapGestureRecognizer _tapGes = TapGestureRecognizer();
+  bool _toggle = false; // 变色开关
+
+  @override
+  void dispose() {
+    // 用到GestureRecognizer的话一定要调用其dispose方法释放资源
+    _tapGes.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Theme(
@@ -27,6 +38,7 @@ class _GestureTestRouteState extends State<GestureTestRoute> {
               _tap(),
               _drag(),
               _scale(),
+              _gestureForRichText(),
             ],
           ),
         ),
@@ -109,6 +121,31 @@ class _GestureTestRouteState extends State<GestureTestRoute> {
           _width = 200 * details.scale.clamp(.8, 10.0);
         });
       },
+    );
+  }
+
+  // MARK: - GestureRecognizer
+  Widget _gestureForRichText() {
+    return Text.rich(
+      TextSpan(
+        children: [
+          TextSpan(text: '你好世界'),
+          TextSpan(
+            text: '点我变色',
+            style: TextStyle(
+              fontSize: 30.0,
+              color: _toggle ? Colors.blue : Colors.red,
+            ),
+            recognizer: _tapGes
+              ..onTap = () {
+                setState(() {
+                  _toggle = !_toggle;
+                });
+              },
+          ),
+          TextSpan(text: '你好世界'),
+        ],
+      ),
     );
   }
 }
