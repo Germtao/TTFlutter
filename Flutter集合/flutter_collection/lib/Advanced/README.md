@@ -163,3 +163,201 @@ Listener(
 ```
 
 点击`Container`时，由于它在`AbsorbPointer`的子树上，所以不会响应指针事件，所以日志不会输出`in`，但`AbsorbPointer`本身是可以接收指针事件的，所以会输出`up`。如果将`AbsorbPointer`换成`IgnorePointer`，那么两个都不会输出。
+
+---
+
+## 手势识别
+
+### GestureDetector
+
+`GestureDetector`是一个用于手势识别的功能性组件，我们通过它可以来识别各种手势。`GestureDetector`实际上是指针事件的语义化封装，接下来我们详细介绍一下各种手势识别。
+
+#### 点击、双击、长按
+
+通过`GestureDetector`对`Container`进行手势识别，触发相应事件后，在`Container`上显示事件名，为了增大点击区域，将`Container`设置为`200×100`，代码如下：
+
+```
+Widget _tap() {
+  return GestureDetector(
+    child: Container(
+      alignment: Alignment.center,
+      color: Colors.blue,
+      width: 200.0,
+      height: 100.0,
+      child: Text(
+        _operation,
+        style: TextStyle(color: Colors.white),
+      ),
+    ),
+    onTap: () => updateText('单击'),
+    onDoubleTap: () => updateText('双击'),
+    onLongPress: () => updateText('长按'),
+  );
+}
+
+void updateText(String text) {
+  setState(() {
+    _operation = text;
+  });
+}
+```
+
+> *注意*： 当同时监听`onTap`和`onDoubleTap`事件时，当用户触发tap事件时，会有`200毫秒`左右的延时，这是因为当用户点击完之后很可能会再次点击以触发双击事件，所以`GestureDetector`会等一段时间来确定是否为双击事件。如果用户只监听了`onTap`（没有监听`onDoubleTap`）事件时，则没有延时。
+
+#### 拖动、滑动
+
+一次完整的手势过程是指用户手指按下到抬起的整个过程，期间，用户按下手指后可能会移动，也可能不会移动。`GestureDetector`对于拖动和滑动事件是没有区分的，他们本质上是一样的。`GestureDetector`会将要监听的组件的原点（左上角）作为本次手势的原点，当用户在监听的组件上按下手指时，手势识别就会开始。下面我们看一个拖动圆形字母A的示例：
+
+```
+// 拖动、滑动
+Widget _drag() {
+  return Container(
+    width: 200.0,
+    height: 100.0,
+    color: Colors.red,
+    child: Stack(
+      children: <Widget>[
+        Positioned(
+        top: _top,
+        left: _left,
+        child: GestureDetector(
+          child: CircleAvatar(child: Text('A')),
+          // 手指按下时会触发此回调
+          onPanDown: (details) {
+            // 打印手指按下的位置(相对于屏幕)
+            print('用户手指按下：${details.globalPosition}');
+          },
+          // 手指滑动时会触发此回调
+          onPanUpdate: (details) {
+            // 用户手指滑动时，更新偏移，重新构建
+            setState(() {
+              _left += details.delta.dx;
+              _top += details.delta.dy;
+            });
+          },
+          onPanEnd: (details) {
+            // 打印滑动结束时在x、y轴上的速度
+            print(details.velocity);
+          },
+        ),
+      ),
+    ],
+  ),
+);
+}
+```
+
+打印日志：
+
+```
+flutter: 用户手指按下：Offset(129.5, 673.0)
+flutter: Velocity(668.3, 14.1)
+```
+
+代码解释：
+
+- `DragDownDetails.globalPosition`：当用户按下时，此属性为用户按下的位置相对于*屏幕*（而非父组件）原点(左上角)的偏移
+
+- `DragUpdateDetails.delta`：当用户在屏幕上滑动时，会触发多次`Update`事件，`delta`指一次`Update`事件的滑动的偏移量
+
+- `DragEndDetails.velocity`：该属性代表用户抬起手指时的滑动速度(包含x、y两个轴的），示例中并没有处理手指抬起时的速度，常见的效果是根据用户抬起手指时的速度做一个减速动画
+
+### GestureRecognizer
+
+`GestureDetector`内部是使用一个或多个`GestureRecognizer`来识别各种手势的，而`GestureRecognizer`的作用就是通过`Listener`来将原始指针事件转换为语义手势，`GestureDetector`直接可以接收一个子widget。`GestureRecognizer`是一个抽象类，一种手势的识别器对应一个`GestureRecognizer`的子类，`Flutter`实现了丰富的手势识别器，我们可以直接使用。
+
+#### 示例
+
+假设要给一段富文本（`RichText`）的不同部分分别添加点击事件处理器，但是`TextSpan`并不是一个widget，这时我们不能用`GestureDetector`，但`TextSpan`有一个`recognizer`属性，它可以接收一个`GestureRecognizer`。
+
+假设需要在点击时给文本变色：
+
+```
+  TapGestureRecognizer _tapGes = TapGestureRecognizer();
+  bool _toggle = false; // 变色开关
+
+  @override
+  void dispose() {
+    // 用到GestureRecognizer的话一定要调用其dispose方法释放资源
+    _tapGes.dispose();
+    super.dispose();
+  }
+
+  Widget _gestureForRichText() {
+    return Text.rich(
+      TextSpan(
+        children: [
+          TextSpan(text: '你好世界'),
+          TextSpan(
+            text: '点我变色',
+            style: TextStyle(
+              fontSize: 30.0,
+              color: _toggle ? Colors.blue : Colors.red,
+            ),
+            recognizer: _tapGes
+              ..onTap = () {
+                setState(() {
+                  _toggle = !_toggle;
+                });
+              },
+          ),
+          TextSpan(text: '你好世界'),
+        ],
+      ),
+    );
+  }
+```
+
+> *注意*：使用`GestureRecognizer`后一定要调用其`dispose()`方法来释放资源（主要是取消内部的计时器）。
+
+### 手势竞争与冲突
+
+#### 竞争
+
+如果在上例中我们同时监听水平和垂直方向的拖动事件，那么我们斜着拖动时哪个方向会生效？实际上取决于第一次移动时两个轴上的位移分量，哪个轴的大，哪个轴在本次滑动事件竞争中就胜出。实际上`Flutter`中的手势识别引入了一个`Arena`的概念，`Arena`直译为“竞技场”的意思，每一个`手势识别器（GestureRecognizer）`都是一个`竞争者（GestureArenaMember）`，当发生滑动事件时，他们都要在“竞技场”去竞争本次事件的处理权，而最终只有一个“竞争者”会胜出(win)。
+
+例如，假设有一个`ListView`，它的第一个子控件也是`ListView`，如果现在滑动这个`子ListView`，`父ListView`会动吗？答案是否定的，这时只有`子ListView`会动，因为这时`子ListView`会胜出而获得滑动事件的处理权。
+
+#### 示例
+
+我们以拖动手势为例，同时识别水平和垂直方向的拖动手势，当用户按下手指时就会触发竞争（水平方向和垂直方向），一旦某个方向“获胜”，则直到当次拖动手势结束都会沿着该方向移动。代码如下：
+
+```
+Widget _bothDirectionOfDrag() {
+  return Container(
+    width: 200.0,
+    height: 100.0,
+    color: Colors.red,
+    child: Stack(
+    children: <Widget>[
+      Positioned(
+        top: _top,
+        left: _left,
+        child: GestureDetector(
+          child: CircleAvatar(child: Text('A')),
+            // 垂直方向拖动事件
+            onVerticalDragUpdate: (details) {
+            setState(() {
+              _top += details.delta.dy;
+            });
+          },
+
+          // 水平方向拖动事件
+          onHorizontalDragUpdate: (details) {
+            setState(() {
+              _left += details.delta.dx;
+            });
+          },
+        ),
+      ),
+    ],
+  ),
+);
+}
+```
+
+此示例运行后，每次拖动只会沿一个方向移动（水平或垂直），而竞争发生在手指按下后首次移动（move）时，此例中具体的“获胜”条件是：首次移动时的位移在水平和垂直方向上的分量大的一个获胜。
+
+#### 手势冲突
+
+由于手势竞争最终只有一个胜出者，所以，当有多个手势识别器时，可能会产生冲突。假设有一个widget，它可以左右拖动，现在我们也想检测在它上面手指按下和抬起的事件，代码如下：
