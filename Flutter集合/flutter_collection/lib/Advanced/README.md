@@ -1,5 +1,7 @@
 # 事件处理与通知
 
+- [原始指针事件处理](https://github.com/Germtao/TTFlutter/tree/master/Flutter%E9%9B%86%E5%90%88/flutter_collection/lib/Advanced#%E5%8E%9F%E5%A7%8B%E6%8C%87%E9%92%88%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86-pointer-event)
+
 ## 原始指针事件处理 （Pointer Event）
 
 在移动端，各个平台或UI系统的原始指针事件模型基本都是一致，即：一次完整的事件分为三个阶段：手指按下、手指移动、和手指抬起，而更高级别的手势（如点击、双击、拖动等）都是基于这些原始事件的。
