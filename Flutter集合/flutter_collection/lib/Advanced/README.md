@@ -361,3 +361,91 @@ Widget _bothDirectionOfDrag() {
 #### 手势冲突
 
 由于手势竞争最终只有一个胜出者，所以，当有多个手势识别器时，可能会产生冲突。假设有一个widget，它可以左右拖动，现在我们也想检测在它上面手指按下和抬起的事件，代码如下：
+
+```
+double _left2 = 0.0;
+
+// 手势冲突
+Widget _gestureConflictTest() {
+  return Container(
+    width: 200,
+    height: 100,
+    color: Colors.tealAccent,
+    child: Stack(
+      children: <Widget>[
+        Positioned(
+          left: _left2,
+          child: GestureDetector(
+            child: CircleAvatar(child: Text('A')),
+            onHorizontalDragUpdate: (details) {
+              setState(() {
+                _left2 += details.delta.dx;
+              });
+            },
+            onHorizontalDragEnd: (details) {
+              print('onHorizontalDragEnd');
+            },
+            onTapDown: (details) {
+              print('down');
+            },
+            onTapUp: (details) {
+              print('up');
+            },
+          ),
+        ),
+      ],
+    ),
+  );
+}
+```
+
+现在我们按住圆形“A”拖动然后抬起手指，控制台日志如下:
+
+```
+flutter: down
+flutter: onHorizontalDragEnd
+```
+
+- 没有打印 `up`，这是因为在拖动时，刚开始按下手指时在没有移动时，拖动手势还没有完整的语义，此时 `TapDown` 手势胜出(win)，此时打印 `down`
+- 而拖动时，拖动手势会胜出，当手指抬起时，`onHorizontalDragEnd` 和 `onTapUp` 发生了冲突，但是因为是在拖动的语义中，所以`onHorizontalDragEnd` 胜出，所以就会打印 `onHorizontalDragEnd`
+
+如果代码逻辑中，对于手指按下和抬起是强依赖的，比如在一个轮播图组件中，我们希望手指按下时，暂停轮播，而抬起时恢复轮播，但是由于轮播图组件中本身可能已经处理了拖动手势（支持手动滑动切换），甚至可能也支持了缩放手势，这时我们如果在外部再用 `onTapDown`、`onTapUp` 来监听的话是不行的。这时我们应该怎么做？其实很简单，通过 `Listener` 监听原始指针事件就行：
+
+```
+// 处理手势冲突
+Widget _gestureConflictDeal() {
+  return Container(
+    width: 200.0,
+    height: 200.0,
+    color: Colors.pink,
+    child: Stack(
+      children: <Widget>[
+        Positioned(
+          left: _left3,
+          child: Listener(
+            onPointerDown: (details) {
+              print('down');
+            },
+            onPointerUp: (details) {
+              print('up');
+            },
+            child: GestureDetector(
+              child: CircleAvatar(child: Text('A')),
+              onHorizontalDragUpdate: (details) {
+                setState(() {
+                  _left3 += details.delta.dx;
+                });
+              },
+              onHorizontalDragEnd: (details) {
+                print('onHorizontalDragEnd');
+              },
+            ),
+          ),
+        ),
+      ],
+    ),
+  );
+}
+```
+
+手势冲突只是手势级别的，而手势是对原始指针的语义化的识别，所以在遇到复杂的冲突场景时，都可以通过 `Listener` 直接识别原始指针事件来解决冲突。
