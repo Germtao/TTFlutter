@@ -21,6 +21,10 @@ class _GestureTestRouteState extends State<GestureTestRoute> {
   double _top1 = 0.0;
   double _left1 = 0.0;
 
+  double _left2 = 0.0;
+
+  double _left3 = 0.0;
+
   @override
   void dispose() {
     // 用到GestureRecognizer的话一定要调用其dispose方法释放资源
@@ -43,6 +47,8 @@ class _GestureTestRouteState extends State<GestureTestRoute> {
               _scale(),
               _gestureForRichText(),
               _bothDirectionOfDrag(),
+              _gestureConflictTest(),
+              _gestureConflictDeal(),
             ],
           ),
         ),
@@ -179,6 +185,74 @@ class _GestureTestRouteState extends State<GestureTestRoute> {
                   _left1 += details.delta.dx;
                 });
               },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  // 手势冲突
+  Widget _gestureConflictTest() {
+    return Container(
+      width: 200,
+      height: 100,
+      color: Colors.tealAccent,
+      child: Stack(
+        children: <Widget>[
+          Positioned(
+            left: _left2,
+            child: GestureDetector(
+              child: CircleAvatar(child: Text('A')),
+              onHorizontalDragUpdate: (details) {
+                setState(() {
+                  _left2 += details.delta.dx;
+                });
+              },
+              onHorizontalDragEnd: (details) {
+                print('onHorizontalDragEnd');
+              },
+              onTapDown: (details) {
+                print('down');
+              },
+              onTapUp: (details) {
+                print('up');
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  // 处理手势冲突
+  Widget _gestureConflictDeal() {
+    return Container(
+      width: 200.0,
+      height: 200.0,
+      color: Colors.pink,
+      child: Stack(
+        children: <Widget>[
+          Positioned(
+            left: _left3,
+            child: Listener(
+              onPointerDown: (details) {
+                print('down');
+              },
+              onPointerUp: (details) {
+                print('up');
+              },
+              child: GestureDetector(
+                child: CircleAvatar(child: Text('A')),
+                onHorizontalDragUpdate: (details) {
+                  setState(() {
+                    _left3 += details.delta.dx;
+                  });
+                },
+                onHorizontalDragEnd: (details) {
+                  print('onHorizontalDragEnd');
+                },
+              ),
             ),
           ),
         ],
