@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 
 // 通知
-class NotificationTestRoute extends StatelessWidget {
+class NotificationTestRoute extends StatefulWidget {
+  @override
+  _NotificationTestRouteState createState() => _NotificationTestRouteState();
+}
+
+class _NotificationTestRouteState extends State<NotificationTestRoute> {
+  String _msg = '';
+
   @override
   Widget build(BuildContext context) {
     return Theme(
@@ -9,35 +16,48 @@ class NotificationTestRoute extends StatelessWidget {
         primaryColor: Colors.blueAccent,
       ),
       child: Scaffold(
-        appBar: AppBar(
-          title: Text('通知'),
-        ),
-        // 指定监听通知的类型为滚动结束通知(ScrollEndNotification)
-        body: NotificationListener<ScrollEndNotification>(
-          onNotification: (notification) {
-            // switch (notification.runtimeType) {
-            //   case ScrollStartNotification:
-            //     print('-----开始滚动');
-            //     break;
-            //   case ScrollUpdateNotification:
-            //     print('++++++正在滚动');
-            //     break;
-            //   case ScrollEndNotification:
-            //     print('*******滚动停止');
-            //     break;
-            // }
-            // 只会在滚动结束时才会触发此回调
-            print(notification);
-            return true;
-          },
-          child: ListView.builder(
-            itemCount: 100,
-            itemBuilder: (context, index) {
-              return ListTile(title: Text('$index'));
-            },
-          ),
+        appBar: AppBar(title: Text('通知')),
+        body: customNotification(),
+      ),
+    );
+  }
+
+  Widget customNotification() {
+    return NotificationListener<CustomNotification>(
+      onNotification: (notification) {
+        setState(() {
+          _msg += notification.msg + '  ';
+        });
+        return true;
+      },
+      child: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            // RaisedButton(
+            //   onPressed: () => CustomNotification('Hi!').dispatch(context),
+            //   child: Text('发送通知'),
+            // ),
+            Builder(
+              builder: (context) {
+                return RaisedButton(
+                  // 按钮点击时分发通知
+                  onPressed: () =>
+                      CustomNotification('Hello!').dispatch(context),
+                  child: Text('发送通知'),
+                );
+              },
+            ),
+            Text(_msg),
+          ],
         ),
       ),
     );
   }
+}
+
+// MARK: - 自定义通知
+class CustomNotification extends Notification {
+  CustomNotification(this.msg);
+  final String msg;
 }

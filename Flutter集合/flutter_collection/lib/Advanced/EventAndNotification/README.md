@@ -537,7 +537,7 @@ bus.emit('login', userInfo);
 
 ## 通知（Notification）
 
-### 系统通知
+### 系统内部通知
 
 `Notification` 是Flutter中一个重要的机制，在widget树中，每一个节点都可以分发通知，通知会沿着当前节点向上传递，所有父节点都可以通过 `NotificationListener` 来监听通知。
 Flutter中将这种 `由子向父` 的传递通知的机制称为`通知冒泡（Notification Bubbling）`。通知冒泡和用户触摸事件冒泡是相似的，但有一点不同：通知冒泡可以中止，但用户触摸事件不行。
@@ -629,3 +629,91 @@ class NotificationListener<T extends Notification> extends StatelessWidget {
 Flutter的UI框架实现中，除了在可滚动组件在滚动过程中会发出 `ScrollNotification` 之外，还有一些其它的通知，如 `SizeChangedLayoutNotification`、`KeepAliveNotification`、`LayoutChangedNotification` 等，Flutter正是通过这种通知机制来使父元素可以在一些特定时机来做一些事情。
 
 ### 自定义通知
+
+除了Flutter内部通知，我们也可以自定义通知，下面我们看看如何实现自定义通知：
+
+ 1. 定义一个通知类，要继承自 `Notification` 类：
+
+ ```
+ class CustomNotification extends Notification {
+  CustomNotification(this.msg);
+  final String msg;
+}
+ ```
+
+ 2. 分发通知：
+
+ `Notification` 有一个 `dispatch(context)` 方法，它是用于分发通知的，我们说过 `context` 实际上就是操作 `Element` 的一个接口，它与 `Element` 树上的节点是对应的，通知会从 `context` 对应的 `Element` 节点向上冒泡。
+
+下面我们看一个完整的例子🌰：
+
+```
+class NotificationTestRoute extends StatefulWidget {
+  @override
+  _NotificationTestRouteState createState() => _NotificationTestRouteState();
+}
+
+class _NotificationTestRouteState extends State<NotificationTestRoute> {
+  String _msg = '';
+
+  @override
+  Widget build(BuildContext context) {
+    return Theme(
+      data: ThemeData(
+        primaryColor: Colors.blueAccent,
+      ),
+      child: Scaffold(
+        appBar: AppBar(title: Text('通知')),
+        body: customNotification(),
+      ),
+    );
+  }
+
+  Widget customNotification() {
+    return NotificationListener<CustomNotification>(
+      onNotification: (notification) {
+        setState(() {
+          _msg += notification.msg + '  ';
+        });
+        return true;
+      },
+      child: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            // RaisedButton(
+            //   onPressed: () => CustomNotification('Hi!').dispatch(context),
+            //   child: Text('发送通知'),
+            // ),
+            Builder(
+              builder: (context) {
+                return RaisedButton(
+                  // 按钮点击时分发通知
+                  onPressed: () =>
+                      CustomNotification('Hello!').dispatch(context),
+                  child: Text('发送通知'),
+                );
+              },
+            ),
+            Text(_msg),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+// MARK: - 自定义通知
+class CustomNotification extends Notification {
+  CustomNotification(this.msg);
+  final String msg;
+}
+```
+
+上面代码中，我们每点一次按钮就会分发一个 `CustomNotification` 类型的通知，我们在Widget根上监听通知，收到通知后我们将通知通过Text显示在屏幕上。
+
+> 注：代码中注释的部分是不能正常工作的，因为这个 `context`是 `根Context`，而 `NotificationListener` 是监听的子树，所以我们通过 `Builder` 来构建 `RaisedButton`，来获得按钮位置的 `context`。
+
+运行效果如下图所示：
+
+![自定义通知]()
