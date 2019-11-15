@@ -717,3 +717,33 @@ class CustomNotification extends Notification {
 运行效果如下图所示：
 
 ![自定义通知]()
+
+### 阻止冒泡
+
+我们将上面的例子改一下：
+
+```
+Widget customNotification() {
+  return NotificationListener<CustomNotification>(
+    onNotification: (notification) {
+      print(notification.msg);
+      return false;
+    },
+    child: NotificationListener<CustomNotification>(
+      onNotification: (notification) {
+        setState(() {
+          _msg += notification.msg + '  ';
+        });
+        return false;
+      },
+      child: childWidget(),
+    ),
+  );
+}
+```
+
+上列中两个 `NotificationListener` 进行了嵌套：
+
+- `子NotificationListener` 的 `onNotification` 回调返回了 `false`，表示不阻止冒泡，所以 `父NotificationListener`仍然会受到通知，所以控制台会打印出通知信息
+
+- 如果将 `子NotificationListener` 的 `onNotification` 回调的返回值改为 `true` ，则 `父NotificationListener` 便不会再打印通知了，因为 `子NotificationListener` 已经终止通知冒泡了

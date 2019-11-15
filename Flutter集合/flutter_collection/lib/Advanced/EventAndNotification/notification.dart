@@ -25,32 +25,41 @@ class _NotificationTestRouteState extends State<NotificationTestRoute> {
   Widget customNotification() {
     return NotificationListener<CustomNotification>(
       onNotification: (notification) {
-        setState(() {
-          _msg += notification.msg + '  ';
-        });
-        return true;
+        print(notification.msg);
+        return false;
       },
-      child: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            // RaisedButton(
-            //   onPressed: () => CustomNotification('Hi!').dispatch(context),
-            //   child: Text('发送通知'),
-            // ),
-            Builder(
-              builder: (context) {
-                return RaisedButton(
-                  // 按钮点击时分发通知
-                  onPressed: () =>
-                      CustomNotification('Hello!').dispatch(context),
-                  child: Text('发送通知'),
-                );
-              },
-            ),
-            Text(_msg),
-          ],
-        ),
+      child: NotificationListener<CustomNotification>(
+        onNotification: (notification) {
+          setState(() {
+            _msg += notification.msg + '  ';
+          });
+          return false;
+        },
+        child: childWidget(),
+      ),
+    );
+  }
+
+  Widget childWidget() {
+    return Center(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          // RaisedButton(
+          //   onPressed: () => CustomNotification('Hi!').dispatch(context),
+          //   child: Text('发送通知'),
+          // ),
+          Builder(
+            builder: (context) {
+              return RaisedButton(
+                // 按钮点击时分发通知
+                onPressed: () => CustomNotification('Hello!').dispatch(context),
+                child: Text('发送通知'),
+              );
+            },
+          ),
+          Text(_msg),
+        ],
       ),
     );
   }
