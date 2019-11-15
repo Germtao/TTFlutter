@@ -532,3 +532,100 @@ bus.emit('login', userInfo);
 事件总线通常用于组件之间状态共享，但关于组件之间状态共享也有一些专门的包如 `redux`、以及前面介绍过的 `Provider`。对于一些简单的应用，事件总线是足以满足业务需求的。
 
 如果你决定使用状态管理包的话，一定要想清楚您的APP是否真的有必要使用它，防止 `化简为繁`、`过度设计`。
+
+--- 
+
+## 通知（Notification）
+
+### 系统通知
+
+`Notification` 是Flutter中一个重要的机制，在widget树中，每一个节点都可以分发通知，通知会沿着当前节点向上传递，所有父节点都可以通过 `NotificationListener` 来监听通知。
+Flutter中将这种 `由子向父` 的传递通知的机制称为`通知冒泡（Notification Bubbling）`。通知冒泡和用户触摸事件冒泡是相似的，但有一点不同：通知冒泡可以中止，但用户触摸事件不行。
+
+> 通知冒泡和Web开发中浏览器事件冒泡原理是相似的，都是事件从出发源逐层向上传递，我们可以在上层节点任意位置来监听通知/事件，也可以终止冒泡过程，终止冒泡后，通知将不会再向上传递。
+
+Flutter中很多地方使用了通知，如`可滚动组件（Scrollable Widget）`滑动时就会分发 `滚动通知（ScrollNotification）`，而Scrollbar正是通过监听ScrollNotification来确定滚动条位置的。
+
+下面是一个监听可滚动组件滚动通知的例子：
+
+```
+NotificationListener(
+  onNotification: (notification) {
+    switch (notification.runtimeType) {
+      case ScrollStartNotification:
+        print('-----开始滚动');
+        break;
+      case ScrollUpdateNotification:
+        print('++++++正在滚动');
+        break;
+      case ScrollEndNotification:
+        print('*******滚动停止');
+        break;
+    }
+    return true;
+  },
+  child: ListView.builder(
+    itemCount: 100,
+    itemBuilder: (context, index) {
+      return ListTile(title: Text('$index'));
+    },
+  ),
+)
+```
+
+上例中的滚动通知如 `ScrollStartNotification`、`ScrollUpdateNotification` 等都是继承自 `ScrollNotification` 类，不同类型的通知子类会包含不同的信息，比如 `ScrollUpdateNotification` 有一个 `scrollDelta` 属性，它记录了移动的位移。
+
+上例中，我们通过 `NotificationListener` 来监听 `子ListView` 的滚动通知的，`NotificationListener` 定义如下：
+
+```
+class NotificationListener<T extends Notification> extends StatelessWidget {
+  /// Creates a widget that listens for notifications.
+  const NotificationListener({
+    Key key,
+    @required this.child,
+    this.onNotification,
+  }) : super(key: key);
+  // ... 省略无关代码
+}
+```
+
+我们可以看到：
+
+1. `NotificationListener` 继承自 `StatelessWidget` 类，所以它可以直接嵌套到Widget树中。
+
+2. `NotificationListener` 可以指定一个模板参数，该模板参数类型必须是继承自 `Notification`；当显式指定模板参数时，`NotificationListener` 便只会接收该参数类型的通知。举个例子，如果我们将上例子代码给为：
+
+    ```
+    // 指定监听通知的类型为滚动结束通知(ScrollEndNotification)
+    NotificationListener<ScrollEndNotification>(
+      onNotification: (notification) {
+        // 只会在滚动结束时才会触发此回调
+        print(notification);
+        return true;
+      },
+      child: ListView.builder(
+        itemCount: 100,
+        itemBuilder: (context, index) {
+          return ListTile(title: Text('$index'));
+        },
+      ),
+    )
+    ```
+
+    上面代码运行后便只会在滚动结束时在控制台打印出通知的信息：
+
+    ```
+    flutter: ScrollEndNotification(depth: 0 (local), FixedScrollMetrics(785.0..[796.0]..4053.0))
+    ```
+
+3. `onNotification` 回调为通知处理回调，其函数签名如下：
+
+    ```
+    typedef NotificationListenerCallback<T extends Notification> = bool Function(T notification);
+    ```
+
+    它的返回值类型为布尔值，当返回值为 `true` 时，阻止冒泡，其父级Widget将再也收不到该通知；当返回值为 `false` 时继续向上冒泡通知。
+
+Flutter的UI框架实现中，除了在可滚动组件在滚动过程中会发出 `ScrollNotification` 之外，还有一些其它的通知，如 `SizeChangedLayoutNotification`、`KeepAliveNotification`、`LayoutChangedNotification` 等，Flutter正是通过这种通知机制来使父元素可以在一些特定时机来做一些事情。
+
+### 自定义通知
