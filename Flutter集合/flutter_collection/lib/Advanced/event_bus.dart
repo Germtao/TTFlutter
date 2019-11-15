@@ -1,9 +1,4 @@
-import 'dart:html';
-
-import 'package:flutter/foundation.dart';
-
 // MARK: - 事件总线
-
 // 订阅者回调签名
 typedef void EventCallback(arg);
 
