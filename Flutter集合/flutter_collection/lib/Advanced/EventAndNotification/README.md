@@ -747,3 +747,67 @@ Widget customNotification() {
 - `子NotificationListener` 的 `onNotification` 回调返回了 `false`，表示不阻止冒泡，所以 `父NotificationListener`仍然会受到通知，所以控制台会打印出通知信息
 
 - 如果将 `子NotificationListener` 的 `onNotification` 回调的返回值改为 `true` ，则 `父NotificationListener` 便不会再打印通知了，因为 `子NotificationListener` 已经终止通知冒泡了
+
+### 通知冒泡原理
+
+我们在上面介绍了 `通知冒泡` 的现象及使用，现在我们更深入一些，介绍一下Flutter框架中是如何实现通知冒泡的。
+
+为了搞清楚这个问题，就必须看一下源码，我们从通知分发的的源头出发，然后再顺藤摸瓜。由于通知是通过 `Notification` 的 `dispatch(context)` 方法发出的，那我们先看看 `dispatch(context)` 方法中做了什么，下面是相关源码：
+
+```
+void dispatch(BuildContext target) {
+  target?.visitAncestorElements(visitAncestor);
+}
+```
+
+由源码得知：
+
+- `dispatch(context)` 中调用了当前 `context` 的 `visitAncestorElements` 方法，该方法会从当前 `Element` 开始向上遍历父级元素
+
+- `visitAncestorElements` 有一个遍历回调参数，在遍历过程中对遍历到的父级元素都会执行该回调。遍历的`终止条件`是：已经遍历到`根Element`或某个遍历回调返回`false`。
+
+源码中传给 `visitAncestorElements` 方法的遍历回调为 `visitAncestor` 方法，我们看看 `visitAncestor` 方法的实现：
+
+```
+// 遍历回调，会对每一个父级Element执行此回调
+bool visitAncestor(Element element) {
+  // 判断当前element对应的Widget是否是NotificationListener
+
+  // 由于NotificationListener是继承自StatelessWidget，故先判断是否是StatelessElement
+  if (element is StatelessElement) {
+    // 是StatelessElement，则获取element对应的Widget，判断是否是NotificationListener
+    final StatelessWidget widget = element.widget;
+    if (widget is NotificationListener<Notification>) {
+      // 是NotificationListener，则调用该NotificationListener的_dispatch方法
+      if (widget._dispatch(this, element)) // that function checks the type dynamically
+        return false;
+    }
+  }
+  return true;
+}
+```
+
+- `visitAncestor` 会判断每一个遍历到的父级Widget是否是 `NotificationListener`，如果不是，则返回`true`继续向上遍历，如果是，则调用 `NotificationListener` 的 `_dispatch` 方法，我们看看 `_dispatch` 方法的源码：
+
+```
+bool _dispatch(Notification notification, Element element) {
+  // 如果通知监听器不为空，并且当前通知类型是该NotificationListener
+  // 监听的通知类型，则调用当前NotificationListener的onNotification
+  if (onNotification != null && notification is T) {
+    final bool result = onNotification(notification);
+    // 返回值决定是否继续向上遍历
+    return result == true;
+  }
+  return false;
+}
+```
+
+我们可以看到 `NotificationListener` 的 `onNotification` 回调最终是在 `_dispatch` 方法中执行的，然后会根据返回值来确定是否继续向上冒泡。上面的源码实现其实并不复杂，通过阅读这些源码，一些额外的点可以注意一下：
+
+1. `Context` 上也提供了遍历 `Element` 树的方法
+
+2. 可以通过 `Element.widget` 得到 `element` 节点对应的 `widget`
+
+### 总结
+
+`Flutter` 中通过 `通知冒泡` 实现了一套 `自低向上` 的消息传递机制，这个和Web开发中浏览器的事件冒泡原理类似，Web开发者可以类比学习。另外通过源码了解了 `Flutter` 通知冒泡的流程和原理，便于加深理解和学习 `Flutter` 的框架设计思想，在此，再次建议在平时学习中能多看看源码，定会受益匪浅。
