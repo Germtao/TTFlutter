@@ -218,6 +218,13 @@ class CollectionPage extends StatelessWidget {
         Entry('全局事件总线'),
         Entry('通知'),
       ]),
+      Entry('动画', <Entry>[
+        Entry('动画结构'),
+        Entry('自定义路由过渡动画'),
+        Entry('Hero动画'),
+        Entry('交织动画'),
+        Entry('动画过渡控件'),
+      ]),
     ]),
   ];
 
