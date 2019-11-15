@@ -34,5 +34,6 @@ export 'GettingStarted/功能型控件/async_update_ui.dart';
 export 'GettingStarted/功能型控件/Dialog(对话框)/dialog.dart';
 
 // MARK: - 进阶篇
-export 'Advanced/pointer_event.dart';
-export 'Advanced/gesture.dart';
+export 'Advanced/EventAndNotification/pointer_event.dart';
+export 'Advanced/EventAndNotification/gesture.dart';
+export 'Advanced/EventAndNotification/notification.dart';

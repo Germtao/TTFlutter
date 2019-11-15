@@ -147,6 +147,11 @@ class _EntryItemState extends State<EntryItem> {
       case '手势识别':
         _pageWidget = GestureTestRoute();
         break;
+      case '全局事件总线':
+        break;
+      case '通知':
+        _pageWidget = NotificationTestRoute();
+        break;
       default:
         break;
     }
@@ -210,6 +215,8 @@ class CollectionPage extends StatelessWidget {
       Entry('事件处理与通知', <Entry>[
         Entry('原始指针事件处理'),
         Entry('手势识别'),
+        Entry('全局事件总线'),
+        Entry('通知'),
       ]),
     ]),
   ];
