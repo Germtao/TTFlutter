@@ -23,10 +23,7 @@ class _AnimationStructureBasicRouteState
     animation = CurvedAnimation(parent: controller, curve: Curves.bounceIn);
 
     // 图片宽高从0变到300
-    animation = Tween(begin: 0.0, end: 300.0).animate(animation)
-      ..addListener(() {
-        setState(() => {});
-      });
+    animation = Tween(begin: 0.0, end: 300.0).animate(animation);
 
     // 启动动画（正向执行）
     controller.forward();
@@ -40,12 +37,10 @@ class _AnimationStructureBasicRouteState
       ),
       child: Scaffold(
         appBar: AppBar(title: Text('基础版本 - 放大动画')),
-        body: Center(
-          child: Image.asset(
-            'images/scale.png',
-            width: animation.value,
-            height: animation.value,
-          ),
+        // body: AnimatedImage(animation: animation),
+        body: GrowTransition(
+          child: Image.asset('images/scale.png'),
+          animation: animation,
         ),
       ),
     );
@@ -56,5 +51,53 @@ class _AnimationStructureBasicRouteState
     // 路由销毁时需要释放动画资源
     controller.dispose();
     super.dispose();
+  }
+}
+
+// 使用 AnimatedWidget 简化
+class AnimatedImage extends AnimatedWidget {
+  AnimatedImage({
+    Key key,
+    Animation<double> animation,
+  }) : super(key: key, listenable: animation);
+
+  @override
+  Widget build(BuildContext context) {
+    final Animation<double> animation = listenable;
+    return Center(
+      child: Image.asset(
+        'images/scale.png',
+        width: animation.value,
+        height: animation.value,
+      ),
+    );
+  }
+}
+
+// 用 AnimatedBuilder 重构
+class GrowTransition extends StatelessWidget {
+  GrowTransition({
+    this.animation,
+    this.child,
+  });
+
+  final Widget child;
+  final Animation<double> animation;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: AnimatedBuilder(
+        animation: animation,
+        builder: (context, child) {
+          return Container(
+            width: animation.value,
+            height: animation.value,
+            child: child,
+          );
+        },
+        child: child,
+      ),
+    );
   }
 }

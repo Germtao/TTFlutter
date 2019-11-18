@@ -237,3 +237,192 @@ void initState() {
   controller.forward();
 }
 ```
+
+#### 使用 `AnimatedWidget` 简化
+
+上面示例中通过 `addListener()` 和 `setState()` 来更新UI这一步其实是通用的，如果每个动画中都加这么一句是比较繁琐的。`AnimatedWidget` 类封装了调用 `setState()` 的细节，并允许我们将 `widget` 分离出来，重构后的代码如下：
+
+```
+// 使用 AnimatedWidget 简化
+class AnimatedImage extends AnimatedWidget {
+  AnimatedImage({
+    Key key,
+    Animation<double> animation,
+  }) : super(key: key, listenable: animation);
+
+  @override
+  Widget build(BuildContext context) {
+    final Animation<double> animation = listenable;
+    return Center(
+      child: Image.asset(
+        'images/scale.png',
+        width: animation.value,
+        height: animation.value,
+      ),
+    );
+  }
+}
+
+class AnimationStructureBasicRoute extends StatefulWidget {
+  @override
+  _AnimationStructureBasicRouteState createState() =>
+      _AnimationStructureBasicRouteState();
+}
+
+// 需要继承TickerProvider，如果有多个AnimationController，则应该使用TickerProviderStateMixin。
+class _AnimationStructureBasicRouteState
+    extends State<AnimationStructureBasicRoute> with TickerProviderStateMixin {
+  Animation<double> animation;
+  AnimationController controller;
+
+  @override
+  void initState() {
+    super.initState();
+    controller =
+        AnimationController(duration: const Duration(seconds: 3), vsync: this);
+
+    // 使用弹性曲线
+    animation = CurvedAnimation(parent: controller, curve: Curves.bounceIn);
+
+    // 图片宽高从0变到300
+    animation = Tween(begin: 0.0, end: 300.0).animate(animation);
+
+    // 启动动画（正向执行）
+    controller.forward();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Theme(
+      data: ThemeData(
+        primaryColor: Colors.blueAccent,
+      ),
+      child: Scaffold(
+        appBar: AppBar(title: Text('基础版本 - 放大动画')),
+        body: AnimatedImage(animation: animation),
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    // 路由销毁时需要释放动画资源
+    controller.dispose();
+    super.dispose();
+  }
+}
+
+// 使用 AnimatedWidget 简化
+class AnimatedImage extends AnimatedWidget {
+  AnimatedImage({
+    Key key,
+    Animation<double> animation,
+  }) : super(key: key, listenable: animation);
+
+  @override
+  Widget build(BuildContext context) {
+    final Animation<double> animation = listenable;
+    return Center(
+      child: Image.asset(
+        'images/scale.png',
+        width: animation.value,
+        height: animation.value,
+      ),
+    );
+  }
+}
+```
+
+#### 用 `AnimatedBuilder` 重构
+
+用 `AnimatedWidget` 可以从动画中分离出 `widget`，而动画的渲染过程（即设置宽高）仍然在 `AnimatedWidget` 中，假设如果我们再添加一个 `widget` 透明度变化的动画，那么我们需要再实现一个 `AnimatedWidget`，这样不是很优雅，如果我们能把渲染过程也抽象出来，那就会好很多，而 `AnimatedBuilder` 正是将渲染逻辑分离出来, 上面的build方法中的代码可以改为：
+
+```
+@override
+Widget build(BuildContext context) {
+  return Theme(
+    data: ThemeData(
+      primaryColor: Colors.blueAccent,
+    ),
+    child: Scaffold(
+      appBar: AppBar(title: Text('基础版本 - 放大动画')),
+      // body: AnimatedImage(animation: animation),
+      body: AnimatedBuilder(
+        animation: animation,
+        child: Image.asset('images/scale.png'),
+        builder: (context, child) {
+          return Center(
+            child: Container(
+              width: animation.value,
+              height: animation.value,
+              child: child,
+            ),
+          );
+        },
+      ),
+    ),
+  );
+}
+```
+
+上面的代码中有一个迷惑的问题是，`child` 看起来像被指定了两次。但实际发生的事情是：将外部引用 `child` 传递给 `AnimatedBuilder` 后 `AnimatedBuilder` 再将其传递给匿名构造器，然后将该对象用作其子对象。最终的结果是 `AnimatedBuilder` 返回的对象插入到 `widget` 树中。
+
+带来的三个好处：
+
+1. 不用显式的去添加帧监听器，然后再调用 `setState()` 了，这个好处和 `AnimatedWidget` 是一样的。
+
+2. 动画构建的范围缩小了，如果没有 `builder`，`setState()` 将会在父组件上下文中调用，这将会导致父组件的 `build` 方法重新调用；而有了 `builder` 之后，只会导致动画 `widget` 自身的 `build` 重新调用，避免不必要的 `rebuild`。
+
+3. 通过 `AnimatedBuilder` 可以封装常见的过渡效果来复用动画。下面我们通过封装一个 `GrowTransition` 来说明，它可以对子`widget` 实现放大动画：
+
+```
+// 用 AnimatedBuilder 重构
+class GrowTransition extends StatelessWidget {
+  GrowTransition({
+    this.animation,
+    this.child,
+  });
+
+  final Widget child;
+  final Animation<double> animation;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: AnimatedBuilder(
+        animation: animation,
+        builder: (context, child) {
+          return Container(
+            width: animation.value,
+            height: animation.value,
+            child: child,
+          );
+        },
+        child: child,
+      ),
+    );
+  }
+}
+```
+
+这样，最初的示例就可以改为：
+
+```
+@override
+Widget build(BuildContext context) {
+  return Theme(
+    data: ThemeData(
+      primaryColor: Colors.blueAccent,
+    ),
+    child: Scaffold(
+      appBar: AppBar(title: Text('基础版本 - 放大动画')),
+      body: GrowTransition(
+        child: Image.asset('images/scale.png'),
+        animation: animation,
+      ),
+    ),
+  );
+}
+```
+
+> Flutter中正是通过这种方式封装了很多动画，如：`FadeTransition`、`ScaleTransition`、`SizeTransition`等，很多时候都可以复用这些预置的过渡类。
