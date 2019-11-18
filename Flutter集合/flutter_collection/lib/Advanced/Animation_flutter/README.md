@@ -146,3 +146,71 @@ Animation<int> alpha = new IntTween(begin: 0, end: 255).animate(curve);
 ```
 ---
 
+## 动画基本结构及状态监听
+
+### 动画基本结构
+
+在 `Flutter` 中我们可以通过多种方式来实现动画，下面通过一个图片逐渐放大示例的不同实现来演示 `Flutter` 中动画的不同实现方式的区别。
+
+#### 基础版本
+
+下面我们演示一下最基础的动画实现方式：
+
+```
+// 动画基本结构 基础动画
+class AnimationStructureBasicRoute extends StatefulWidget {
+  @override
+  _AnimationStructureBasicRouteState createState() =>
+      _AnimationStructureBasicRouteState();
+}
+
+// 需要继承TickerProvider，如果有多个AnimationController，则应该使用TickerProviderStateMixin。
+class _AnimationStructureBasicRouteState
+    extends State<AnimationStructureBasicRoute> with TickerProviderStateMixin {
+  Animation<double> animation;
+  AnimationController controller;
+
+  @override
+  void initState() {
+    super.initState();
+    controller =
+        AnimationController(duration: const Duration(seconds: 3), vsync: this);
+    // 图片宽高从0变到300
+    animation = Tween(begin: 0.0, end: 300.0).animate(controller)
+      ..addListener(() {
+        setState(() => {});
+      });
+
+    // 启动动画（正向执行）
+    controller.forward();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Theme(
+      data: ThemeData(
+        primaryColor: Colors.blueAccent,
+      ),
+      child: Scaffold(
+        appBar: AppBar(title: Text('基础版本 - 放大动画')),
+        body: Center(
+          child: Image.asset(
+            'images/scale.png',
+            width: animation.value,
+            height: animation.value,
+          ),
+        ),
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    // 路由销毁时需要释放动画资源
+    controller.dispose();
+    super.dispose();
+  }
+}
+```
+
+上面代码中 `addListener()` 函数调用了 `setState()`，所以每次动画生成一个新的数字时，当前帧被标记为脏(dirty)，这会导致widget的build()方法再次被调用，而在build()中，改变Image的宽高，因为它的高度和宽度现在使用的是animation.value ，所以就会逐渐放大。值得注意的是动画完成时要释放控制器(调用dispose()方法)以防止内存泄漏。

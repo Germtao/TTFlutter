@@ -141,6 +141,7 @@ class _EntryItemState extends State<EntryItem> {
         break;
 
       // MARK: - 进阶篇
+      // 事件
       case '原始指针事件处理':
         _pageWidget = PointerEventTestRoute();
         break;
@@ -151,6 +152,11 @@ class _EntryItemState extends State<EntryItem> {
         break;
       case '通知':
         _pageWidget = NotificationTestRoute();
+        break;
+
+      // 动画
+      case '动画结构':
+        _pageWidget = AnimationStructureTestRoute();
         break;
       default:
         break;
