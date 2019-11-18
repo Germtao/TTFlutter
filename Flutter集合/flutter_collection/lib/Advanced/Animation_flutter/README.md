@@ -214,3 +214,26 @@ class _AnimationStructureBasicRouteState
 ```
 
 上面代码中 `addListener()` 函数调用了 `setState()`，所以每次动画生成一个新的数字时，当前帧被标记为脏(dirty)，这会导致widget的build()方法再次被调用，而在build()中，改变Image的宽高，因为它的高度和宽度现在使用的是animation.value ，所以就会逐渐放大。值得注意的是动画完成时要释放控制器(调用dispose()方法)以防止内存泄漏。
+
+上面的例子中并没有指定 `Curve`，所以放大的过程是线性的（匀速），下面我们指定一个 `Curve`，来实现一个类似于弹簧效果的动画过程，我们只需要将 `initState` 中的代码改为下面这样即可：
+
+```
+@override
+void initState() {
+  super.initState();
+  controller =
+      AnimationController(duration: const Duration(seconds: 3), vsync: this);
+
+  // 使用弹性曲线
+  animation = CurvedAnimation(parent: controller, curve: Curves.bounceIn);
+
+  // 图片宽高从0变到300
+  animation = Tween(begin: 0.0, end: 300.0).animate(animation)
+    ..addListener(() {
+      setState(() => {});
+    });
+
+  // 启动动画（正向执行）
+  controller.forward();
+}
+```

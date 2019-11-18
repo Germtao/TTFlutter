@@ -18,8 +18,12 @@ class _AnimationStructureBasicRouteState
     super.initState();
     controller =
         AnimationController(duration: const Duration(seconds: 3), vsync: this);
+
+    // 使用弹性曲线
+    animation = CurvedAnimation(parent: controller, curve: Curves.bounceIn);
+
     // 图片宽高从0变到300
-    animation = Tween(begin: 0.0, end: 300.0).animate(controller)
+    animation = Tween(begin: 0.0, end: 300.0).animate(animation)
       ..addListener(() {
         setState(() => {});
       });
