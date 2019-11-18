@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_collection/Advanced/Animation_flutter/CustomPageRoute/custom_page_route.dart';
 import 'index.dart';
 
 class Entry {
@@ -157,6 +158,9 @@ class _EntryItemState extends State<EntryItem> {
       // 动画
       case '动画结构':
         _pageWidget = AnimationStructureTestRoute();
+        break;
+      case '自定义路由过渡动画':
+        _pageWidget = CustomPageTestRoute();
         break;
       default:
         break;

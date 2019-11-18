@@ -41,3 +41,4 @@ export 'Advanced/EventAndNotification/notification.dart';
 
 // 动画
 export 'Advanced/Animation_flutter/animation_structure/animation_structure.dart';
+export 'Advanced/Animation_flutter/CustomPageRoute/custom_page_route.dart';
