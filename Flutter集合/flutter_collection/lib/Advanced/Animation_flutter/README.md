@@ -69,4 +69,80 @@ class ShakeCurve extends Curve {
 
 #### AnimationController
 
-`AnimationController` 用于控制动画，它包含动画的启动 `forward()`、停止 `stop()`、反向播放 `reverse()` 等方法。
+`AnimationController` 用于控制动画，它包含动画的启动 `forward()`、停止 `stop()`、反向播放 `reverse()` 等方法。`AnimationController` 会在动画的每一帧，就会生成一个新的值。默认情况下，`AnimationController` 在给定的时间段内线性的生成从 `0.0到1.0（默认区间）` 的数字。 例如，下面代码创建一个 `Animation` 对象（但不会启动动画）：
+
+```
+final AnimationController controller = AnimationController(duration: const Duration(milliseconds: 2000), vsync: this);
+```
+
+`AnimationController` 生成数字的区间可以通过 `lowerBound` 和 `upperBound` 来指定，如：
+
+```
+final AnimationController controller = AnimationController( 
+ duration: const Duration(milliseconds: 2000), 
+ lowerBound: 10.0,
+ upperBound: 20.0,
+ vsync: this
+);
+```
+
+`AnimationController` 派生自 `Animation<double>` ，因此可以在需要 `Animation` 对象的任何地方使用。但是，`AnimationController` 具有控制动画的其他方法，例如 `forward()` 方法可以启动正向动画，`reverse()` 可以启动反向动画。
+
+在动画开始执行后开始生成动画帧，屏幕每刷新一次就是一个动画帧，在动画的每一帧，会随着根据动画的曲线来生成当前的动画值`（Animation.value）`，然后根据当前的动画值去构建UI，当所有动画帧依次触发时，动画值会依次改变，所以构建的UI也会依次变化，所以最终我们可以看到一个完成的动画。另外在动画的每一帧，`Animation` 对象会调用其帧监听器，等动画状态发生改变时（如动画结束）会调用状态改变监听器。
+
+`duration` 表示动画执行的时长，通过它我们可以控制动画的速度。
+
+> 注： 在某些情况下，动画值可能会超出 `AnimationController` 的 `[0.0，1.0]` 的范围，这取决于具体的曲线。例如，`fling()`函数可以根据我们手指滑动（甩出）的速度(velocity)、力量(force)等来模拟一个手指甩出动画，因此它的动画值可以在[0.0，1.0]范围之外 。也就是说，根据选择的曲线，`CurvedAnimation` 的输出可以具有比输入更大的范围。例如，`Curves.elasticIn` 等弹性曲线会生成大于或小于默认范围的值。
+
+
+#### Ticker
+
+当创建一个 `AnimationController` 时，需要传递一个 `vsync` 参数，它接收一个 `TickerProvider` 类型的对象，它的主要职责是创建 `Ticker`，定义如下：
+
+```
+abstract class TickerProvider {
+  //通过一个回调创建一个Ticker
+  Ticker createTicker(TickerCallback onTick);
+}
+```
+
+Flutter应用在启动时都会绑定一个 `SchedulerBinding`，通过 `SchedulerBinding` 可以给每一次屏幕刷新添加回调，而 `Ticker` 就是通过 `SchedulerBinding` 来添加屏幕刷新回调，这样一来，每次屏幕刷新都会调用 `TickerCallback`。使用 `Ticker` (而不是Timer)来驱动动画会防止屏幕外动画（动画的UI不在当前屏幕时，如锁屏时）消耗不必要的资源，因为Flutter中屏幕刷新时会通知到绑定的 `SchedulerBinding`，而 `Ticker` 是受 `SchedulerBinding` 驱动的，由于锁屏后屏幕会停止刷新，所以 `Ticker` 就不会再触发。
+
+通常我们会将 `SingleTickerProviderStateMixin` 添加到 `State` 的定义中，然后将 `State` 对象作为 `vsync` 的值，这在后面的例子中可以见到。
+
+#### Tween
+
+默认情况下，`AnimationController` 对象值的范围是[0.0，1.0]。如果我们需要构建UI的动画值在不同的范围或不同的数据类型，则可以使用 `Tween` 来添加映射以生成不同的范围或数据类型的值。例如，像下面示例，`Tween` 生成[-200.0，0.0]的值：
+
+`final Tween doubleTween = new Tween<double>(begin: -200.0, end: 0.0);`
+
+`Tween` 构造函数需要 `begin` 和 `end` 两个参数。`Tween` 的唯一职责就是定义从输入范围到输出范围的映射。输入范围通常为[0.0，1.0]，但这不是必须的，我们可以自定义需要的范围。
+
+`Tween` 继承自 `Animatable<T>`，而不是继承自 `Animation<T>`，`Animatable` 中主要定义动画值的映射规则。
+
+下面我们看一个 `ColorTween` 将动画输入范围映射为两种颜色值之间过渡输出的例子：
+
+`final Tween colorTween = new ColorTween(begin: Colors.transparent, end: Colors.black54);`
+
+`Tween` 对象不存储任何状态，相反，它提供了 `evaluate(Animation<double> animation)` 方法，它可以获取动画当前映射值。 `Animation` 对象的当前值可以通过 `value()` 法取到。`evaluate` 函数还执行一些其它处理，例如分别确保在动画值为0.0和1.0时返回开始和结束状态。
+
+#### Tween.animate
+
+要使用 `Tween` 对象，需要调用其 `animate()` 方法，然后传入一个控制器对象。例如，以下代码在500毫秒内生成从0到255的整数值。
+
+```
+final AnimationController controller = new AnimationController(duration: const Duration(milliseconds: 500), vsync: this);
+Animation<int> alpha = new IntTween(begin: 0, end: 255).animate(controller);
+```
+
+> 注: `animate()` 返回的是一个 `Animation`，而不是一个 `Animatable`。
+
+以下示例构建了一个控制器、一条曲线和一个 `Tween`：
+
+```
+final AnimationController controller = new AnimationController(duration: const Duration(milliseconds: 500), vsync: this);
+final Animation curve = new CurvedAnimation(parent: controller, curve: Curves.easeOut);
+Animation<int> alpha = new IntTween(begin: 0, end: 255).animate(curve);
+```
+---
+
