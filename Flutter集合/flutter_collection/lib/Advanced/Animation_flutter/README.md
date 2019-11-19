@@ -12,13 +12,13 @@ UI的一次改变称为一个动画帧，对应一次屏幕刷新，而决定动
 
 为了方便开发者创建动画，不同的UI系统对动画都进行了一些抽象，主要涉及一下四种角色：
 
-- Animation
+- [Animation](https://github.com/Germtao/TTFlutter/tree/master/Flutter%E9%9B%86%E5%90%88/flutter_collection/lib/Advanced/Animation_flutter#animation)
 
-- Curve
+- [Curve](https://github.com/Germtao/TTFlutter/tree/master/Flutter%E9%9B%86%E5%90%88/flutter_collection/lib/Advanced/Animation_flutter#curve)
 
-- Controller
+- [Controller](https://github.com/Germtao/TTFlutter/tree/master/Flutter%E9%9B%86%E5%90%88/flutter_collection/lib/Advanced/Animation_flutter#animationcontroller)
 
-- Tween
+- [Tween](https://github.com/Germtao/TTFlutter/tree/master/Flutter%E9%9B%86%E5%90%88/flutter_collection/lib/Advanced/Animation_flutter#tween)
 
 #### Animation
 
@@ -54,7 +54,14 @@ final CurvedAnimation curve = CurvedAnimation(parent: controller, curve: Curves.
 
 `CurvedAnimation` 可以通过包装 `AnimationController` 和 `Curve` 生成一个新的动画对象，我们正是通过这种方式来将动画和动画执行的曲线关联起来的。我们指定动画的曲线为 `Curves.easeIn`，它表示动画开始时比较慢，结束时比较快。`Curves` 类是一个预置的枚举类，定义了许多常用的曲线，下面列几种常用的：
 
-![Curve曲线]()
+| Curves曲线 | 动画过程 |
+| ----- | ---- |
+| linear | 匀速的 |
+| decelerate | 匀减速 |
+| ease | 开始加速，后面减速 |
+| easeIn | 开始慢，后面快 |
+| easeOut | 开始快，后面慢 |
+| easeInOut | 开始慢，然后加速，最后再减速 |
 
 除了上面列举的，`Curves` 类中还定义了许多其它的曲线，当然也可以创建自己 `Curve`，例如定义一个正弦曲线：
 
