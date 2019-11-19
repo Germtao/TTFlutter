@@ -162,6 +162,9 @@ class _EntryItemState extends State<EntryItem> {
       case '自定义路由过渡动画':
         _pageWidget = CustomPageTestRoute();
         break;
+      case 'Hero动画':
+        _pageWidget = HeroAnimation();
+        break;
       default:
         break;
     }
