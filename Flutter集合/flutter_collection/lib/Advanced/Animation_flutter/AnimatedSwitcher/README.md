@@ -156,3 +156,84 @@ Widget build(BuildContext context){
 
 另外，`Flutter SDK` 中还提供了一个 `AnimatedCrossFade` 控件，它也可以切换两个子元素，切换过程执行渐隐渐显的动画，和 `AnimatedSwitcher` 不同的是 `AnimatedCrossFade` 是针对两个子元素，而 `AnimatedSwitcher` 是在一个子元素的新旧值之间切换。
 
+## AnimatedSwitcher 高级用法
+
+假设想实现一个类似路由平移切换的动画：旧页面屏幕中向左侧平移退出，新页面重屏幕右侧平移进入。如果要用 `AnimatedSwitcher` 的话，很快就会发现一个问题：做不到！我们可能会写出下面的代码：
+
+```
+AnimatedSwitcher(
+  duration: Duration(milliseconds: 200),
+  transitionBuilder: (Widget child, Animation<double> animation) {
+    var tween=Tween<Offset>(begin: Offset(1, 0), end: Offset(0, 0))
+     return SlideTransition(
+       child: child,
+       position: tween.animate(animation),
+    );
+  },
+  ...//省略
+)
+```
+
+上面的代码有什么问题呢？我们前面说过在 `AnimatedSwitcher` 的 `child` 切换时会分别对：
+
+- 新child执行正向动画（forward）
+
+- 旧child执行反向动画（reverse）
+
+所以真正的效果便是：新child确实从屏幕右侧平移进入了，但旧child却会从屏幕右侧（而不是左侧）退出。其实也很容易理解，因为在没有特殊处理的情况下，同一个动画的正向和逆向正好是相反（对称）的。
+
+那么问题来了，难道就不能使用 `AnimatedSwitcher了`？答案当然是否定的！仔细想想这个问题，究其原因，就是因为同一个 `Animation` 正向（forward）和反向（reverse）是对称的。
+
+所以如果我们可以**打破**这种对称性，那么便可以实现这个功能了，下面我们来封装一个 `MySlideTransition`，它与`SlideTransition` 唯一的不同就是对动画的反向执行进行了定制（*从左边滑出隐藏*），代码如下：
+
+```
+class CustomSlideTransition extends AnimatedWidget {
+  CustomSlideTransition({
+    Key key,
+    @required Animation<Offset> position,
+    this.transformHitTests = true,
+    this.child,
+  })  : assert(position != null),
+        super(key: key, listenable: position);
+
+  Animation<Offset> get position => listenable;
+
+  final bool transformHitTests;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    Offset offset = position.value;
+    // 动画反向执行时，调整x偏移，实现“从左边滑出隐藏”
+    if (position.status == AnimationStatus.reverse) {
+      offset = Offset(-offset.dx, offset.dy);
+    }
+    return FractionalTranslation(
+      translation: offset,
+      transformHitTests: transformHitTests,
+      child: child,
+    );
+  }
+}
+```
+
+调用：
+
+```
+AnimatedSwitcher(
+    duration: const Duration(milliseconds: 500),
+    transitionBuilder: (child, animation) {
+      return CustomSlideTransition(
+        child: child,
+        position:
+            Tween<Offset>(begin: Offset(1, 0), end: Offset(0, 0))
+                .animate(animation),
+      );
+    },
+    ... // 省略
+)
+```
+
+运行效果：
+
+![运行效果](https://github.com/Germtao/TTFlutter/blob/master/Flutter%E9%9B%86%E5%90%88/flutter_collection/lib/Advanced/Animation_flutter/AnimatedSwitcher/custom_slide.gif)

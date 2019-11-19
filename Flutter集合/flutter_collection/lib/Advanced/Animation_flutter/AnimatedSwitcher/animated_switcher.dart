@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_collection/Advanced/Animation_flutter/AnimatedSwitcher/custom_slide.dart';
 
 class AnimatedSwitcherCounterRoute extends StatefulWidget {
   @override
@@ -22,9 +23,16 @@ class _AnimatedSwitcherCounterRouteState
               duration: const Duration(milliseconds: 500),
               transitionBuilder: (child, animation) {
                 // 执行缩放动画
-                return ScaleTransition(
+                // return ScaleTransition(
+                //   child: child,
+                //   scale: animation,
+                // );
+
+                return CustomSlideTransition(
                   child: child,
-                  scale: animation,
+                  position:
+                      Tween<Offset>(begin: Offset(1, 0), end: Offset(0, 0))
+                          .animate(animation),
                 );
               },
               child: Text(
