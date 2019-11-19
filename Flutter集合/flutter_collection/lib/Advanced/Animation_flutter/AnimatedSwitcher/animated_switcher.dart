@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_collection/Advanced/Animation_flutter/AnimatedSwitcher/custom_slide.dart';
+import 'package:flutter_collection/Advanced/Animation_flutter/AnimatedSwitcher/slide_transition_x.dart';
 
 class AnimatedSwitcherCounterRoute extends StatefulWidget {
   @override
@@ -28,11 +29,17 @@ class _AnimatedSwitcherCounterRouteState
                 //   scale: animation,
                 // );
 
-                return CustomSlideTransition(
+                // return CustomSlideTransition(
+                //   child: child,
+                //   position:
+                //       Tween<Offset>(begin: Offset(1, 0), end: Offset(0, 0))
+                //           .animate(animation),
+                // );
+
+                return SlideTransitionX(
                   child: child,
-                  position:
-                      Tween<Offset>(begin: Offset(1, 0), end: Offset(0, 0))
-                          .animate(animation),
+                  direction: AxisDirection.down, // 上入下出
+                  position: animation,
                 );
               },
               child: Text(

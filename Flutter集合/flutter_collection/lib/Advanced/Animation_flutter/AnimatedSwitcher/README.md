@@ -237,3 +237,96 @@ AnimatedSwitcher(
 运行效果：
 
 ![运行效果](https://github.com/Germtao/TTFlutter/blob/master/Flutter%E9%9B%86%E5%90%88/flutter_collection/lib/Advanced/Animation_flutter/AnimatedSwitcher/custom_slide.gif)
+
+## SlideTransitionX
+
+上面的示例我们实现了 “左出右入” 的动画，那如果要实现 “右入左出”、“上入下出” 或者 “下入上出”怎么办？当然，我们可以分别修改上面的代码，但是这样每种动画都得单独定义一个 “Transition”，这很麻烦。本节将分装一个通用的 `SlideTransitionX` 来实现这种 **出入滑动动画**，代码如下：
+
+```
+class SlideTransitionX extends AnimatedWidget {
+  SlideTransitionX({
+    Key key,
+    @required Animation<double> position,
+    this.transformHitTests = true,
+    this.direction = AxisDirection.down,
+    this.child,
+  })  : assert(position != null),
+        super(key: key, listenable: position) {
+    // 偏移在内部处理
+    switch (direction) {
+      case AxisDirection.up:
+        _tween = Tween(begin: Offset(0, 1), end: Offset(0, 0));
+        break;
+      case AxisDirection.right:
+        _tween = Tween(begin: Offset(-1, 0), end: Offset(0, 0));
+        break;
+      case AxisDirection.left:
+        _tween = Tween(begin: Offset(1, 0), end: Offset(0, 0));
+        break;
+      case AxisDirection.down:
+        _tween = Tween(begin: Offset(0, -1), end: Offset(0, 0));
+        break;
+    }
+  }
+
+  Animation<double> get position => listenable;
+
+  final bool transformHitTests;
+  final Widget child;
+
+  // 退场（出）方向
+  final AxisDirection direction;
+
+  Tween<Offset> _tween;
+
+  @override
+  Widget build(BuildContext context) {
+    Offset offset = _tween.evaluate(position);
+    if (position.status == AnimationStatus.reverse) {
+      switch (direction) {
+        case AxisDirection.up:
+          offset = Offset(offset.dx, -offset.dy);
+          break;
+        case AxisDirection.right:
+          offset = Offset(-offset.dx, offset.dy);
+          break;
+        case AxisDirection.left:
+          offset = Offset(-offset.dx, offset.dy);
+          break;
+        case AxisDirection.down:
+          offset = Offset(offset.dx, -offset.dy);
+          break;
+      }
+    }
+    return FractionalTranslation(
+      translation: offset,
+      transformHitTests: transformHitTests,
+      child: child,
+    );
+  }
+}
+```
+
+现在如果我们想实现各种 **滑动出入动画** 便非常容易，只需给 `direction` 传递不同的方向值即可，比如要实现 “上入下出”，则：
+
+```
+AnimatedSwitcher(
+  duration: const Duration(milliseconds: 500),
+  transitionBuilder: (child, animation) {
+    return SlideTransitionX(
+      child: child,
+      direction: AxisDirection.down, // 上入下出
+      position: animation,
+    );
+  },
+  ... // 省略
+)
+```
+
+运行效果：
+
+![运行效果](https://github.com/Germtao/TTFlutter/blob/master/Flutter%E9%9B%86%E5%90%88/flutter_collection/lib/Advanced/Animation_flutter/AnimatedSwitcher/AxisDirection_down.gif)
+
+## 总结
+
+本节我们学习了 `AnimatedSwitcher` 的详细用法，同时也介绍了打破 `AnimatedSwitcher` 动画对称性的方法。我们可以发现：在需要切换新旧UI元素的场景，`AnimatedSwitcher` 将十分实用。
