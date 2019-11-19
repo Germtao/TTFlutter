@@ -168,8 +168,11 @@ class _EntryItemState extends State<EntryItem> {
       case '交织动画':
         _pageWidget = StaggerAnimationTestRoute();
         break;
-      default:
+      case '通用切换动画控件':
+        _pageWidget = AnimatedSwitcherCounterRoute();
         break;
+      default:
+        return;
     }
     Navigator.of(_context)
         .push(MaterialPageRoute(builder: (context) => _pageWidget));
@@ -239,6 +242,7 @@ class CollectionPage extends StatelessWidget {
         Entry('自定义路由过渡动画'),
         Entry('Hero动画'),
         Entry('交织动画'),
+        Entry('通用切换动画控件'),
         Entry('动画过渡控件'),
       ]),
     ]),
