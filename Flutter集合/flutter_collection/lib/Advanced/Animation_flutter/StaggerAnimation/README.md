@@ -1,6 +1,6 @@
 # 交织动画 (Stagger Animation)
 
-![交织动画]()
+![交织动画](https://github.com/Germtao/TTFlutter/blob/master/Flutter%E9%9B%86%E5%90%88/flutter_collection/lib/Advanced/Animation_flutter/StaggerAnimation/stagger_anim.gif)
 
 有些时候我们可能会需要一些复杂的动画，这些动画可能由一个动画序列或重叠的动画组成。
 
