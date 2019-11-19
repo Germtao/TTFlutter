@@ -76,6 +76,10 @@ class HeroAnimationRouteB extends StatelessWidget {
 }
 ```
 
+运行结果：
+
+![效果](https://github.com/Germtao/TTFlutter/blob/master/Flutter%E9%9B%86%E5%90%88/flutter_collection/lib/Advanced/Animation_flutter/HeroAnimation/hero_anim.gif)
+
 我们可以看到，实现 `Hero` 动画只需要用Hero控件将要共享的widget包装起来，并提供一个相同的tag即可，中间的过渡帧都是 `Flutter Framework` 自动完成的。
 
 > 注：前后路由页的 `共享Hero` 的 `tag` 必须是 *相同* 的，`Flutter Framework`内部正是通过tag来确定新旧路由页widget的对应关系的。
