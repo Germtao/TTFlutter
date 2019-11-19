@@ -165,6 +165,9 @@ class _EntryItemState extends State<EntryItem> {
       case 'Hero动画':
         _pageWidget = HeroAnimation();
         break;
+      case '交织动画':
+        _pageWidget = StaggerAnimationTestRoute();
+        break;
       default:
         break;
     }
