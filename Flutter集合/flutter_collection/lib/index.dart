@@ -49,3 +49,4 @@ export 'Advanced/Animation_flutter/AnimatedTransition/animated_transition_page_r
 
 // 自定义控件
 export 'Advanced/custom_widget/custom_widget.dart';
+export 'Advanced/custom_widget/custom_painter.dart';

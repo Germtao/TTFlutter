@@ -179,6 +179,9 @@ class _EntryItemState extends State<EntryItem> {
       case '组合控件':
         _pageWidget = CustomWidgetTestRoute();
         break;
+      case '自绘控件':
+        _pageWidget = CustomPaintTestRoute();
+        break;
       default:
         return;
     }
