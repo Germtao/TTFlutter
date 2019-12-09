@@ -45,3 +45,7 @@ export 'Advanced/Animation_flutter/CustomPageRoute/custom_page_route.dart';
 export 'Advanced/Animation_flutter/HeroAnimation/hero_animation.dart';
 export 'Advanced/Animation_flutter/StaggerAnimation/stagger_animation.dart';
 export 'Advanced/Animation_flutter/AnimatedSwitcher/animated_switcher.dart';
+export 'Advanced/Animation_flutter/AnimatedTransition/animated_transition_page_route.dart';
+
+// 自定义控件
+export 'Advanced/custom_widget/custom_widget.dart';

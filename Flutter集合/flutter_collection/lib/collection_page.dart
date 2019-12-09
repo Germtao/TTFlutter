@@ -171,6 +171,14 @@ class _EntryItemState extends State<EntryItem> {
       case '通用切换动画控件':
         _pageWidget = AnimatedSwitcherCounterRoute();
         break;
+      case '动画过渡控件':
+        _pageWidget = AnimatedTransitionPageRoute();
+        break;
+
+      // 自定义控件
+      case '组合控件':
+        _pageWidget = CustomWidgetTestRoute();
+        break;
       default:
         return;
     }
@@ -244,6 +252,10 @@ class CollectionPage extends StatelessWidget {
         Entry('交织动画'),
         Entry('通用切换动画控件'),
         Entry('动画过渡控件'),
+      ]),
+      Entry('自定义控件', <Entry>[
+        Entry('组合控件'),
+        Entry('自绘控件'),
       ]),
     ]),
   ];
