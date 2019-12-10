@@ -50,3 +50,6 @@ export 'Advanced/Animation_flutter/AnimatedTransition/animated_transition_page_r
 // 自定义控件
 export 'Advanced/custom_widget/custom_widget.dart';
 export 'Advanced/custom_widget/custom_painter.dart';
+
+// 文件操作和网络请求
+export 'Advanced/file_network/file_operation/file_operation.dart';

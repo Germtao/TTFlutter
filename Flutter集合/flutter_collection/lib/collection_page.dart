@@ -182,6 +182,11 @@ class _EntryItemState extends State<EntryItem> {
       case '自绘控件':
         _pageWidget = CustomPaintTestRoute();
         break;
+
+      // 文件操作和网络请求
+      case '文件操作':
+        _pageWidget = FileOperationTestRoute();
+        break;
       default:
         return;
     }
@@ -259,6 +264,9 @@ class CollectionPage extends StatelessWidget {
       Entry('自定义控件', <Entry>[
         Entry('组合控件'),
         Entry('自绘控件'),
+      ]),
+      Entry('文件操作和网络请求', <Entry>[
+        Entry('文件操作'),
       ]),
     ]),
   ];
