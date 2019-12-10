@@ -53,3 +53,4 @@ export 'Advanced/custom_widget/custom_painter.dart';
 
 // 文件操作和网络请求
 export 'Advanced/file_network/file_operation/file_operation.dart';
+export 'Advanced/file_network/http_request/http_client.dart';
