@@ -191,6 +191,7 @@ class _EntryItemState extends State<EntryItem> {
       case 'Http请求-HttpClient':
         _pageWidget = HttpClientTestRoute();
         break;
+      case 'Http请求-Dio http库':
       default:
         return;
     }
@@ -272,6 +273,7 @@ class CollectionPage extends StatelessWidget {
       Entry('文件操作和网络请求', <Entry>[
         Entry('文件操作'),
         Entry('Http请求-HttpClient'),
+        Entry("Http请求-Dio http库")
       ]),
     ]),
   ];
