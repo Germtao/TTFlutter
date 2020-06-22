@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_collection/Advanced/Animation_flutter/CustomPageRoute/custom_page_route.dart';
+import 'package:flutter_collection/Advanced/file_network/http_dio/http_dio.dart';
 import 'package:flutter_collection/Advanced/file_network/http_request/http_client.dart';
 import 'index.dart';
 
@@ -192,7 +193,8 @@ class _EntryItemState extends State<EntryItem> {
         _pageWidget = HttpClientTestRoute();
         break;
       case 'Http请求-Dio http库':
-      _pageWidget = 
+        _pageWidget = HttpDioTestRoute();
+        break;
       default:
         return;
     }
