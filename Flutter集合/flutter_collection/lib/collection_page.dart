@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_collection/Advanced/Animation_flutter/CustomPageRoute/custom_page_route.dart';
 import 'package:flutter_collection/Advanced/PackageAndPlugin/package_plugin.dart';
+import 'package:flutter_collection/Advanced/PackageAndPlugin/texture.dart';
 import 'package:flutter_collection/Advanced/file_network/WebSocket/WebSocket.dart';
 import 'package:flutter_collection/Advanced/file_network/http_dio/http_dio.dart';
 import 'package:flutter_collection/Advanced/file_network/http_download/http_download.dart';
@@ -209,6 +210,9 @@ class _EntryItemState extends State<EntryItem> {
       case '开发Flutter插件':
         _pageWidget = BatterylevelTestRoute();
         break;
+      case 'Texture(示例: 使用摄像头)':
+        _pageWidget = CameraTestRoute();
+        break;
       default:
         return;
     }
@@ -296,6 +300,7 @@ class CollectionPage extends StatelessWidget {
       ]),
       Entry('包和插件', <Entry>[
         Entry('开发Flutter插件'),
+        Entry('Texture(示例: 使用摄像头)')
       ]),
     ]),
   ];
