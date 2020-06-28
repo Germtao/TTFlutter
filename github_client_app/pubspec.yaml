@@ -36,6 +36,10 @@ dependencies:
   cupertino_icons: ^0.1.3
   json_annotation: ^2.0.0
 
+  cached_network_image: ^2.0.0
+  fluttertoast: ^3.0.3
+  flukit: ^1.0.2
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -55,6 +59,11 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+
+  assets:
+    -imgs/avatar-default.png
+    - imgs/logo_light.png
+    - imgs/logo_dark.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:
