@@ -46,7 +46,7 @@ class Global {
       ..maxCount = 100;
 
     // 初始化网络请求相关配置
-    // Git
+    Git.init();
   }
 
   /// 持久化Profile信息
