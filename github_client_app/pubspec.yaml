@@ -61,7 +61,7 @@ flutter:
   uses-material-design: true
 
   assets:
-    -imgs/avatar-default.png
+    - imgs/avatar-default.png
     - imgs/logo_light.png
     - imgs/logo_dark.png
 
