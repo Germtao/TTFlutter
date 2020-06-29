@@ -3,9 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'index.dart';
 
-void main() {
-  runApp(MyApp());
-}
+void main() => Global.init().then((value) => runApp(MyApp()));
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -26,7 +24,41 @@ class MyApp extends StatelessWidget {
             onGenerateTitle: (context) {
               return GmLocalizations.of(context).title;
             },
-            home: ,
+            home: HomeRoute(),
+            locale: localeModel.getLocale(),
+            supportedLocales: [
+              const Locale('en', 'US'), // 美国英语
+              const Locale('zh', 'CN'), // 中文简体
+            ],
+            localizationsDelegates: [
+              // 本地化代理类
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GmLocalizationsDelegate(),
+            ],
+            localeResolutionCallback: (Locale _locale, Iterable<Locale> supportedLocales) {
+              if (localeModel.getLocale() != null) {
+                // 如果已经选定语言，则不跟随系统
+                return localeModel.getLocale();
+              } else {
+                // 跟随系统
+                Locale locale;
+                if (supportedLocales.contains(_locale)) {
+                  locale = _locale;
+                } else {
+                  // 如果系统语言不是中文简体或美国英语，则默认使用美国英语
+                  locale = Locale('en', 'US');
+                }
+                return locale;
+              }
+            },
+
+            // 注册路由表
+            routes: <String, WidgetBuilder> {
+              'login': (context) => LoginRoute(),
+              'themes': (context) => ThemeChangeRoute(),
+              'language': (context) => LanguageRoute(),
+            },
           );
         },
       ),
