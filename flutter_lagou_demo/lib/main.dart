@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'pages/test_stateful_widget.dart';
 import 'pages/home_page.dart';
 
 void main() {
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
           title: Text('Two You'),
         ),
         body: Center(
-          child: HomePage(),
+          child: TestStatefulWidget(),
         ),
       ),
     );
