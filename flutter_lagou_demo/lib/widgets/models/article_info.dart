@@ -1,0 +1,1 @@
+/// 帖子描述的数据结构class ArticleInfo {  /// 帖子的标题  final String title;  /// 帖子的描述  final String summary;  /// 帖子的图片  final String articleImage;  /// 帖子评论数  final int commentNum;  /// 帖子点赞数  final int likeNum;  const ArticleInfo(this.title, this.summary, this.articleImage, this.commentNum, this.likeNum);}
