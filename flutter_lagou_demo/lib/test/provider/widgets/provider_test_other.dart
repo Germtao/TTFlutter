@@ -1,0 +1,1 @@
+import 'package:flutter/material.dart';class ProviderTestOther extends StatelessWidget {  /// 有状态类返回组件信息  @override  Widget build(BuildContext context) {    print('provider test other build.');    return Text('provider test other');  }}

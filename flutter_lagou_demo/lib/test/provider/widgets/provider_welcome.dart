@@ -1,0 +1,1 @@
+import 'package:flutter/material.dart';import 'package:provider/provider.dart';import '../model/name_model.dart';class ProviderWelcome extends StatelessWidget {  @override  Widget build(BuildContext context) {    print('provider welcome build.');        final _name = Provider.of<NameModel>(context);    return Text('欢迎 ${_name.value}');  }}
