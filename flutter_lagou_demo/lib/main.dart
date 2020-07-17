@@ -3,6 +3,8 @@ import 'package:flutter_lagou_demo/pages/home_page_widget.dart';
 import 'pages/test_stateful_widget.dart';
 import 'pages/home_page.dart';
 
+import 'test/name_game.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -21,7 +23,7 @@ class MyApp extends StatelessWidget {
           title: Text('Two You'),
         ),
         body: Center(
-          child: HomePage1(),
+          child: NameGame(),
         ),
       ),
     );
