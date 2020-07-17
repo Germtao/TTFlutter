@@ -1,0 +1,1 @@
+import 'package:flutter/material.dart';class ReduxTestOther extends StatelessWidget {  @override  Widget build(BuildContext context) {    print('redux test other build.');    return Text("redux's test other");  }}
