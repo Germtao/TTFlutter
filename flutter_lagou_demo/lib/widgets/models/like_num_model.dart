@@ -1,0 +1,1 @@
+import 'package:flutter/material.dart';/// name 状态管理模块class LikeNumModel with ChangeNotifier {  /// 声明私有变量  int _likeNum = 0;  /// 设置 get 方法  int get value => _likeNum;  /// 修改当前 name，点赞  void like() {    _likeNum++;    notifyListeners();  }}
