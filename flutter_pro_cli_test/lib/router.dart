@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_pro_cli_test/util/struct/router_struct.dart';
 
 import 'pages/common/web_view_page.dart';
 import 'pages/home_page/index.dart';
@@ -7,10 +8,14 @@ import 'pages/user_page/index.dart';
 /// app 协议头
 const String appScheme = 'tyfapp';
 
-/// action mapping
-const Map<String, List<String>> paramsMapping = {
-  'homepage': null,
-  'userpage': ['userId']
+/// 路由配置信息
+/// widget 为组件
+/// entranceIndex 为首页位置，如果非首页则为-1
+/// params 为组件需要的参数数组
+const Map<String, RouterStruct> routerMapping = {
+  'homepage': RouterStruct(HomePageIndex(), 0, null),
+  'userpage': RouterStruct(UserPageIndex(), 2, ['userId']),
+  'default': RouterStruct(HomePageIndex(), 0, null)
 };
 
 /// 处理APP内的跳转
