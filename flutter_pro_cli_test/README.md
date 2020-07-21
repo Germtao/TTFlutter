@@ -6,11 +6,15 @@
 
 `flutter-pro-cli`，该工具可以轻松帮你完成项目框架结构的初始化，在安装完成上面的运行环境后，在命令运行窗口，运行下面的命令。
 
-`npm install -g flutter-pro-cli`
+```
+npm install -g flutter-pro-cli
+```
 
 安装完成后，运行如下命令查看具体包含的功能。
 
-`flutter-pro-cli -h`
+```
+flutter-pro-cli -h
+```
 
 可以看到如下的窗口提示信息。
 
@@ -41,15 +45,21 @@ Commands:
 
 现在我们使用以上脚手架来初始化一个`Flutter`项目。首先第一步是创建项目`flutter_pro_cli_test`，需要在 Android Studio 中创建好 Flutter 项目，项目创建完成后，在项目根目录打开命令行窗口，执行以下命令进行初始化。
 
-`flutter-pro-cli init`
+```
+flutter-pro-cli init
+```
 
 执行完该初始化成功后，打开手机模拟器运行下面的命令检查代码规范，并且启动项目。
 
-`flutter-pro-cli run check`
+```
+flutter-pro-cli run check
+```
 
 为了尝试自动化生成测试代码，我们可以在项目中的`lib/pages/home_page/`目录下创建一个`index.dart`。然后再运行下面的命令。
 
-`flutter-pro-cli st`
+```
+flutter-pro-cli st
+```
 
 运行完后，在相应的`test/pages/home_page`目录下你将看到`index_test.dart`文件，里面将包含下面的测试代码。
 
