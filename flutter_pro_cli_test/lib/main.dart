@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_pro_cli_test/pages/entrance.dart';
+import 'package:flutter_pro_cli_test/pages/entrance_bottom_bar.dart';
+// import 'package:flutter_pro_cli_test/pages/entrance.dart';
+import 'package:flutter_pro_cli_test/router.dart';
 
 /// APP 核心入口文件
 void main() {
@@ -16,16 +18,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue, // App 主题
-        visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Two You'), // 页面名字
-        ),
-        body: Center(
-          child: Entrance(),
-        ),
-      ),
+      routes: Router().registerRouter(),
+      home: Entrance(),
     );
   }
 }

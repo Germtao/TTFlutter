@@ -29,7 +29,7 @@ class MenuDraw extends StatelessWidget {
               title: Text('关注'),
               onTap: () {
                 Navigator.pop(context);
-                Router().open(context, 'http://www.qq.com');
+                Router().open(context, 'https://www.baidu.com');
               },
             ),
             ListTile(
@@ -37,7 +37,7 @@ class MenuDraw extends StatelessWidget {
               title: Text('我'),
               onTap: () {
                 Navigator.pop(context);
-                redirect('tyfapp://uerspage');
+                redirect('tyfapp://userpage');
               },
             )
           ],
