@@ -7,6 +7,9 @@ import 'package:flutter/services.dart';
 import 'package:uni_links/uni_links.dart';
 import 'package:flutter_pro_cli_test/router.dart';
 
+import 'package:flutter_pro_cli_test/pages/search_page/custom_delegate.dart';
+import 'package:flutter_pro_cli_test/widgets/menu_draw.dart';
+
 /// eum 类型
 enum UniLinksType {
   /// string link
@@ -15,11 +18,19 @@ enum UniLinksType {
 
 /// 项目页面入口文件
 class Entrance extends StatefulWidget {
+  /// 页面索引位置
+  final int indexValue;
+
+  const Entrance({Key key, this.indexValue}) : super(key: key);
+
   @override
   _EntranceState createState() => _EntranceState();
 }
 
-class _EntranceState extends State<Entrance> {
+class _EntranceState extends State<Entrance>
+    with SingleTickerProviderStateMixin {
+  TabController _controller;
+
   UniLinksType _type = UniLinksType.string;
   StreamSubscription _subscription;
   Router router = Router();
@@ -39,10 +50,7 @@ class _EntranceState extends State<Entrance> {
     // 平台消息可能会失败，因此我们使用try / catch PlatformException
     try {
       initialLink = await getInitialLink();
-      if (initialLink != null) {
-        // 跳转到指定页面
-        router.push(context, initialLink);
-      }
+      redirect(initialLink);
     } on PlatformException {
       initialLink = 'Failed to get initial link.';
     } on FormatException {
@@ -54,10 +62,22 @@ class _EntranceState extends State<Entrance> {
       if (!mounted || link == null) return;
 
       // 跳转到指定页面
-      router.push(context, link);
+      redirect(link);
     }, onError: (Object error) {
       if (!mounted) return;
     });
+  }
+
+  /// 跳转页面
+  void redirect(String link) {
+    if (link == null) {
+      return;
+    }
+
+    int indexNum = router.open(context, link);
+    if (indexNum > -1 && _controller.index != indexNum) {
+      _controller.animateTo(indexNum);
+    }
   }
 
   @override
@@ -65,22 +85,62 @@ class _EntranceState extends State<Entrance> {
     super.initState();
     // scheme 初始化，保证有上下文，需要跳转页面
     initPlatformState();
+
+    _controller = TabController(vsync: this, length: 3);
+    if (widget.indexValue != null) {
+      _controller.animateTo(widget.indexValue);
+    }
   }
 
   @override
   void dispose() {
     super.dispose();
+
+    _controller.dispose();
     if (_subscription != null) _subscription.cancel();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: Column(
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Two You'),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.search),
+            onPressed: () {
+              showSearch(
+                context: context,
+                delegate: SearchPageCustomDelegate(),
+              );
+            },
+          ),
+        ],
+        bottom: TabBar(
+          controller: _controller,
+          tabs: [
+            Tab(
+              icon: Icon(Icons.view_list),
+              text: '推荐',
+            ),
+            Tab(
+              icon: Icon(Icons.favorite),
+              text: '关注',
+            ),
+            Tab(
+              icon: Icon(Icons.person),
+              text: '我',
+            )
+          ],
+        ),
+      ),
+      drawer: MenuDraw(redirect),
+      body: TabBarView(
+        controller: _controller,
         children: [
-          Expanded(
-            child: Text('Hello Flutter scaffold.'),
-          )
+          router.getPageByRouter('homepage'),
+          Icon(Icons.directions_transit),
+          router.getPageByRouter('userpage'),
         ],
       ),
     );
