@@ -5,6 +5,7 @@ import 'package:flutter_pro_cli_test/widgets/home_page/single_bottom_summary.dar
 import 'package:flutter_pro_cli_test/widgets/home_page/single_right_bar.dart';
 import 'package:flutter_pro_cli_test/widgets/home_page/single_like_bar.dart';
 import 'package:flutter_pro_cli_test/util/struct/content_detail.dart';
+import 'package:flutter_pro_cli_test/util/struct/api_ret_info.dart';
 
 /// 单个内容首页
 class HomePageSingle extends StatefulWidget {
@@ -25,7 +26,9 @@ class HomePageSingleState extends State<HomePageSingle> {
     indexPos = 0;
     // 拉取推荐内容
     setState(() {
-      contentList = ApiContentIndex().getRecommendList();
+      StructApiContentListRetInfo retInfo =
+          ApiContentIndex().getRecommendList();
+      contentList = retInfo.data;
     });
   }
 

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_pro_cli_test/api/content/index.dart';
 import 'package:flutter_pro_cli_test/util/struct/content_detail.dart';
+import 'package:flutter_pro_cli_test/util/struct/api_ret_info.dart';
 import 'package:flutter_pro_cli_test/widgets/home_page/img_card.dart';
 
 /// 九宫格首页
@@ -22,7 +23,9 @@ class _HomePageImgFlowState extends State<HomePageImgFlow> {
     super.initState();
     // 拉取推荐内容
     setState(() {
-      contentList = ApiContentIndex().getRecommendList();
+      StructApiContentListRetInfo retInfo =
+          ApiContentIndex().getRecommendList();
+      contentList = retInfo.data;
     });
   }
 
