@@ -14,13 +14,17 @@ class ArticleCard extends StatelessWidget {
 
   const ArticleCard({Key key, this.articleInfo}) : super(key: key);
 
+  void goToArticleDetailPage(BuildContext context, String articleId) {
+    Router().open(context, 'tyfapp://contentpage?articleId=${articleId}');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
       padding: EdgeInsets.all(8),
       child: FlatButton(
-        onPressed: () {},
+        onPressed: () => goToArticleDetailPage(context, articleInfo.id),
         child: Column(
           children: [
             ArticleSummary(
