@@ -4,6 +4,9 @@ import 'package:flutter_pro_cli_test/util/struct/router_struct.dart';
 import 'pages/common/web_view_page.dart';
 import 'pages/home_page/index.dart';
 import 'pages/user_page/index.dart';
+import 'package:flutter_pro_cli_test/pages/home_page/single.dart';
+import 'package:flutter_pro_cli_test/pages/home_page/img_flow.dart';
+import 'package:flutter_pro_cli_test/pages/article_detail/index.dart';
 
 /// app 协议头
 const String appScheme = 'tyfapp';
@@ -15,7 +18,10 @@ const String appScheme = 'tyfapp';
 const Map<String, RouterStruct> routerMapping = {
   'homepage': RouterStruct(HomePageIndex(), 0, null),
   'userpage': RouterStruct(UserPageIndex(), 2, ['userId']),
-  'default': RouterStruct(HomePageIndex(), 0, null)
+  'contentpage': RouterStruct(ArticleDetailIndex(), -1, ['articleId']),
+  'default': RouterStruct(HomePageIndex(), 0, null),
+  'imgflow': RouterStruct(HomePageImgFlow(), -1, null),
+  'singlepage': RouterStruct(HomePageSingle(), -1, null)
 };
 
 /// 处理APP内的跳转
