@@ -6,7 +6,8 @@ import 'package:flutter_pro_cli_test/widgets/home_page/article_card.dart';
 
 /// 首页
 class HomePageIndex extends StatefulWidget {
-  HomePageIndex({Key key}) : super(key: key);
+  /// 构造函数
+  const HomePageIndex();
 
   @override
   _HomePageIndexState createState() => _HomePageIndexState();

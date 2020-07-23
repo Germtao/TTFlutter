@@ -8,7 +8,7 @@ import 'package:flutter_pro_cli_test/util/struct/content_detail.dart';
 
 /// 单个内容首页
 class HomePageSingle extends StatefulWidget {
-  HomePageSingle({Key key}) : super(key: key);
+  const HomePageSingle({Key key}) : super(key: key);
 
   @override
   HomePageSingleState createState() => HomePageSingleState();

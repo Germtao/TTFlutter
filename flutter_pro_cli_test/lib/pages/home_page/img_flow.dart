@@ -6,7 +6,7 @@ import 'package:flutter_pro_cli_test/widgets/home_page/img_card.dart';
 
 /// 九宫格首页
 class HomePageImgFlow extends StatefulWidget {
-  HomePageImgFlow({Key key}) : super(key: key);
+  const HomePageImgFlow({Key key}) : super(key: key);
 
   @override
   _HomePageImgFlowState createState() => _HomePageImgFlowState();
