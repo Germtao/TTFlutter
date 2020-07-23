@@ -18,18 +18,18 @@ class MenuDraw extends StatelessWidget {
           children: [
             ListTile(
               leading: Icon(Icons.view_list),
-              title: Text('推荐'),
+              title: Text('图片流'),
               onTap: () {
                 Navigator.pop(context);
-                redirect('tyfapp://homepage');
+                redirect('tyfapp://imgflow');
               },
             ),
             ListTile(
               leading: Icon(Icons.favorite),
-              title: Text('关注'),
+              title: Text('单图片信息'),
               onTap: () {
                 Navigator.pop(context);
-                Router().open(context, 'https://www.baidu.com');
+                Router().open(context, 'tyfapp://singlepage');
               },
             ),
             ListTile(
