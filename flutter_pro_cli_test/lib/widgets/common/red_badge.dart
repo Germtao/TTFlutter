@@ -34,6 +34,7 @@ class CommonRedBadge {
           height: 1,
         ),
       ),
+      child: needRedWidget,
     );
   }
 }
