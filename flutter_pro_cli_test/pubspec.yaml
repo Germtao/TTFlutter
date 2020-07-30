@@ -32,6 +32,9 @@ dependencies:
   uni_links: ^0.4.0
   provider: ^3.0.0
   badges: ^1.1.0
+  dio: ^3.0.4
+  protobuf: ^1.0.1
+  xml2json: ^4.2.0
 
 dev_dependencies:
   flutter_test:
