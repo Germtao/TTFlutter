@@ -12,6 +12,9 @@ import 'package:flutter_pro_cli_test/pages/entrance_bottom_bar.dart';
 // import 'package:flutter_pro_cli_test/pages/entrance.dart';
 import 'package:flutter_pro_cli_test/router.dart';
 
+/// 处理xml测试
+import 'api_xml/index.dart';
+
 /// APP 核心入口文件
 void main() {
   runApp(MyApp());
@@ -37,23 +40,31 @@ class MyApp extends StatelessWidget {
     //     ),
     //   ),
     // );
-    return _getProviders(
-      context,
-      MaterialApp(
-        title: 'Two You', // App 名字
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          primarySwatch: Colors.blue, // App 主题
+    return FutureBuilder<Widget>(
+      future: _getProviders(
+        context,
+        MaterialApp(
+          title: 'Two You', // App 名字
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            primarySwatch: Colors.blue, // App 主题
+          ),
+          routes: Router().registerRouter(),
+          home: Entrance(),
         ),
-        routes: Router().registerRouter(),
-        home: Entrance(),
       ),
+      builder: (BuildContext context, AsyncSnapshot<Widget> snapshot) {
+        return Container(
+          child: snapshot.data,
+        );
+      },
     );
   }
 
   /// 部分数据需要获取初始值
-  Widget _getProviders(BuildContext context, Widget child) {
-    StructUserInfo userInfo = ApiUserInfoIndex.getSelfUserInfo();
+  Future<Widget> _getProviders(BuildContext context, Widget child) async {
+    // StructUserInfo userInfo = ApiUserInfoIndex.getSelfUserInfo();
+    StructUserInfo userInfo = await ApiXmlUserInfoIndex.getSelfUserInfo();
 
     if (userInfo == null) {
       return CommonError();
