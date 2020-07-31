@@ -63,8 +63,8 @@ class MyApp extends StatelessWidget {
 
   /// 部分数据需要获取初始值
   Future<Widget> _getProviders(BuildContext context, Widget child) async {
-    // StructUserInfo userInfo = ApiUserInfoIndex.getSelfUserInfo();
-    StructUserInfo userInfo = await ApiXmlUserInfoIndex.getSelfUserInfo();
+    StructUserInfo userInfo = await ApiUserInfoIndex.getSelfUserInfo();
+    // StructUserInfo userInfo = await ApiXmlUserInfoIndex.getSelfUserInfo();
 
     if (userInfo == null) {
       return CommonError();
