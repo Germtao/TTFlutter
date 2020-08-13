@@ -21,14 +21,14 @@ class UserPageHeader extends StatelessWidget {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(100.0),
                   child: Image.network(
-                    userInfoModel.value.avatar,
+                    userInfoModel.value.headerUrl,
                     width: 60,
                     height: 60,
                   ),
                 ),
                 Padding(padding: EdgeInsets.only(left: 20)),
                 Text(
-                  userInfoModel.value.nickname,
+                  userInfoModel.value.nickName,
                   style: TextStyles.commonStyle(),
                 ),
                 Padding(padding: EdgeInsets.only(bottom: 20)),

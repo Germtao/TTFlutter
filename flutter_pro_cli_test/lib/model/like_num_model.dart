@@ -11,16 +11,22 @@ class LikeNumModel with ChangeNotifier {
       _likeInfo = {};
     }
 
-    if (articleId == null) return;
+    if (articleId == null) {
+      return;
+    }
 
     _likeInfo[articleId] = likeNum;
   }
 
   /// 设置 get 方法
   int getLikeNum(String articleId, [int likeNum = 0]) {
-    if (_likeInfo == null) _likeInfo = {};
+    if (_likeInfo == null) {
+      _likeInfo = {};
+    }
 
-    if (articleId == null) return likeNum;
+    if (articleId == null) {
+      return likeNum;
+    }
 
     if (_likeInfo[articleId] == null) {
       _likeInfo[articleId] = likeNum;

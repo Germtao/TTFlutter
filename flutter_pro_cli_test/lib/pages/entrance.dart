@@ -3,6 +3,9 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_pro_cli_test/model/new_message_model.dart';
+import 'package:flutter_pro_cli_test/widgets/common/red_badge.dart';
+import 'package:provider/provider.dart';
 
 import 'package:uni_links/uni_links.dart';
 import 'package:flutter_pro_cli_test/router.dart';
@@ -21,6 +24,7 @@ class Entrance extends StatefulWidget {
   /// 页面索引位置
   final int indexValue;
 
+  /// 构造函数
   const Entrance({Key key, this.indexValue}) : super(key: key);
 
   @override
@@ -29,7 +33,7 @@ class Entrance extends StatefulWidget {
 
 class _EntranceState extends State<Entrance>
     with SingleTickerProviderStateMixin {
-  TabController _controller;
+  int _indexNum = 0;
 
   UniLinksType _type = UniLinksType.string;
   StreamSubscription _subscription;
@@ -75,8 +79,8 @@ class _EntranceState extends State<Entrance>
     }
 
     int indexNum = router.open(context, link);
-    if (indexNum > -1 && _controller.index != indexNum) {
-      _controller.animateTo(indexNum);
+    if (indexNum > -1 && _indexNum != indexNum) {
+      _indexNum = indexNum;
     }
   }
 
@@ -86,22 +90,26 @@ class _EntranceState extends State<Entrance>
     // scheme 初始化，保证有上下文，需要跳转页面
     initPlatformState();
 
-    _controller = TabController(vsync: this, length: 3);
     if (widget.indexValue != null) {
-      _controller.animateTo(widget.indexValue);
+      _indexNum = widget.indexValue;
     }
   }
 
   @override
   void dispose() {
     super.dispose();
-
-    _controller.dispose();
     if (_subscription != null) _subscription.cancel();
   }
 
   @override
   Widget build(BuildContext context) {
+    return _getScaffold(context);
+  }
+
+  /// 获取页面内容部分
+  Widget _getScaffold(BuildContext context) {
+    final newMessageModel = Provider.of<NewMessageModel>(context);
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Two You'),
@@ -116,32 +124,66 @@ class _EntranceState extends State<Entrance>
             },
           ),
         ],
-        bottom: TabBar(
-          controller: _controller,
-          tabs: [
-            Tab(
-              icon: Icon(Icons.view_list),
-              text: '推荐',
-            ),
-            Tab(
-              icon: Icon(Icons.favorite),
-              text: '关注',
-            ),
-            Tab(
-              icon: Icon(Icons.person),
-              text: '我',
-            )
-          ],
-        ),
       ),
       drawer: MenuDraw(redirect),
-      body: TabBarView(
-        controller: _controller,
+      body: Stack(
         children: [
-          router.getPageByRouter('homepage'),
-          Icon(Icons.directions_transit),
-          router.getPageByRouter('userpage'),
+          _getPageWidget(0),
+          _getPageWidget(1),
+          _getPageWidget(2),
         ],
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.people),
+            title: Text('推荐'),
+            activeIcon: Icon(Icons.people_outline),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.favorite),
+            title: Text('关注'),
+            activeIcon: Icon(Icons.favorite_border),
+          ),
+          BottomNavigationBarItem(
+            icon: CommonRedBadge.showRedBadge(
+                Icon(Icons.person), newMessageModel.value),
+            title: Text('我'),
+            activeIcon: CommonRedBadge.showRedBadge(
+                Icon(Icons.person_outline), newMessageModel.value),
+          ),
+        ],
+        iconSize: 24,
+        currentIndex: _indexNum,
+
+        /// 选中后，底部BottomNavigationBar内容的颜色(选中时，默认为主题色)
+        /// （仅当type: BottomNavigationBarType.fixed,时生效）
+        fixedColor: Colors.lightBlueAccent,
+        type: BottomNavigationBarType.fixed,
+        onTap: (int index) {
+          // 这里根据点击的index来显示，非index的page均隐藏
+          if (_indexNum != index) {
+            setState(() {
+              _indexNum = index;
+            });
+          }
+        },
+      ),
+    );
+  }
+
+  /// 获取页面组件
+  Widget _getPageWidget(int index) {
+    List<Widget> widgetList = [
+      router.getPageByRouter('homepage'),
+      Icon(Icons.directions_transit),
+      router.getPageByRouter('userpage'),
+    ];
+    return Offstage(
+      offstage: _indexNum != index,
+      child: TickerMode(
+        enabled: _indexNum == index,
+        child: widgetList[index],
       ),
     );
   }

@@ -5,7 +5,6 @@ import 'package:flutter_pro_cli_test/util/struct/content_detail.dart';
 import 'package:flutter_pro_cli_test/widgets/home_page/article_card.dart';
 import 'package:flutter_pro_cli_test/widgets/common/loading.dart';
 import 'package:flutter_pro_cli_test/widgets/common/error.dart';
-import 'package:flutter_pro_cli_test/util/struct/api_ret_info.dart';
 
 /// 首页
 class HomePageIndex extends StatefulWidget {
@@ -39,39 +38,39 @@ class _HomePageIndexState extends State<HomePageIndex> {
   /// 处理首次拉取和刷新数据获取动作
   void setFirstPage() {
     print('122');
-    StructApiContentListRetInfo retInfo = ApiContentIndex().getRecommendList();
-
-    setState(() {
+    ApiContentIndex().getRecommendList().then((retInfo) {
       if (retInfo.ret != 0) {
         // 判断返回是否正确
         error = true;
         return;
       }
 
-      error = false;
-      contentList = retInfo.data;
-      hasMore = retInfo.hasMore;
-      isLoading = false;
-      lastId = retInfo.lastId;
+      setState(() {
+        error = false;
+        contentList = retInfo.data;
+        hasMore = retInfo.hasMore;
+        isLoading = false;
+        lastId = retInfo.lastId;
+      });
     });
   }
 
   /// 加载更多数据
   void loadMoreData() {
-    StructApiContentListRetInfo retInfo =
-        ApiContentIndex().getRecommendList(lastId);
+    print('加载更多数据');
+    ApiContentIndex().getRecommendList(lastId).then((retInfo) {
+      if (retInfo.ret != 0) {
+        return;
+      }
 
-    if (retInfo.ret != 0) {
-      return;
-    }
+      List<StructContentDetail> newList = retInfo.data;
 
-    List<StructContentDetail> newList = retInfo.data;
-
-    setState(() {
-      error = false;
-      isLoading = false;
-      hasMore = retInfo.hasMore;
-      contentList.addAll(newList);
+      setState(() {
+        error = false;
+        isLoading = false;
+        hasMore = retInfo.hasMore;
+        contentList.addAll(newList);
+      });
     });
   }
 
@@ -117,12 +116,17 @@ class _HomePageIndexState extends State<HomePageIndex> {
       return CommonError(action: this.setFirstPage);
     }
 
+    if (contentList == null) {
+      return Loading();
+    }
+
     return RefreshIndicator(
       onRefresh: onRefresh, // 调用刷新事件
       child: ListView.separated(
         scrollDirection: Axis.vertical,
         controller: scrollController,
         shrinkWrap: true,
+        itemCount: contentList.length + 1,
         itemBuilder: (context, position) {
           if (position < this.contentList.length) {
             return ArticleCard(articleInfo: this.contentList[position]);
@@ -138,7 +142,6 @@ class _HomePageIndexState extends State<HomePageIndex> {
             color: Color(0xFFDDDDDD),
           );
         },
-        itemCount: contentList.length + 1,
       ),
     );
   }

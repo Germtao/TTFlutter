@@ -5,10 +5,10 @@ import 'package:flutter_pro_cli_test/widgets/home_page/single_bottom_summary.dar
 import 'package:flutter_pro_cli_test/widgets/home_page/single_right_bar.dart';
 import 'package:flutter_pro_cli_test/widgets/home_page/single_like_bar.dart';
 import 'package:flutter_pro_cli_test/util/struct/content_detail.dart';
-import 'package:flutter_pro_cli_test/util/struct/api_ret_info.dart';
 
 /// 单个内容首页
 class HomePageSingle extends StatefulWidget {
+  /// 构造函数
   const HomePageSingle({Key key}) : super(key: key);
 
   @override
@@ -16,7 +16,10 @@ class HomePageSingle extends StatefulWidget {
 }
 
 class HomePageSingleState extends State<HomePageSingle> {
+  /// index position
   int indexPos;
+
+  /// 首页推荐贴子列表
   List<StructContentDetail> contentList;
 
   @override
@@ -25,10 +28,14 @@ class HomePageSingleState extends State<HomePageSingle> {
 
     indexPos = 0;
     // 拉取推荐内容
-    setState(() {
-      StructApiContentListRetInfo retInfo =
-          ApiContentIndex().getRecommendList();
-      contentList = retInfo.data;
+    ApiContentIndex().getRecommendList().then((retInfo) {
+      if (retInfo.ret != 0) {
+        return;
+      }
+
+      setState(() {
+        contentList = retInfo.data;
+      });
     });
   }
 
@@ -47,8 +54,8 @@ class HomePageSingleState extends State<HomePageSingle> {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           SingleRightBar(
-            nickname: contentList[indexPos].userInfo.nickname,
-            avatar: contentList[indexPos].userInfo.avatar,
+            nickname: contentList[indexPos].userInfo.nickName,
+            avatar: contentList[indexPos].userInfo.headerUrl,
             commentNum: contentList[indexPos].commentNum,
           ),
           SingleLikeBar(

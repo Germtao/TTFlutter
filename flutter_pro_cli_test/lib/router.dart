@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_pro_cli_test/util/struct/router_struct.dart';
+import 'package:flutter_pro_cli_test/widgets/common/error.dart';
 
 import 'pages/common/web_view_page.dart';
 import 'pages/home_page/index.dart';
@@ -17,11 +18,12 @@ const String appScheme = 'tyfapp';
 /// params 为组件需要的参数数组
 const Map<String, RouterStruct> routerMapping = {
   'homepage': RouterStruct(HomePageIndex(), 0, null),
-  'userpage': RouterStruct(UserPageIndex(), 2, ['userId']),
+  'userpage': RouterStruct(UserPageIndex(), 2, null),
   'contentpage': RouterStruct(ArticleDetailIndex(), -1, ['articleId']),
   'default': RouterStruct(HomePageIndex(), 0, null),
   'imgflow': RouterStruct(HomePageImgFlow(), -1, null),
-  'singlepage': RouterStruct(HomePageSingle(), -1, null)
+  'singlepage': RouterStruct(HomePageSingle(), -1, null),
+  'error': RouterStruct(CommonError(), -1, ['errorCode', 'action']),
 };
 
 /// 处理APP内的跳转
@@ -105,7 +107,7 @@ class Router {
 
     for (String singleParamsStr in paramsStrArr) {
       List<String> singleParamsArr = singleParamsStr.split('=');
-      // 获取组件
+      // 获取组件参数
       if (routerMapping[action].params != null) {
         List<String> paramsList = routerMapping[action].params;
         if (paramsList.indexOf(singleParamsArr[0]) > -1) {

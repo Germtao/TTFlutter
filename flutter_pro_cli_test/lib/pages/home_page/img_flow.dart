@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_pro_cli_test/api/content/index.dart';
 import 'package:flutter_pro_cli_test/util/struct/content_detail.dart';
-import 'package:flutter_pro_cli_test/util/struct/api_ret_info.dart';
+import 'package:flutter_pro_cli_test/widgets/common/loading.dart';
 import 'package:flutter_pro_cli_test/widgets/home_page/img_card.dart';
 
 /// 九宫格首页
 class HomePageImgFlow extends StatefulWidget {
-  const HomePageImgFlow({Key key}) : super(key: key);
+  /// 构造函数
+  const HomePageImgFlow();
 
   @override
   _HomePageImgFlowState createState() => _HomePageImgFlowState();
@@ -22,20 +23,25 @@ class _HomePageImgFlowState extends State<HomePageImgFlow> {
   void initState() {
     super.initState();
     // 拉取推荐内容
-    setState(() {
-      StructApiContentListRetInfo retInfo =
-          ApiContentIndex().getRecommendList();
-      contentList = retInfo.data;
+    ApiContentIndex().getRecommendList().then((retInfo) {
+      setState(() {
+        contentList = retInfo.data;
+      });
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    if (contentList == null) {
+      return Loading();
+    }
+
     List<StructContentDetail> tmpList = [];
 
     return ListView.separated(
       scrollDirection: Axis.vertical,
       shrinkWrap: true,
+      itemCount: contentList.length,
       itemBuilder: (context, position) {
         if (position % 3 == 0) {
           // 起始位置，初始赋值
@@ -63,7 +69,6 @@ class _HomePageImgFlowState extends State<HomePageImgFlow> {
           color: Color(0xFFDDDDDD),
         );
       },
-      itemCount: contentList.length,
     );
   }
 }

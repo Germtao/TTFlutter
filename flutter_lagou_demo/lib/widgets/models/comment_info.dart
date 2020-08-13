@@ -1,1 +1,0 @@
-import 'user_info.dart';class CommentInfo {  /// 用户昵称  final UserInfo userInfo;  /// 评论  final String comment;  /// 构造函数  const CommentInfo(this.userInfo, this.comment);}

@@ -22,7 +22,7 @@ class CallServer {
     }
 
     // 处理参数替换
-    if (params == null) {
+    if (params != null) {
       params.forEach(
           (key, value) => callApi = callApi.replaceAll('${key}', '$value'));
     }
@@ -35,6 +35,7 @@ class CallServer {
           json.decode(response.toString()) as Map<String, dynamic>;
       return retInfo;
     } catch (e) {
+      print('dio request error: $e');
       return {'ret': false};
     }
   }

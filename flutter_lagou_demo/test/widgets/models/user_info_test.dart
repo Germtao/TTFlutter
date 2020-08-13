@@ -1,1 +1,0 @@
-import 'package:flutter_test/flutter_test.dart';import 'package:flutter_lagou_demo/widgets/models/user_info.dart';void main() {  final UserInfo userInfo = UserInfo('test', 'http://test.com');    test('test userinfo', () {    expect(userInfo.nickname == 'test', true);    expect(userInfo.avatar, 'http://test.com');  });}

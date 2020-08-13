@@ -24,7 +24,7 @@ class ArticleComments extends StatelessWidget {
           child: ClipRRect(
             borderRadius: BorderRadius.circular(6.0),
             child: Image.network(
-              commentItem.userInfo.avatar,
+              commentItem.userInfo.headerUrl,
               width: 50.0,
               height: 50.0,
               fit: BoxFit.scaleDown,
@@ -37,7 +37,7 @@ class ArticleComments extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                commentItem.userInfo.nickname,
+                commentItem.userInfo.nickName,
                 style: TextStyles.commonStyle(),
               ),
               Text(

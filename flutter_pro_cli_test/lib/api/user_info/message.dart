@@ -10,7 +10,7 @@ class ApiUserInfoMessage {
     Map<String, dynamic> retJson = await CallServer.get('newMessage');
     StructApiRetInfo retInfo = StructApiRetInfo.fromJson(retJson);
 
-    if (retInfo.ret != 0 || retInfo.ret == null) {
+    if (retInfo.ret != 0 || retInfo.data == null) {
       return;
     }
 

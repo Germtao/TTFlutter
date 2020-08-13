@@ -37,8 +37,8 @@ class ArticleCard extends StatelessWidget {
                 Expanded(
                   flex: 9,
                   child: ArticleBottomBar(
-                    nickname: articleInfo.userInfo.nickname,
-                    avatar: articleInfo.userInfo.avatar,
+                    nickname: articleInfo.userInfo.nickName,
+                    avatar: articleInfo.userInfo.headerUrl,
                     commentNum: articleInfo.commentNum,
                   ),
                 ),

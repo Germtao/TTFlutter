@@ -8,8 +8,8 @@ import 'package:flutter_pro_cli_test/widgets/common/error.dart';
 import 'package:provider/provider.dart';
 
 import 'package:flutter_pro_cli_test/model/like_num_model.dart';
-import 'package:flutter_pro_cli_test/pages/entrance_bottom_bar.dart';
-// import 'package:flutter_pro_cli_test/pages/entrance.dart';
+// import 'package:flutter_pro_cli_test/pages/entrance_bottom_bar.dart';
+import 'package:flutter_pro_cli_test/pages/entrance.dart';
 import 'package:flutter_pro_cli_test/router.dart';
 
 /// 处理xml测试
@@ -21,25 +21,8 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  final likeNumModel = LikeNumModel();
-
   @override
   Widget build(BuildContext context) {
-    // return Provider<Map<String, int>>.value(
-    //   value: {},
-    //   child: ChangeNotifierProvider.value(
-    //     value: likeNumModel,
-    //     child: MaterialApp(
-    //       title: 'Two You', // App 名字
-    //       debugShowCheckedModeBanner: false,
-    //       theme: ThemeData(
-    //         primarySwatch: Colors.blue, // App 主题
-    //       ),
-    //       routes: Router().registerRouter(),
-    //       home: Entrance(),
-    //     ),
-    //   ),
-    // );
     return FutureBuilder<Widget>(
       future: _getProviders(
         context,
@@ -63,26 +46,36 @@ class MyApp extends StatelessWidget {
 
   /// 部分数据需要获取初始值
   Future<Widget> _getProviders(BuildContext context, Widget child) async {
+    // json 协议
     StructUserInfo userInfo = await ApiUserInfoIndex.getSelfUserInfo();
+    // xml 协议
     // StructUserInfo userInfo = await ApiXmlUserInfoIndex.getSelfUserInfo();
 
     if (userInfo == null) {
-      return CommonError();
+      return MaterialApp(
+        title: 'Two You', // APP 名字
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          primarySwatch: Colors.blue, // APP 主题
+        ),
+        home: CommonError(),
+      );
     }
 
-    int unReadMessageNum = ApiUserInfoMessage.getUnreadMessage();
+    // 初始化共享状态对象
+    LikeNumModel likeNumModel = LikeNumModel();
+    NewMessageModel newMessageModel = NewMessageModel(newMessageNum: 0);
+
+    // 异步数据处理
+    ApiUserInfoMessage.getUnreadMessageNum(newMessageModel);
 
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(
-          create: (context) => LikeNumModel(),
-        ),
+        ChangeNotifierProvider(create: (context) => likeNumModel),
         ChangeNotifierProvider(
           create: (context) => UserInfoModel(userInfo: userInfo),
         ),
-        ChangeNotifierProvider(
-          create: (context) => NewMessageModel(newMessageNum: unReadMessageNum),
-        ),
+        ChangeNotifierProvider(create: (context) => newMessageModel),
       ],
       child: child,
     );
