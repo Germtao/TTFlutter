@@ -24,9 +24,19 @@
     "apiUrl" : "https://www.fastmock.site/mock/978685eaf6950d1e2f0790f85cfdacaa/cgi-bin/follow_list",
     "params" : null
   },
+  "followListNext" : {
+    "method" : "get",
+    "apiUrl" : "https://www.fastmock.site/mock/978685eaf6950d1e2f0790f85cfdacaa/cgi-bin/follow_list/next/{lastId}",
+    "params" : null
+  },
   "userInfo" : {
     "method" : "get",
     "apiUrl" : "https://www.fastmock.site/mock/978685eaf6950d1e2f0790f85cfdacaa/cgi-bin/user_info/{id}",
+    "params" : null
+  },
+  "userContentList" : {
+    "method" : "get",
+    "apiUrl" : "https://www.fastmock.site/mock/978685eaf6950d1e2f0790f85cfdacaa/cgi-bin/user/content_list/{id}",
     "params" : null
   }
 }

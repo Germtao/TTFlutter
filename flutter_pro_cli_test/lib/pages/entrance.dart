@@ -80,7 +80,9 @@ class _EntranceState extends State<Entrance>
 
     int indexNum = router.open(context, link);
     if (indexNum > -1 && _indexNum != indexNum) {
-      _indexNum = indexNum;
+      setState(() {
+        _indexNum = indexNum;
+      });
     }
   }
 
@@ -176,7 +178,7 @@ class _EntranceState extends State<Entrance>
   Widget _getPageWidget(int index) {
     List<Widget> widgetList = [
       router.getPageByRouter('homepage'),
-      Icon(Icons.directions_transit),
+      router.getPageByRouter('followpage'),
       router.getPageByRouter('userpage'),
     ];
     return Offstage(
