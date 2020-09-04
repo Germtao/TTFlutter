@@ -11,11 +11,12 @@ const Map<String, Map<String, dynamic>> cache = {};
 class JsonConfig {
   /// 读取 json 配置文件，并解析返回
   static Future<Map<String, dynamic>> getConfig(String fileName) async {
-
-    final jsonString = await rootBundle.loadString('assets/json/${fileName}.json');
+    final jsonString =
+        await rootBundle.loadString('assets/json/${fileName}.json');
 
     try {
-      Map<String, dynamic> jsonRet = json.decode(jsonString) as Map<String, dynamic>;
+      Map<String, dynamic> jsonRet =
+          json.decode(jsonString) as Map<String, dynamic>;
       return jsonRet;
     } catch (e) {
       print(e);
@@ -23,9 +24,8 @@ class JsonConfig {
     }
   }
 
-  /// 对象转换为 map数据
+  /// 对象转换为 map 数据
   static Map objectToMap(Object data) {
     return jsonDecode(JsonCodec().encode(data)) as Map;
   }
-
 }

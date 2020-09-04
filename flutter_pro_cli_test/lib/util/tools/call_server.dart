@@ -29,8 +29,10 @@ class CallServer {
 
     // 调用服务端接口获取返回数据
     try {
-      Response response = await Dio()
-          .get(callApi, options: Options(responseType: ResponseType.json));
+      Response response = await Dio(BaseOptions(
+        connectTimeout: 1000,
+        receiveTimeout: 3000,
+      )).get(callApi, options: Options(responseType: ResponseType.json));
       Map<String, dynamic> retInfo =
           json.decode(response.toString()) as Map<String, dynamic>;
       return retInfo;
