@@ -13,6 +13,7 @@ class UserPageIndex extends StatelessWidget {
     return Column(
       children: [
         UserPageHeader(),
+        Divider(height: 1.0, indent: 70, color: Colors.grey),
         Expanded(
           child: UserPageButtonList(),
         )

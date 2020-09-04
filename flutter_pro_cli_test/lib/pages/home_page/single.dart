@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_pro_cli_test/api/content/index.dart';
+import 'package:flutter_pro_cli_test/widgets/common/loading.dart';
 import 'package:flutter_pro_cli_test/widgets/home_page/single_bottom_summary.dart';
 import 'package:flutter_pro_cli_test/widgets/home_page/single_right_bar.dart';
 import 'package:flutter_pro_cli_test/widgets/home_page/single_like_bar.dart';
@@ -28,7 +29,7 @@ class HomePageSingleState extends State<HomePageSingle> {
 
     indexPos = 0;
     // 拉取推荐内容
-    ApiContentIndex().getRecommendList().then((retInfo) {
+    ApiContentIndex.getRecommendList().then((retInfo) {
       if (retInfo.ret != 0) {
         return;
       }
@@ -41,6 +42,10 @@ class HomePageSingleState extends State<HomePageSingle> {
 
   @override
   Widget build(BuildContext context) {
+    if (contentList == null) {
+      return Loading();
+    }
+
     return Container(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,

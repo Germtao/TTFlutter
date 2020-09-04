@@ -23,7 +23,7 @@ class _HomePageImgFlowState extends State<HomePageImgFlow> {
   void initState() {
     super.initState();
     // 拉取推荐内容
-    ApiContentIndex().getRecommendList().then((retInfo) {
+    ApiContentIndex.getRecommendList().then((retInfo) {
       setState(() {
         contentList = retInfo.data;
       });

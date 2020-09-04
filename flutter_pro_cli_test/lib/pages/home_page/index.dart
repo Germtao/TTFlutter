@@ -38,7 +38,7 @@ class _HomePageIndexState extends State<HomePageIndex> {
   /// 处理首次拉取和刷新数据获取动作
   void setFirstPage() {
     print('122');
-    ApiContentIndex().getRecommendList().then((retInfo) {
+    ApiContentIndex.getRecommendList().then((retInfo) {
       if (retInfo.ret != 0) {
         // 判断返回是否正确
         error = true;
@@ -58,7 +58,7 @@ class _HomePageIndexState extends State<HomePageIndex> {
   /// 加载更多数据
   void loadMoreData() {
     print('加载更多数据');
-    ApiContentIndex().getRecommendList(lastId).then((retInfo) {
+    ApiContentIndex.getRecommendList(lastId).then((retInfo) {
       if (retInfo.ret != 0) {
         return;
       }
@@ -129,12 +129,12 @@ class _HomePageIndexState extends State<HomePageIndex> {
         itemCount: contentList.length + 1,
         itemBuilder: (context, position) {
           if (position < this.contentList.length) {
-            return ArticleCard(articleInfo: this.contentList[position]);
+            return ArticleCard(
+              articleInfo: this.contentList[position],
+              showBottomBar: true,
+            );
           }
-          return CommonLoadingButton(
-            loadingState: isLoading,
-            hasMore: hasMore,
-          );
+          return CommonLoadingButton(loadingState: isLoading, hasMore: hasMore);
         },
         separatorBuilder: (context, index) {
           return Divider(
