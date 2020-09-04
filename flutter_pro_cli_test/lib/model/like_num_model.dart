@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-/// name 状态管理模块
+/// 点赞数 状态管理模块
 class LikeNumModel with ChangeNotifier {
   /// 声明私有变量
   Map<String, int> _likeInfo;

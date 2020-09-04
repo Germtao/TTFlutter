@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-/// 新消息管理模块
+/// 新消息 状态管理模块
 class NewMessageModel with ChangeNotifier {
   /// 未读新消息数
   int newMessageNum;
