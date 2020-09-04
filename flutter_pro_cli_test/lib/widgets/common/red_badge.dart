@@ -3,7 +3,7 @@ import 'package:badges/badges.dart';
 
 /// 通用的红点逻辑
 class CommonRedBadge {
-  /// 展示消息红点
+  /// 展示消息提示
   static Widget showRedBadge(Widget needRedWidget, int newMessageNum,
       {bool hasNum = false}) {
     if (newMessageNum < 1) {

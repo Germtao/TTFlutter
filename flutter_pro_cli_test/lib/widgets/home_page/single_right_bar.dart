@@ -6,8 +6,13 @@ import 'package:flutter_pro_cli_test/styles/text_styles.dart';
 /// 包括用户头像、昵称和评论信息，但不包括点赞，因为点赞为动态组件
 /// 需要参数[nickname]、[avatar]、[commentNum]
 class SingleRightBar extends StatelessWidget {
+  /// 用户昵称
   final String nickname;
+
+  /// 用户头像
   final String avatar;
+
+  /// 评论数
   final int commentNum;
 
   const SingleRightBar({Key key, this.nickname, this.avatar, this.commentNum})
@@ -35,7 +40,11 @@ class SingleRightBar extends StatelessWidget {
   Widget getCommentWidget() {
     return Column(
       children: [
-        Icon(Icons.comment, color: Colors.grey, size: 35),
+        Icon(
+          Icons.comment,
+          color: Colors.grey,
+          size: 35,
+        ),
         Padding(padding: EdgeInsets.only(top: 2)),
         Text(
           '$commentNum',
@@ -50,7 +59,9 @@ class SingleRightBar extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        Padding(padding: EdgeInsets.only(top: 300)),
+        Padding(
+          padding: EdgeInsets.only(top: MediaQuery.of(context).size.height / 4),
+        ),
         getUserWidget(),
         getCommentWidget(),
       ],

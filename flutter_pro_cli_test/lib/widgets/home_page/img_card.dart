@@ -4,9 +4,10 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_pro_cli_test/router.dart';
 import 'package:flutter_pro_cli_test/util/struct/content_detail.dart';
-import 'package:flutter_pro_cli_test/widgets/article_detail/article_content.dart';
 
 /// 大小图卡片，注意这里必须是三分小图
+///
+/// 需要外部参数 [position]、[articleInfoList]、[isLast]
 class ImgCard extends StatelessWidget {
   /// 具体的位置
   final int position;

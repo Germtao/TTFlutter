@@ -6,11 +6,11 @@ import 'package:flutter_pro_cli_test/util/struct/comment_info.dart';
 /// 具体的评论内容信息
 ///
 /// [commentList]为帖子的评论列表
-class ArticleComments extends StatelessWidget {
+class ArticleDetailComments extends StatelessWidget {
   /// 传入的评论信息
   final List<StructCommentInfo> commentList;
 
-  const ArticleComments({Key key, this.commentList}) : super(key: key);
+  const ArticleDetailComments({Key key, this.commentList}) : super(key: key);
 
   /// 获取单行的评论展示信息
   ///
@@ -56,6 +56,7 @@ class ArticleComments extends StatelessWidget {
     return ListView.separated(
       scrollDirection: Axis.vertical,
       shrinkWrap: true,
+      itemCount: this.commentList.length,
       itemBuilder: (context, position) {
         return getOneItemSection(this.commentList[position]);
       },
@@ -65,7 +66,6 @@ class ArticleComments extends StatelessWidget {
           color: Color(0xFFDDDDDD),
         );
       },
-      itemCount: this.commentList.length,
     );
   }
 }

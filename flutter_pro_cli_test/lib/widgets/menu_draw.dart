@@ -37,7 +37,7 @@ class MenuDraw extends StatelessWidget {
               title: Text('我'),
               onTap: () {
                 Navigator.pop(context);
-                redirect('tyfapp://userpage');
+                redirect('tyfapp://userpageguest?userId=1004');
               },
             )
           ],

@@ -5,6 +5,7 @@ import 'package:flutter_pro_cli_test/styles/text_styles.dart';
 /// 帖子概要信息
 ///
 /// 包括帖子的标题，帖子描述和帖子中的图片
+/// 需要外部参数 [title]、[summary]、[articleImage]
 class ArticleSummary extends StatelessWidget {
   /// 帖子标题
   final String title;

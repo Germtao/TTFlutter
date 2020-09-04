@@ -7,10 +7,12 @@ import 'package:flutter_pro_cli_test/model/like_num_model.dart';
 /// 帖子文章的赞组件
 ///
 /// 包括点赞组件 icon ，以及组件点击效果
-/// 需要外部参数[likeNum],点赞数量
-/// [articleId] 帖子的内容
+/// 需要外部参数[likeNum]、[articleId]
 class SingleLikeBar extends StatelessWidget {
+  /// 帖子id
   final String articleId;
+
+  /// 点赞数
   final int likeNum;
 
   const SingleLikeBar({Key key, this.articleId, this.likeNum})

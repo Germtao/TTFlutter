@@ -74,8 +74,6 @@ class LoadingMore extends StatelessWidget {
 
 /// 无更多加载展示组件
 class NoMore extends StatelessWidget {
-  const NoMore({Key key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -88,6 +86,15 @@ class NoMore extends StatelessWidget {
           color: Color(0xFF333333),
         ),
       ),
+    );
+  }
+}
+
+class InitLoading extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: CupertinoActivityIndicator(),
     );
   }
 }
