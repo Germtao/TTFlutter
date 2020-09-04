@@ -7,7 +7,7 @@ import 'package:flutter_pro_cli_test/util/tools/call_server.dart';
 /// 获取内容详情接口
 class ApiContentIndex {
   /// 根据内容id拉取内容详情
-  Future<StructContentDetail> getOneById(String id) async {
+  static Future<StructContentDetail> getOneById(String id) async {
     if (id == null || id == '') {
       return null;
     }
@@ -27,7 +27,8 @@ class ApiContentIndex {
   }
 
   /// 拉取用户内容推荐帖子列表
-  Future<StructApiContentListRetInfo> getRecommendList([lastId = null]) async {
+  static Future<StructApiContentListRetInfo> getRecommendList(
+      [lastId = null]) async {
     if (lastId != null) {
       Map<String, dynamic> retJson =
           await CallServer.get('recommendListNext', {lastId: lastId});
@@ -44,7 +45,8 @@ class ApiContentIndex {
   }
 
   /// 拉取用户关注的帖子列表
-  Future<StructApiContentListRetInfo> getFollowList([lastId = null]) async {
+  static Future<StructApiContentListRetInfo> getFollowList(
+      [lastId = null]) async {
     if (lastId != null) {
       Map<String, dynamic> retJson =
           await CallServer.get('followListNext', {lastId: lastId});
@@ -56,7 +58,7 @@ class ApiContentIndex {
   }
 
   /// 拉取用户的贴子列表
-  Future<StructApiContentListRetInfo> getUserContentList(String userId,
+  static Future<StructApiContentListRetInfo> getUserContentList(String userId,
       [lastId = null]) async {
     if (lastId != null) {
       Map<String, dynamic> retJson = await CallServer.get(
