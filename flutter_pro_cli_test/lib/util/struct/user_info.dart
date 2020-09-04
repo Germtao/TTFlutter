@@ -12,7 +12,7 @@ class StructUserInfo {
   /// 头像
   final String headerUrl;
 
-  /// uid
+  /// 用户id
   final String uid;
 
   const StructUserInfo(this.uid, this.nickName, this.headerUrl);
@@ -27,6 +27,6 @@ class StructUserInfo {
   static Map<String, dynamic> toJson(StructUserInfo userInfo) => {
         'uid': userInfo.uid,
         'nickName': userInfo.nickName,
-        'avatar': userInfo.headerUrl
+        'headerUrl': userInfo.headerUrl
       };
 }

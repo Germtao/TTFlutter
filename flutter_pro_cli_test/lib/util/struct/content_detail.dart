@@ -1,6 +1,6 @@
 import 'user_info.dart';
 
-/// router 配置数据结构
+/// 帖子内容详情
 ///
 /// {
 ///   "id" : "string",

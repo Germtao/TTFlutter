@@ -66,8 +66,11 @@ class StructApiRetInfo {
   StructApiRetInfo.newMessage(this.ret, this.message, this.data);
 
   /// 将对象转化为 json 数据
-  static Map<String, dynamic> toJson(StructApiRetInfo retInfo) =>
-      {'ret': retInfo.ret, 'message': retInfo.message, 'data': retInfo.data};
+  static Map<String, dynamic> toJson(StructApiRetInfo retInfo) => {
+        'ret': retInfo.ret,
+        'message': retInfo.message,
+        'data': retInfo.data,
+      };
 
   // 将json数据转化为对象数据
   StructApiRetInfo.fromJson(Map<String, dynamic> json)

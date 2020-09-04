@@ -11,5 +11,13 @@ class RouterStruct {
   /// 组件参数列表
   final List<String> params;
 
-  const RouterStruct(this.widget, this.entranceIndex, this.params);
+  /// 是否需要默认 Scaffold
+  final bool needScaffold;
+
+  const RouterStruct(
+    this.widget,
+    this.entranceIndex,
+    this.params,
+    this.needScaffold,
+  );
 }
