@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_pro_cli_test/pages/user_page/guest.dart';
 import 'package:flutter_pro_cli_test/util/struct/router_struct.dart';
 import 'package:flutter_pro_cli_test/widgets/common/error.dart';
 
 import 'pages/common/web_view_page.dart';
 import 'pages/home_page/index.dart';
 import 'pages/user_page/index.dart';
+import 'pages/follow_page/index.dart';
+
 import 'package:flutter_pro_cli_test/pages/home_page/single.dart';
 import 'package:flutter_pro_cli_test/pages/home_page/img_flow.dart';
 import 'package:flutter_pro_cli_test/pages/article_detail/index.dart';
@@ -17,13 +20,15 @@ const String appScheme = 'tyfapp';
 /// entranceIndex 为首页位置，如果非首页则为-1
 /// params 为组件需要的参数数组
 const Map<String, RouterStruct> routerMapping = {
-  'homepage': RouterStruct(HomePageIndex(), 0, null),
-  'userpage': RouterStruct(UserPageIndex(), 2, null),
-  'contentpage': RouterStruct(ArticleDetailIndex(), -1, ['articleId']),
-  'default': RouterStruct(HomePageIndex(), 0, null),
-  'imgflow': RouterStruct(HomePageImgFlow(), -1, null),
-  'singlepage': RouterStruct(HomePageSingle(), -1, null),
-  'error': RouterStruct(CommonError(), -1, ['errorCode', 'action']),
+  'homepage': RouterStruct(HomePageIndex(), 0, null, true),
+  'followpage': RouterStruct(FollowPageIndex(), 1, null, true),
+  'userpage': RouterStruct(UserPageIndex(), 2, null, true),
+  'contentpage': RouterStruct(ArticleDetailIndex(), -1, ['articleId'], false),
+  'default': RouterStruct(HomePageIndex(), 0, null, true),
+  'imgflow': RouterStruct(HomePageImgFlow(), -1, null, true),
+  'singlepage': RouterStruct(HomePageSingle(), -1, null, true),
+  'userpageguest': RouterStruct(UserPageGuest(), -1, ['userId'], true),
+  'error': RouterStruct(CommonError(), -1, ['errorCode', 'action'], false),
 };
 
 /// 处理APP内的跳转
