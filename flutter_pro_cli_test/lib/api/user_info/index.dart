@@ -12,7 +12,7 @@ class ApiUserInfoIndex {
 
     StructApiRetInfo retInfo = StructApiRetInfo.fromJson(retJson);
 
-    if (retInfo.ret != 0 || retInfo.ret == null) {
+    if (retInfo.ret != 0 || retInfo.data == null) {
       return null;
     }
 
@@ -24,14 +24,18 @@ class ApiUserInfoIndex {
 
   /// 获取现有用户信息
   static Future<StructUserInfo> getSelfUserInfo() async {
-    String jsonStr =
-        '{"nickName":"test","uid":"3001","headerUrl":"http://image.biaobaiju.com/uploads/20180211/00/1518279967-IAnVyPiRLK.jpg"}';
-    print('json length');
-    print(jsonStr.length);
-    int currentTime = DateTime.now().microsecondsSinceEpoch;
-    final jsonInfo = json.decode(jsonStr) as Map<String, dynamic>;
-    print('json parse time');
-    print(DateTime.now().microsecondsSinceEpoch - currentTime);
-    return StructUserInfo.fromJson(jsonInfo);
+    Map<String, dynamic> retJson =
+        await CallServer.get('userInfo', {'id': '1002'});
+
+    StructApiRetInfo retInfo = StructApiRetInfo.fromJson(retJson);
+
+    if (retInfo.ret != 0 || retInfo.data == null) {
+      return null;
+    }
+
+    StructUserInfo userInfo =
+        StructUserInfo.fromJson(retInfo.data as Map<String, dynamic>);
+
+    return userInfo;
   }
 }

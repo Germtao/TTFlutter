@@ -8,6 +8,11 @@ class ApiUserInfoMessage {
   static Future<void> getUnreadMessageNum(
       NewMessageModel newMessageModel) async {
     Map<String, dynamic> retJson = await CallServer.get('newMessage');
+
+    if (retJson == null || retJson['ret'] == false) {
+      return;
+    }
+
     StructApiRetInfo retInfo = StructApiRetInfo.fromJson(retJson);
 
     if (retInfo.ret != 0 || retInfo.data == null) {
