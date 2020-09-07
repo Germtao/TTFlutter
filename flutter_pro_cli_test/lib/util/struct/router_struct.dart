@@ -14,6 +14,7 @@ class RouterStruct {
   /// 是否需要默认 Scaffold
   final bool needScaffold;
 
+  // ignore: public_member_api_docs
   const RouterStruct(
     this.widget,
     this.entranceIndex,

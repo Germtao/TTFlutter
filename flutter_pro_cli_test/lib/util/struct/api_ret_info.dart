@@ -1,5 +1,4 @@
 import 'package:flutter_pro_cli_test/util/struct/content_detail.dart';
-import 'user_info.dart';
 
 /// api 拉取content list返回结构
 ///

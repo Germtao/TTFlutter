@@ -41,6 +41,7 @@ class StructContentDetail {
   /// 评论数
   final int commentNum;
 
+  // ignore: public_member_api_docs
   const StructContentDetail(this.id, this.title, this.summary, this.detailInfo,
       this.uid, this.likeNum, this.commentNum, this.articleImage,
       {this.userInfo});

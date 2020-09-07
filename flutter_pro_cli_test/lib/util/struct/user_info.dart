@@ -15,6 +15,7 @@ class StructUserInfo {
   /// 用户id
   final String uid;
 
+  // ignore: public_member_api_docs
   const StructUserInfo(this.uid, this.nickName, this.headerUrl);
 
   /// 将json数据转化为对象数据

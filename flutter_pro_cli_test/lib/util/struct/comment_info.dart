@@ -13,6 +13,7 @@ class StructCommentInfo {
   /// 评论
   final String comment;
 
+  // ignore: public_member_api_docs
   const StructCommentInfo(this.userInfo, this.comment);
 
   /// 将json数据转化为对象数据
