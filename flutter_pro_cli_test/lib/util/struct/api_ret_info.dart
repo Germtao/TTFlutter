@@ -24,6 +24,7 @@ class StructApiContentListRetInfo {
   /// 具体的content list
   final List<StructContentDetail> data;
 
+  // ignore: public_member_api_docs
   const StructApiContentListRetInfo(
       this.ret, this.message, this.hasMore, this.lastId, this.data);
 
