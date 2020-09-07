@@ -1,16 +1,17 @@
+import 'dart:js';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_pro_cli_test/pages/article_detail/index.dart';
+import 'package:flutter_pro_cli_test/pages/home_page/img_flow.dart';
+import 'package:flutter_pro_cli_test/pages/home_page/single.dart';
 import 'package:flutter_pro_cli_test/pages/user_page/guest.dart';
 import 'package:flutter_pro_cli_test/util/struct/router_struct.dart';
 import 'package:flutter_pro_cli_test/widgets/common/error.dart';
 
 import 'pages/common/web_view_page.dart';
+import 'pages/follow_page/index.dart';
 import 'pages/home_page/index.dart';
 import 'pages/user_page/index.dart';
-import 'pages/follow_page/index.dart';
-
-import 'package:flutter_pro_cli_test/pages/home_page/single.dart';
-import 'package:flutter_pro_cli_test/pages/home_page/img_flow.dart';
-import 'package:flutter_pro_cli_test/pages/article_detail/index.dart';
 
 /// app 协议头
 const String appScheme = 'tyfapp';
@@ -126,9 +127,7 @@ class Router {
   /// 增加 scaffold
   Widget _buildPage(Widget widgetPage) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Two You'), // 页面名字
-      ),
+      appBar: AppBar(),
       body: Center(
         child: widgetPage,
       ),
@@ -145,8 +144,12 @@ class Router {
         return;
       }
 
-      routerInfo[routerName.toString()] =
-          (context) => _buildPage(routerData.widget);
+      if (routerData.needScaffold) {
+        routerInfo[routerName.toString()] =
+            (context) => _buildPage(routerData.widget);
+      } else {
+        routerInfo[routerName.toString()] = (context) => routerData.widget;
+      }
     });
 
     return routerInfo;
