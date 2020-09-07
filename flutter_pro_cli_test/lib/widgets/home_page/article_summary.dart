@@ -16,6 +16,7 @@ class ArticleSummary extends StatelessWidget {
   /// 帖子中的图片信息
   final String articleImage;
 
+  /// 构造函数
   const ArticleSummary({Key key, this.title, this.summary, this.articleImage})
       : super(key: key);
 

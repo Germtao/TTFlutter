@@ -20,6 +20,7 @@ class ArticleBottomBar extends StatelessWidget {
   /// 评论数
   final int commentNum;
 
+  /// 构造函数
   const ArticleBottomBar(
       {Key key, this.uid, this.nickname, this.avatar, this.commentNum})
       : super(key: key);
@@ -63,7 +64,7 @@ class ArticleBottomBar extends StatelessWidget {
         Padding(padding: EdgeInsets.only(left: 10)),
         Text(
           '$commentNum',
-          style: TextStyles.commonStyle(),
+          style: TextStyles.commonStyle(0.8),
         )
       ],
     );

@@ -18,6 +18,7 @@ class ImgCard extends StatelessWidget {
   /// 是否为最后部分
   final bool isLast;
 
+  /// 构造函数
   const ImgCard({Key key, this.articleInfoList, this.position, this.isLast})
       : super(key: key);
 

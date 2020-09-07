@@ -17,6 +17,7 @@ class SingleBottomSummary extends StatelessWidget {
   /// 帖子概要描述信息
   final String summary;
 
+  /// 构造函数
   const SingleBottomSummary({Key key, this.articleId, this.title, this.summary})
       : super(key: key);
 

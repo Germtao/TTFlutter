@@ -15,6 +15,7 @@ class ArticleLikeBar extends StatelessWidget {
   /// 点赞数
   final int likeNum;
 
+  /// 构造函数
   const ArticleLikeBar({Key key, this.articleId, this.likeNum})
       : super(key: key);
 
@@ -32,7 +33,7 @@ class ArticleLikeBar extends StatelessWidget {
               Padding(padding: EdgeInsets.only(left: 10)),
               Text(
                 '${likeNumModel.getLikeNum(articleId, likeNum)}',
-                style: TextStyles.commonStyle(),
+                style: TextStyles.commonStyle(0.8),
               )
             ],
           ),

@@ -14,6 +14,7 @@ class ArticleCard extends StatelessWidget {
   /// 展示底部栏
   final bool showBottomBar;
 
+  /// 构造函数
   const ArticleCard({Key key, this.articleInfo, this.showBottomBar})
       : super(key: key);
 

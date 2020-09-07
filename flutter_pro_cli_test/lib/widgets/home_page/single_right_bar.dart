@@ -15,6 +15,7 @@ class SingleRightBar extends StatelessWidget {
   /// 评论数
   final int commentNum;
 
+  /// 构造函数
   const SingleRightBar({Key key, this.nickname, this.avatar, this.commentNum})
       : super(key: key);
 
