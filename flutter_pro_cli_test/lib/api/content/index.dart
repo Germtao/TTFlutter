@@ -14,6 +14,7 @@ class ApiContentIndex {
 
     Map<String, dynamic> retJson =
         await CallServer.get('detailInfo', {'id': id});
+    print("根据内容id拉取内容详情 $retJson");
     StructApiRetInfo retInfo = StructApiRetInfo.fromJson(retJson);
 
     if (retInfo.ret != 0 || retInfo.data == null) {

@@ -8,7 +8,7 @@ class ApiUserInfoMessage {
   static Future<void> getUnreadMessageNum(
       NewMessageModel newMessageModel) async {
     Map<String, dynamic> retJson = await CallServer.get('newMessage');
-
+    print("获取未读消息数 $retJson");
     if (retJson == null || retJson['ret'] == false) {
       return;
     }

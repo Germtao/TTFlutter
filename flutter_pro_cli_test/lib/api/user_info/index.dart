@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter_pro_cli_test/util/struct/user_info.dart';
 import 'package:flutter_pro_cli_test/util/struct/api_ret_info.dart';
 import 'package:flutter_pro_cli_test/util/tools/call_server.dart';
@@ -9,7 +7,7 @@ class ApiUserInfoIndex {
   /// 根据用户id拉取用户信息
   static Future<StructUserInfo> getOneById(String id) async {
     Map<String, dynamic> retJson = await CallServer.get('userInfo', {'id': id});
-
+    print("根据用户id拉取用户信息 $retJson");
     StructApiRetInfo retInfo = StructApiRetInfo.fromJson(retJson);
 
     if (retInfo.ret != 0 || retInfo.data == null) {
@@ -26,9 +24,9 @@ class ApiUserInfoIndex {
   static Future<StructUserInfo> getSelfUserInfo() async {
     Map<String, dynamic> retJson =
         await CallServer.get('userInfo', {'id': '1002'});
-
+    print("获取现有用户信息 $retJson");
     StructApiRetInfo retInfo = StructApiRetInfo.fromJson(retJson);
-
+    print("获取现有用户信息 ${retInfo.data}");
     if (retInfo.ret != 0 || retInfo.data == null) {
       return null;
     }
