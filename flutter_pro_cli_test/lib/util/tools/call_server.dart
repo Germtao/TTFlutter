@@ -10,6 +10,9 @@ class CallServer {
       [Map params = null]) async {
     // 根据类型，获取api具体信息
     Map<String, dynamic> apis = await JsonConfig.getConfig('api');
+
+    print("获取api具体信息: $apis");
+
     if (apis == null) {
       return {'ret': false};
     }
@@ -24,15 +27,15 @@ class CallServer {
     // 处理参数替换
     if (params != null) {
       params.forEach(
-          (key, value) => callApi = callApi.replaceAll('${key}', '$value'));
+          (key, value) => callApi = callApi.replaceAll('{$key}', '$value'));
     }
+
+    print("请求的链接: ${callApi}");
 
     // 调用服务端接口获取返回数据
     try {
-      Response response = await Dio(BaseOptions(
-        connectTimeout: 1000,
-        receiveTimeout: 3000,
-      )).get(callApi, options: Options(responseType: ResponseType.json));
+      Response response = await Dio()
+          .get(callApi, options: Options(responseType: ResponseType.json));
       Map<String, dynamic> retInfo =
           json.decode(response.toString()) as Map<String, dynamic>;
       return retInfo;
