@@ -9,6 +9,7 @@ class ArticleDetailTitle extends StatelessWidget {
   /// 帖子标题
   final String title;
 
+  /// 构造函数
   const ArticleDetailTitle({Key key, this.title}) : super(key: key);
 
   @override

@@ -9,6 +9,7 @@ class ArticleDetailContent extends StatelessWidget {
   /// 传入的帖子内容
   final String content;
 
+  /// 构造函数
   const ArticleDetailContent({Key key, this.content}) : super(key: key);
 
   @override

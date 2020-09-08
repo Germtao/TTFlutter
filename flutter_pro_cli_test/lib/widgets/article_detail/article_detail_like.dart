@@ -15,6 +15,7 @@ class ArticleDetailLike extends StatelessWidget {
   /// 点赞数
   final int likeNum;
 
+  /// 构造函数
   const ArticleDetailLike({Key key, this.articleId, this.likeNum})
       : super(key: key);
 

@@ -7,6 +7,7 @@ class ArticleDetailImg extends StatelessWidget {
   /// 传入的帖子图片
   final String articleImage;
 
+  /// 构造函数
   const ArticleDetailImg({Key key, this.articleImage}) : super(key: key);
 
   @override

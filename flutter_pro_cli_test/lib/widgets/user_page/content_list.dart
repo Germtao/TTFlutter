@@ -13,7 +13,8 @@ class UserPageContentList extends StatefulWidget {
   /// 用户id
   final String id;
 
-  UserPageContentList({Key key, this.id}) : super(key: key);
+  /// 构造函数
+  const UserPageContentList({Key key, this.id}) : super(key: key);
 
   @override
   _UserPageContentListState createState() => _UserPageContentListState();

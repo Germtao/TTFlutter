@@ -10,6 +10,7 @@ class ArticleDetailComments extends StatelessWidget {
   /// 传入的评论信息
   final List<StructCommentInfo> commentList;
 
+  /// 构造函数
   const ArticleDetailComments({Key key, this.commentList}) : super(key: key);
 
   /// 获取单行的评论展示信息
@@ -24,7 +25,9 @@ class ArticleDetailComments extends StatelessWidget {
           child: ClipRRect(
             borderRadius: BorderRadius.circular(6.0),
             child: Image.network(
-              commentItem.userInfo.headerUrl,
+              commentItem.userInfo.headerUrl == null
+                  ? ""
+                  : commentItem.userInfo.headerUrl,
               width: 50.0,
               height: 50.0,
               fit: BoxFit.scaleDown,

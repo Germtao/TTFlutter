@@ -9,6 +9,7 @@ class CommonLoadingButton extends StatelessWidget {
   /// 是否有更多
   final bool hasMore;
 
+  /// 构造函数
   const CommonLoadingButton({Key key, this.loadingState, this.hasMore})
       : super(key: key);
 
@@ -90,6 +91,7 @@ class NoMore extends StatelessWidget {
   }
 }
 
+/// 初始化 loading
 class InitLoading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

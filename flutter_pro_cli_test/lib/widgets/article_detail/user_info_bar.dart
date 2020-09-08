@@ -11,6 +11,7 @@ class ArticleDetailUserInfoBar extends StatelessWidget {
   /// 用户信息
   final StructUserInfo userInfo;
 
+  /// 构造函数
   const ArticleDetailUserInfoBar({Key key, this.userInfo}) : super(key: key);
 
   @override
@@ -50,6 +51,7 @@ class ArticleDetailUserInfoBar extends StatelessWidget {
             ),
           ),
           Expanded(
+            flex: 1,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [

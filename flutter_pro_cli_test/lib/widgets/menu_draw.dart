@@ -7,6 +7,7 @@ class MenuDraw extends StatelessWidget {
   /// 外部跳转
   final Function redirect;
 
+  /// 构造函数
   const MenuDraw(this.redirect);
 
   @override

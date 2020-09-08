@@ -44,23 +44,25 @@ class ArticleSummary extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Expanded(
-          flex: 6,
-          child: getLeftInfo(),
-        ),
-        Expanded(
-          flex: 2,
-          child: Image.network(
-            articleImage,
-            width: 80.0,
-            height: 80.0,
-            fit: BoxFit.cover,
+    return Expanded(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Expanded(
+            flex: 6,
+            child: getLeftInfo(),
           ),
-        )
-      ],
+          Expanded(
+            flex: 2,
+            child: Image.network(
+              articleImage,
+              width: 80.0,
+              height: 80.0,
+              fit: BoxFit.cover,
+            ),
+          )
+        ],
+      ),
     );
   }
 }

@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_pro_cli_test/styles/text_styles.dart';
 import 'package:flutter_pro_cli_test/util/struct/user_info.dart';
 
+/// 用户界面访客头部
 class UserPageGuestHeader extends StatelessWidget {
   /// 用户信息
   final StructUserInfo userInfo;
 
+  /// 构造函数
   const UserPageGuestHeader({Key key, this.userInfo}) : super(key: key);
 
   @override

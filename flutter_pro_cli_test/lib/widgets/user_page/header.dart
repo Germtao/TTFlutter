@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:flutter_pro_cli_test/styles/text_styles.dart';
 import 'package:flutter_pro_cli_test/model/user_info_model.dart';
 
+/// 个人中心头部
 class UserPageHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

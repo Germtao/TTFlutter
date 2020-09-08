@@ -10,6 +10,7 @@ class CommonError extends StatelessWidget {
   /// 可点击的回调函数
   final Function action;
 
+  /// 构造函数
   const CommonError({Key key, this.errorCode, this.action}) : super(key: key);
 
   /// 返回提示信息

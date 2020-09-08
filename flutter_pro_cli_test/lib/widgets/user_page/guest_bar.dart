@@ -10,6 +10,7 @@ class UserPageGuestBar extends StatelessWidget {
   /// 用户信息
   final StructUserInfo userInfo;
 
+  /// 构造函数
   const UserPageGuestBar({Key key, this.userInfo}) : super(key: key);
 
   @override

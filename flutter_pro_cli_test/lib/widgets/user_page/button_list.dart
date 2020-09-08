@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:flutter_pro_cli_test/model/new_message_model.dart';
 import 'package:flutter_pro_cli_test/widgets/common/red_badge.dart';
 
+/// 个人页面的功能列表
 class UserPageButtonList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
