@@ -13,13 +13,14 @@ import 'package:flutter_pro_cli_test/pages/entrance.dart';
 import 'package:flutter_pro_cli_test/router.dart';
 
 /// 处理xml测试
-import 'api_xml/index.dart';
+// import 'api_xml/index.dart';
 
 /// APP 核心入口文件
 void main() {
   runApp(MyApp());
 }
 
+/// App界面
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

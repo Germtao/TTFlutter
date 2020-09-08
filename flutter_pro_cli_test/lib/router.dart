@@ -1,5 +1,3 @@
-import 'dart:js';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_pro_cli_test/pages/article_detail/index.dart';
 import 'package:flutter_pro_cli_test/pages/home_page/img_flow.dart';
