@@ -7,6 +7,7 @@ class TextStyles {
   /// 默认字体大小
   static double baseFontSize = 18.0;
 
+  /// 通用风格
   static TextStyle commonStyle([
     double multipleFontSize = 1,
     Color myColor = Colors.lightBlueAccent,
