@@ -59,10 +59,16 @@ class StructApiContentListRetInfo {
 
 /// 通用接口返回数据结构
 class StructApiRetInfo {
+  /// 状态码
   final int ret;
+
+  /// 请求消息
   final String message;
+
+  /// 具体的data信息
   final data;
 
+  /// 构造函数
   StructApiRetInfo.newMessage(this.ret, this.message, this.data);
 
   /// 将对象转化为 json 数据
@@ -72,7 +78,7 @@ class StructApiRetInfo {
         'data': retInfo.data,
       };
 
-  // 将json数据转化为对象数据
+  /// 将json数据转化为对象数据
   StructApiRetInfo.fromJson(Map<String, dynamic> json)
       : ret = json['ret'] as int,
         message = json['message'] as String,
