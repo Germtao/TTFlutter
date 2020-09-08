@@ -5,6 +5,7 @@ class NewMessageModel with ChangeNotifier {
   /// 未读新消息数
   int newMessageNum;
 
+  /// 构造函数
   NewMessageModel({this.newMessageNum});
 
   /// 获取未读消息数
