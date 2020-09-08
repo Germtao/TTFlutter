@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:uni_links/uni_links.dart';
 
@@ -10,15 +9,19 @@ import 'package:flutter_pro_cli_test/pages/search_page/custom_delegate.dart';
 import 'package:flutter_pro_cli_test/widgets/menu_draw.dart';
 import 'package:flutter_pro_cli_test/router.dart';
 
+/// 链接类型
 enum UniLinksType {
+  /// string
   string,
 }
 
+/// 项目页面入口文件
 class Entrance extends StatefulWidget {
   /// 页面索引位置
   final int indexValue;
 
-  Entrance({Key key, this.indexValue}) : super(key: key);
+  /// 构造函数
+  const Entrance({Key key, this.indexValue}) : super(key: key);
 
   @override
   _EntranceState createState() => _EntranceState();

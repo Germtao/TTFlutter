@@ -16,6 +16,7 @@ class HomePageSingle extends StatefulWidget {
   HomePageSingleState createState() => HomePageSingleState();
 }
 
+/// 单个内容首页状态
 class HomePageSingleState extends State<HomePageSingle> {
   /// index position
   int indexPos;

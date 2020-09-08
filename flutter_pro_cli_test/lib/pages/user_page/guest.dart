@@ -8,10 +8,12 @@ import 'package:flutter_pro_cli_test/widgets/user_page/content_list.dart';
 import 'package:flutter_pro_cli_test/widgets/user_page/guest_bar.dart';
 import 'package:flutter_pro_cli_test/widgets/user_page/guest_header.dart';
 
+/// 用户页面 访客
 class UserPageGuest extends StatelessWidget {
   /// 用户id
   final String userId;
 
+  /// 构造函数
   const UserPageGuest({Key key, this.userId}) : super(key: key);
 
   @override

@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 
 /// 通用跳转逻辑
+///
+/// 需要外部参数 [url]
 class CommonWebViewPage extends StatelessWidget {
   /// url 地址
   final String url;
 
+  /// 构造函数
   CommonWebViewPage({Key key, this.url}) : super(key: key);
 
   @override

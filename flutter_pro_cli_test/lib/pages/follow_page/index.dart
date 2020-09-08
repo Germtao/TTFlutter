@@ -7,7 +7,9 @@ import 'package:flutter_pro_cli_test/widgets/common/loading.dart';
 
 import 'package:flutter_pro_cli_test/util/struct/content_detail.dart';
 
+/// 关注界面
 class FollowPageIndex extends StatefulWidget {
+  /// 构造函数
   const FollowPageIndex();
 
   @override
@@ -17,11 +19,20 @@ class FollowPageIndex extends StatefulWidget {
 class _FollowPageIndexState extends State<FollowPageIndex> {
   /// 关注列表
   List<StructContentDetail> contentList;
+
+  /// 列表事件监听
   ScrollController scrollController = ScrollController();
+
+  /// 是否有下一页
   bool hasMore;
+
+  /// 是否正在加载
   bool isLoading;
+
+  /// 最后一个数据 id
   String lastId;
 
+  /// 是否接口报错
   bool error = false;
 
   void setFirstPage() {

@@ -12,10 +12,14 @@ import 'package:flutter_pro_cli_test/util/struct/content_detail.dart';
 import 'package:flutter_pro_cli_test/widgets/article_detail/user_info_bar.dart';
 import 'package:flutter_pro_cli_test/widgets/common/error.dart';
 
+/// 帖子详情页面
+///
+/// 需要外部参数 [articleId]
 class ArticleDetailIndex extends StatelessWidget {
   /// 帖子id
   final String articleId;
 
+  /// 构造函数
   const ArticleDetailIndex({Key key, this.articleId}) : super(key: key);
 
   @override
