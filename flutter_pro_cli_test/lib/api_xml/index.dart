@@ -1,8 +1,6 @@
 import 'dart:convert';
 
-import 'package:flutter_pro_cli_test/util/struct/api_ret_info.dart';
 import 'package:flutter_pro_cli_test/util/struct/user_info.dart';
-import 'package:flutter_pro_cli_test/util/tools/call_server.dart';
 
 import 'package:xml2json/xml2json.dart';
 
