@@ -35,7 +35,7 @@ class SingleBottomSummary extends StatelessWidget {
           ),
           FlatButton(
             padding: EdgeInsets.zero,
-            onPressed: () => Router()
+            onPressed: () => RouterManager()
                 .open(context, 'tyfapp://contentpage?articleId=${articleId}'),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

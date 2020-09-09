@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.blue, // App 主题
           ),
-          routes: Router().registerRouter(),
+          routes: RouterManager().registerRouter(),
           home: Entrance(),
         ),
       ),

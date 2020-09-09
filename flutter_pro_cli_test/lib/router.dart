@@ -31,7 +31,7 @@ const Map<String, RouterStruct> routerMapping = {
 };
 
 /// 处理APP内的跳转
-class Router {
+class RouterManager {
   /// 执行页面跳转
   ///
   /// 需要特别注意以下逻辑

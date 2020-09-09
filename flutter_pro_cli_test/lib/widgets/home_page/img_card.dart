@@ -24,7 +24,8 @@ class ImgCard extends StatelessWidget {
 
   /// 跳转到 article_detail page
   void goToArticleDetailPage(BuildContext context, String articleId) {
-    Router().open(context, 'tyfapp://contentpage?articleId=${articleId}');
+    RouterManager()
+        .open(context, 'tyfapp://contentpage?articleId=${articleId}');
   }
 
   /// 获取具体的图片组件

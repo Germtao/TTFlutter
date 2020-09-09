@@ -26,7 +26,7 @@ class ArticleDetailUserInfoBar extends StatelessWidget {
             flex: 4,
             child: FlatButton(
               padding: EdgeInsets.zero,
-              onPressed: () => Router().open(
+              onPressed: () => RouterManager().open(
                   context, "tyfapp://userpageguest?userId=${userInfo.uid}"),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,

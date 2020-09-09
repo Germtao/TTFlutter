@@ -33,7 +33,7 @@ class _EntranceState extends State<Entrance>
 
   UniLinksType _type = UniLinksType.string;
   StreamSubscription _subscription;
-  Router router = Router();
+  RouterManager router = RouterManager();
 
   @override
   void initState() {
@@ -123,17 +123,17 @@ class _EntranceState extends State<Entrance>
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.people),
-            title: Text('推荐'),
+            label: '推荐',
             activeIcon: Icon(Icons.people_outline),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.favorite),
-            title: Text('关注'),
+            label: '关注',
             activeIcon: Icon(Icons.favorite_border),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
-            title: Text('我'),
+            label: '我',
             activeIcon: Icon(Icons.person_outline),
           )
         ],

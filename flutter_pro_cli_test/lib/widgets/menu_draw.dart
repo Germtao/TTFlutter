@@ -30,7 +30,7 @@ class MenuDraw extends StatelessWidget {
               title: Text('单图片信息'),
               onTap: () {
                 Navigator.pop(context);
-                Router().open(context, 'tyfapp://singlepage');
+                RouterManager().open(context, 'tyfapp://singlepage');
               },
             ),
             ListTile(

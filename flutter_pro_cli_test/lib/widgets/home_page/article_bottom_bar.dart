@@ -30,7 +30,7 @@ class ArticleBottomBar extends StatelessWidget {
     return FlatButton(
       padding: EdgeInsets.zero,
       onPressed: () =>
-          Router().open(context, "tyfapp://userpageguest?userId=${uid}"),
+          RouterManager().open(context, "tyfapp://userpageguest?userId=${uid}"),
       child: Row(
         children: [
           ClipRRect(
@@ -76,11 +76,11 @@ class ArticleBottomBar extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         Expanded(
-          flex: 8,
+          flex: 9,
           child: getUserWidget(context),
         ),
         Expanded(
-          flex: 2,
+          flex: 3,
           child: getCommentWidget(),
         )
       ],

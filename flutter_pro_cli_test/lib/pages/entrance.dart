@@ -37,7 +37,7 @@ class _EntranceState extends State<Entrance>
 
   UniLinksType _type = UniLinksType.string;
   StreamSubscription _subscription;
-  Router router = Router();
+  RouterManager router = RouterManager();
 
   ///  初始化Scheme只使用了String类型的路由跳转
   ///  所以只有一个有需求可以使用[initPlatformStateForUriUniLinks]
@@ -139,18 +139,18 @@ class _EntranceState extends State<Entrance>
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.people),
-            title: Text('推荐'),
+            label: '推荐',
             activeIcon: Icon(Icons.people_outline),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.favorite),
-            title: Text('关注'),
+            label: '关注',
             activeIcon: Icon(Icons.favorite_border),
           ),
           BottomNavigationBarItem(
             icon: CommonRedBadge.showRedBadge(
                 Icon(Icons.person), newMessageModel.value),
-            title: Text('我'),
+            label: '我',
             activeIcon: CommonRedBadge.showRedBadge(
                 Icon(Icons.person_outline), newMessageModel.value),
           ),

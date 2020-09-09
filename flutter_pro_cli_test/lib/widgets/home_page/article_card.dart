@@ -20,7 +20,8 @@ class ArticleCard extends StatelessWidget {
 
   /// 执行页面跳转到article_detail
   void goToArticleDetailPage(BuildContext context, String articleId) {
-    Router().open(context, 'tyfapp://contentpage?articleId=${articleId}');
+    RouterManager()
+        .open(context, 'tyfapp://contentpage?articleId=${articleId}');
   }
 
   @override
@@ -53,7 +54,7 @@ class ArticleCard extends StatelessWidget {
     return Row(
       children: [
         Expanded(
-          flex: 9,
+          flex: 8,
           child: ArticleBottomBar(
             uid: articleInfo.userInfo.uid,
             nickname: articleInfo.userInfo.nickName,
