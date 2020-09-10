@@ -1,0 +1,68 @@
+{
+  // 使用 IntelliSense 了解相关属性。 
+  // 悬停以查看现有属性的描述。
+  // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "flutter_bottomnavigationbar",
+      "cwd": "1.底部导航栏制作和切换/flutter_bottomnavigationbar",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "flutter_splash_screen_animation",
+      "cwd": "10.闪屏动画/flutter_splash_screen_animation",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "flutter_bottomappbar",
+      "cwd": "2.不规则底部工具栏/flutter_bottomappbar",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "flutter_custom_router",
+      "cwd": "3.自定义路由样式/flutter_custom_router",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "flutter_frosted_class",
+      "cwd": "4.毛玻璃效果/flutter_frosted_class",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "flutter_keep_alive",
+      "cwd": "5.保持页面状态/flutter_keep_alive",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "flutter_search_bar",
+      "cwd": "6. 搜索栏/flutter_search_bar",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "flutter_flow_layout",
+      "cwd": "7.流式布局/flutter_flow_layout",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "flutter_expansion_tile",
+      "cwd": "8.可展开的控件/flutter_expansion_tile",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "flutter_wave_bezier",
+      "cwd": "9. 贝塞尔曲线切割图像/flutter_wave_bezier",
+      "request": "launch",
+      "type": "dart"
+    }
+  ]
+}
