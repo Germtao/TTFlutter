@@ -3,7 +3,6 @@ import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
-import 'package:flutter_collection/main.dart';
 import 'dart:async';
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
@@ -14,7 +13,8 @@ class CameraTestRoute extends StatefulWidget {
   _CameraTestRouteState createState() => _CameraTestRouteState();
 }
 
-class _CameraTestRouteState extends State<CameraTestRoute> with WidgetsBindingObserver {
+class _CameraTestRouteState extends State<CameraTestRoute>
+    with WidgetsBindingObserver {
   CameraController controller;
   String imagePath;
   String videoPath;
@@ -81,7 +81,9 @@ class _CameraTestRouteState extends State<CameraTestRoute> with WidgetsBindingOb
               decoration: BoxDecoration(
                 color: Colors.black,
                 border: Border.all(
-                  color: controller != null && controller.value.isRecordingVideo ? Colors.redAccent : Colors.grey,
+                  color: controller != null && controller.value.isRecordingVideo
+                      ? Colors.redAccent
+                      : Colors.grey,
                   width: 3.0,
                 ),
               ),
@@ -155,28 +157,28 @@ class _CameraTestRouteState extends State<CameraTestRoute> with WidgetsBindingOb
           icon: const Icon(Icons.camera_alt),
           color: Colors.blue,
           onPressed: controller != null &&
-             controller.value.isInitialized && 
-             !controller.value.isRecordingVideo 
-             ? onTakePictureButtonPressed 
-             : null,
+                  controller.value.isInitialized &&
+                  !controller.value.isRecordingVideo
+              ? onTakePictureButtonPressed
+              : null,
         ),
         IconButton(
           icon: const Icon(Icons.videocam),
           color: Colors.blue,
-          onPressed: controller != null && 
-            controller.value.isInitialized && 
-            !controller.value.isRecordingVideo 
-            ? onVideoRecordButtonPressed 
-            : null,
+          onPressed: controller != null &&
+                  controller.value.isInitialized &&
+                  !controller.value.isRecordingVideo
+              ? onVideoRecordButtonPressed
+              : null,
         ),
         IconButton(
           icon: Icon(Icons.stop),
           color: Colors.red,
-          onPressed: controller != null && 
-            controller.value.isInitialized && 
-            controller.value.isRecordingVideo 
-            ? onStopButtonPressed 
-            : null,
+          onPressed: controller != null &&
+                  controller.value.isInitialized &&
+                  controller.value.isRecordingVideo
+              ? onStopButtonPressed
+              : null,
         ),
       ],
     );
@@ -190,17 +192,17 @@ class _CameraTestRouteState extends State<CameraTestRoute> with WidgetsBindingOb
       return const Text('没有检测到摄像头');
     } else {
       for (CameraDescription cameraDescription in cameras) {
-        toggles.add(
-          SizedBox(
-            width: 90.0,
-            child: RadioListTile(
-              title: Icon(getCameraLensIcon(cameraDescription.lensDirection)),
-              groupValue: controller?.description,
-              value: cameraDescription,
-              onChanged: controller != null && controller.value.isRecordingVideo ? null : onNewCameraSelected,
-            ),
-          )
-        );
+        toggles.add(SizedBox(
+          width: 90.0,
+          child: RadioListTile(
+            title: Icon(getCameraLensIcon(cameraDescription.lensDirection)),
+            groupValue: controller?.description,
+            value: cameraDescription,
+            onChanged: controller != null && controller.value.isRecordingVideo
+                ? null
+                : onNewCameraSelected,
+          ),
+        ));
       }
     }
 
@@ -215,25 +217,27 @@ class _CameraTestRouteState extends State<CameraTestRoute> with WidgetsBindingOb
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            videoController == null && imagePath == null 
-            ? Container() 
-            : SizedBox(
-              child: videoController == null 
-              ? Image.file(File(imagePath)) 
-              : Container(
-                child: Center(
-                  child: AspectRatio(
-                    aspectRatio: videoController.value.size != null ? videoController.value.aspectRatio : 1.0,
-                    child: VideoPlayer(videoController),
-                  ),
-                ),
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.pink),
-                ),
-              ),
-              width: 64.0,
-              height: 64.0,
-            )
+            videoController == null && imagePath == null
+                ? Container()
+                : SizedBox(
+                    child: videoController == null
+                        ? Image.file(File(imagePath))
+                        : Container(
+                            child: Center(
+                              child: AspectRatio(
+                                aspectRatio: videoController.value.size != null
+                                    ? videoController.value.aspectRatio
+                                    : 1.0,
+                                child: VideoPlayer(videoController),
+                              ),
+                            ),
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Colors.pink),
+                            ),
+                          ),
+                    width: 64.0,
+                    height: 64.0,
+                  )
           ],
         ),
       ),
@@ -244,15 +248,19 @@ class _CameraTestRouteState extends State<CameraTestRoute> with WidgetsBindingOb
   /// 终止视频录制
   void onStopButtonPressed() {
     stopVideoRecording().then((_) {
-      if (mounted) { setState(() {}); }
+      if (mounted) {
+        setState(() {});
+      }
       showInSnackBar('视频保存在: $videoPath');
     });
   }
 
-  /// 开始录制视频 
+  /// 开始录制视频
   void onVideoRecordButtonPressed() {
     startVideoRecording().then((String filePath) {
-      if (mounted) { setState(() {}); }
+      if (mounted) {
+        setState(() {});
+      }
       if (filePath != null) {
         showInSnackBar('正在保存视频: $filePath');
       }
@@ -269,7 +277,9 @@ class _CameraTestRouteState extends State<CameraTestRoute> with WidgetsBindingOb
           videoController = null;
         });
 
-        if (filePath != null) { showInSnackBar('图片保存在: $filePath'); }
+        if (filePath != null) {
+          showInSnackBar('图片保存在: $filePath');
+        }
       }
     });
   }
@@ -280,14 +290,13 @@ class _CameraTestRouteState extends State<CameraTestRoute> with WidgetsBindingOb
       await controller.dispose();
     }
 
-    controller = CameraController(
-      cameraDescription, 
-      ResolutionPreset.high,
-      enableAudio: enableAudio
-    );
+    controller = CameraController(cameraDescription, ResolutionPreset.high,
+        enableAudio: enableAudio);
 
     controller.addListener(() {
-      if (mounted) { setState(() {}); }
+      if (mounted) {
+        setState(() {});
+      }
       if (controller.value.hasError) {
         showInSnackBar('Camera Error ${controller.value.errorDescription}');
       }
@@ -299,7 +308,9 @@ class _CameraTestRouteState extends State<CameraTestRoute> with WidgetsBindingOb
       _showCameraException(e);
     }
 
-    if (mounted) { setState(() {}); }
+    if (mounted) {
+      setState(() {});
+    }
   }
 
   Future<String> takePicture() async {
@@ -370,11 +381,14 @@ class _CameraTestRouteState extends State<CameraTestRoute> with WidgetsBindingOb
   }
 
   Future<void> _startVideoPlayer() async {
-    final VideoPlayerController player = VideoPlayerController.file(File(videoPath));
+    final VideoPlayerController player =
+        VideoPlayerController.file(File(videoPath));
     videoPlayerListener = () {
       if (videoController != null && videoController.value.size != null) {
         // 刷新状态以正确的比例更新视频播放器
-        if (mounted) { setState(() {}); }
+        if (mounted) {
+          setState(() {});
+        }
         videoController.removeListener(videoPlayerListener);
       }
     };
@@ -402,12 +416,13 @@ class _CameraTestRouteState extends State<CameraTestRoute> with WidgetsBindingOb
         return Icons.camera;
     }
     throw ArgumentError('Unknown lens direction');
-  } 
+  }
 
   // MARK: - Helpers
   String timestamp() => DateTime.now().millisecondsSinceEpoch.toString();
 
-  void logError(String code, String message) => print('Error: $code\nError Message: $message');
+  void logError(String code, String message) =>
+      print('Error: $code\nError Message: $message');
 
   void showInSnackBar(String message) {
     _scaffoldKey.currentState.showSnackBar(SnackBar(content: Text(message)));

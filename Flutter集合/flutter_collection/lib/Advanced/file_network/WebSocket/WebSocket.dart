@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:web_socket_channel/io.dart';
-import 'package:web_socket_channel/web_socket_channel.dart';
 
 class WebSocketTestRoute extends StatefulWidget {
   WebSocketTestRoute({Key key}) : super(key: key);
@@ -46,7 +45,8 @@ class _WebSocketTestRouteState extends State<WebSocketTestRoute> {
             StreamBuilder(
               stream: channel.stream,
               builder: (context, snapshot) {
-                if (snapshot.hasError) { // 网络不通
+                if (snapshot.hasError) {
+                  // 网络不通
                   _text = '网络不通';
                 } else if (snapshot.hasData) {
                   _text = 'echo: ' + snapshot.data;
