@@ -8,6 +8,8 @@ import 'package:flutter_collection/Advanced/file_network/http_download/http_down
 import 'package:flutter_collection/Advanced/file_network/http_request/http_client.dart';
 import 'index.dart';
 
+import 'package:flutter_collection/官方控件系列/视图/index.dart';
+
 class Entry {
   final String title;
   final List<Entry> children;
@@ -213,11 +215,40 @@ class _EntryItemState extends State<EntryItem> {
       case 'Texture(示例: 使用摄像头)':
         _pageWidget = CameraTestRoute();
         break;
+
+      /// 官方控件系列
+      /// 视图
+      case 'BottomNavigationBar底部导航':
+        _pageWidget = BottomNavigationWidget();
+        break;
+      case 'BottomAppBar底部导航':
+        _pageWidget = BottomAppBarWidget();
+        break;
+      case '自定义路由样式':
+        _pageWidget = FirstPage();
+        break;
+      case '高斯模糊（毛玻璃）':
+        _pageWidget = FrostedClass();
+        break;
+      case '切换页面，保持各页面状态':
+        _pageWidget = KeepPageState();
+        break;
+      case '制作一个精美的Material风格搜索框':
+        _pageWidget = SearchBar();
+        break;
+      case 'TextField的焦点及动作':
+        _pageWidget = TextFieldFocusDemo();
+        break;
+      case '微信九宫格效果':
+        _pageWidget = WarpLayout();
+        break;
+      case '标签控件 chip系列':
+        _pageWidget = ChipWidget();
+        break;
       default:
         return;
     }
-    Navigator.of(_context)
-        .push(MaterialPageRoute(builder: (context) => _pageWidget));
+    Navigator.of(_context).push(MaterialPageRoute(builder: (context) => _pageWidget));
   }
 
   @override
@@ -298,9 +329,40 @@ class CollectionPage extends StatelessWidget {
         Entry("Http-分块下载"),
         Entry('WebSocket'),
       ]),
-      Entry('包和插件', <Entry>[
-        Entry('开发Flutter插件'),
-        Entry('Texture(示例: 使用摄像头)')
+      Entry('包和插件', <Entry>[Entry('开发Flutter插件'), Entry('Texture(示例: 使用摄像头)')]),
+    ]),
+
+    /// UI
+    Entry('官方控件系列', <Entry>[
+      Entry('视图', <Entry>[
+        Entry('BottomNavigationBar底部导航'),
+        Entry('BottomAppBar底部导航'),
+        Entry('自定义路由样式'),
+        Entry('高斯模糊（毛玻璃）'),
+        Entry('切换页面，保持各页面状态'),
+        Entry('制作一个精美的Material风格搜索框'),
+        Entry('TextField的焦点及动作'),
+        Entry('微信九宫格效果'),
+        Entry('标签控件 chip系列'),
+        Entry('可展开控件 expansion系列'),
+        Entry('可滑动控件Sliver系列'),
+        Entry('使用贝塞尔二阶曲线切割图像'),
+        Entry('用户可以通过拖动以交互方式重新排序的项目的列表'),
+      ]),
+      Entry('功能', <Entry>[
+        Entry('返回上一页时弹出提示信息'),
+        Entry('应用开启进入闪屏页'),
+        Entry('上拉加载，下拉刷新'),
+        Entry('json自动反序列化'),
+        Entry('左滑删除ListView中Item'),
+        Entry('右滑返回上一页'),
+        Entry('在flutter中截屏'),
+        Entry('轻量级操作提示控件toolstip'),
+        Entry('可拖动组件draggable'),
+        Entry('去掉点击事件的水波纹效果'),
+        Entry('在当前页面上覆盖新的组件overlay'),
+        Entry('在不同页面传递事件EventBus'),
+        Entry('自定义 Navigator'),
       ]),
     ]),
   ];
