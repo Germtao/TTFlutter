@@ -1,12 +1,10 @@
-/**
- * 使用BackdropFilter实现毛玻璃效果,且子部件需要设置Opacity
- * 使用这个部件的代价很高，尽量少用
- * ImageFilter.blur的sigmaX/Y决定了毛玻璃的模糊程度，值越高越模糊
- * 一般来说，为了防止模糊效果绘制出边界，需要使用ClipRect Widget包裹
- */
 import 'package:flutter/material.dart';
 import 'dart:ui';
 
+/// 使用BackdropFilter实现毛玻璃效果,且子部件需要设置Opacity
+/// 使用这个部件的代价很高，尽量少用
+/// ImageFilter.blur的sigmaX/Y决定了毛玻璃的模糊程度，值越高越模糊
+/// 一般来说，为了防止模糊效果绘制出边界，需要使用ClipRect Widget包裹
 class FrostedClass extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -37,7 +35,7 @@ class FrostedClass extends StatelessWidget {
                     child: Center(
                       child: Text(
                         '蜘蛛侠：英雄远征',
-                        style: Theme.of(context).textTheme.display1,
+                        style: Theme.of(context).textTheme.headline5,
                       ),
                     ),
                   ),
