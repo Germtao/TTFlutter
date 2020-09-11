@@ -63,9 +63,8 @@ class SearchBarDelegate extends SearchDelegate<String> {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    final suggestionList = query.isEmpty
-        ? recentSuggestes
-        : searchList.where((input) => input.startsWith(query)).toList();
+    final suggestionList =
+        query.isEmpty ? recentSuggestes : searchList.where((input) => input.startsWith(query)).toList();
 
     return ListView.builder(
       itemCount: suggestionList.length,
@@ -74,8 +73,7 @@ class SearchBarDelegate extends SearchDelegate<String> {
         title: RichText(
           text: TextSpan(
               text: suggestionList[index].substring(0, query.length),
-              style:
-                  TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+              style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
               children: [
                 TextSpan(
                   text: suggestionList[index].substring(query.length),
