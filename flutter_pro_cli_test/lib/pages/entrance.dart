@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:html';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -31,8 +32,7 @@ class Entrance extends StatefulWidget {
   _EntranceState createState() => _EntranceState();
 }
 
-class _EntranceState extends State<Entrance>
-    with SingleTickerProviderStateMixin {
+class _EntranceState extends State<Entrance> with SingleTickerProviderStateMixin {
   int _indexNum = 0;
 
   UniLinksType _type = UniLinksType.string;
@@ -139,20 +139,24 @@ class _EntranceState extends State<Entrance>
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.people),
-            label: '推荐',
+            title: Text('推荐'),
             activeIcon: Icon(Icons.people_outline),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.favorite),
-            label: '关注',
+            title: Text('关注'),
             activeIcon: Icon(Icons.favorite_border),
           ),
           BottomNavigationBarItem(
             icon: CommonRedBadge.showRedBadge(
-                Icon(Icons.person), newMessageModel.value),
-            label: '我',
+              Icon(Icons.person),
+              newMessageModel.value,
+            ),
+            title: Text('我'),
             activeIcon: CommonRedBadge.showRedBadge(
-                Icon(Icons.person_outline), newMessageModel.value),
+              Icon(Icons.person_outline),
+              newMessageModel.value,
+            ),
           ),
         ],
         iconSize: 24,
