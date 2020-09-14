@@ -245,6 +245,10 @@ class _EntryItemState extends State<EntryItem> {
       case '标签控件 chip系列':
         _pageWidget = ChipWidget();
         break;
+      case '可展开控件 expansion系列':
+        _pageWidget = ExpansionTileWidget();
+        // _pageWidget = ExpandsionPanelListWidget();
+        break;
       default:
         return;
     }
