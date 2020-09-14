@@ -253,6 +253,7 @@ class _EntryItemState extends State<EntryItem> {
         _pageWidget = SliverScreen();
         break;
       case '使用贝塞尔二阶曲线切割图像':
+        _pageWidget = WaveBezierCurveDemo();
         break;
       default:
         return;
