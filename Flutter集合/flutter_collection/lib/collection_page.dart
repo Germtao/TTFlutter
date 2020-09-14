@@ -265,6 +265,9 @@ class _EntryItemState extends State<EntryItem> {
         // _pageWidget = WillPopScpoeDemo(title: '返回上一页时弹出提示信息');
         _pageWidget = FormPopDemo();
         break;
+      case '应用开启进入闪屏页':
+        _pageWidget = SplashScreenAnimation();
+        break;
       default:
         return;
     }
