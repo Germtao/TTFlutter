@@ -9,6 +9,7 @@ import 'package:flutter_collection/Advanced/file_network/http_request/http_clien
 import 'index.dart';
 
 import 'package:flutter_collection/官方控件系列/视图/index.dart';
+import 'package:flutter_collection/官方控件系列/功能/index.dart';
 
 class Entry {
   final String title;
@@ -257,6 +258,12 @@ class _EntryItemState extends State<EntryItem> {
         break;
       case '用户可以通过拖动以交互方式重新排序的项目的列表':
         _pageWidget = ReorderableListViewDemo();
+        break;
+
+      /// 功能
+      case '返回上一页时弹出提示信息':
+        // _pageWidget = WillPopScpoeDemo(title: '返回上一页时弹出提示信息');
+        _pageWidget = FormPopDemo();
         break;
       default:
         return;
