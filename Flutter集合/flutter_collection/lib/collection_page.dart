@@ -249,6 +249,11 @@ class _EntryItemState extends State<EntryItem> {
         _pageWidget = ExpansionTileWidget();
         // _pageWidget = ExpandsionPanelListWidget();
         break;
+      case '可滑动控件Sliver系列':
+        _pageWidget = SliverScreen();
+        break;
+      case '使用贝塞尔二阶曲线切割图像':
+        break;
       default:
         return;
     }

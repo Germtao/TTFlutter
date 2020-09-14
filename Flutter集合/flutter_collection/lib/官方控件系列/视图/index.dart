@@ -9,3 +9,4 @@ export '../视图/微信九宫格效果/WarpLayout.dart';
 export '../视图/标签控件 chip系列/chip_demo.dart';
 export '../视图/可展开控件 expansion系列/expansion_tile_widget.dart';
 export '../视图/可展开控件 expansion系列/expansion_panel_list_widget.dart';
+export '../视图/可滑动控件Sliver系列/sliver_widget.dart';
