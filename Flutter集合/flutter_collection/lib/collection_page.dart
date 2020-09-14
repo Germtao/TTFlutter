@@ -255,6 +255,9 @@ class _EntryItemState extends State<EntryItem> {
       case '使用贝塞尔二阶曲线切割图像':
         _pageWidget = WaveBezierCurveDemo();
         break;
+      case '用户可以通过拖动以交互方式重新排序的项目的列表':
+        _pageWidget = ReorderableListViewDemo();
+        break;
       default:
         return;
     }
