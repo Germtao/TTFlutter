@@ -268,6 +268,10 @@ class _EntryItemState extends State<EntryItem> {
       case '应用开启进入闪屏页':
         _pageWidget = SplashScreenAnimation();
         break;
+      case '上拉加载，下拉刷新':
+        // _pageWidget = GridViewRefreshDemo();
+        _pageWidget = ListViewRefreshDemo();
+        break;
       default:
         return;
     }
