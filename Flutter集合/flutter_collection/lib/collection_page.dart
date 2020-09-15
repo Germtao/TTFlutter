@@ -278,6 +278,9 @@ class _EntryItemState extends State<EntryItem> {
       case '右滑返回上一页':
         _pageWidget = SwipeRightBackDemo();
         break;
+      case '在flutter中截屏':
+        _pageWidget = WidgetToImageDemo();
+        break;
       default:
         return;
     }
