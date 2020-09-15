@@ -275,6 +275,9 @@ class _EntryItemState extends State<EntryItem> {
       case '左滑删除ListView中Item':
         _pageWidget = SwipeToDismissDemo();
         break;
+      case '右滑返回上一页':
+        _pageWidget = SwipeRightBackDemo();
+        break;
       default:
         return;
     }
