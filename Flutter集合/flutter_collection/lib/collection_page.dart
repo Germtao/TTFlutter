@@ -284,6 +284,9 @@ class _EntryItemState extends State<EntryItem> {
       case '轻量级操作提示控件toolstip':
         _pageWidget = ToolTipsDemo();
         break;
+      case '可拖动组件draggable':
+        _pageWidget = DraggableDemo();
+        break;
       default:
         return;
     }
