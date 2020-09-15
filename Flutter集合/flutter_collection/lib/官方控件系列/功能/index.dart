@@ -7,3 +7,4 @@ export '../功能/右滑返回上一页/swipe_right_back.dart';
 export '../功能/在flutter中截屏/widget_to_image_demo.dart';
 export '../功能/轻量级操作提示控件toolstip/tool_tips_demo.dart';
 export '../功能/可拖动组件draggable/draggable_demo.dart';
+export '../功能/去掉点击事件的水波纹效果/without_splash_color.dart';

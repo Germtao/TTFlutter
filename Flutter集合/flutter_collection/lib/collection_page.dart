@@ -287,6 +287,9 @@ class _EntryItemState extends State<EntryItem> {
       case '可拖动组件draggable':
         _pageWidget = DraggableDemo();
         break;
+      case '去掉点击事件的水波纹效果':
+        _pageWidget = WithOutSplashColorDemo();
+        break;
       default:
         return;
     }
