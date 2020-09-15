@@ -5,3 +5,4 @@ export '../功能/上拉加载，下拉刷新/index.dart';
 export '../功能/左滑删除ListView中Item/swipe_to_dismiss_demo.dart';
 export '../功能/右滑返回上一页/swipe_right_back.dart';
 export '../功能/在flutter中截屏/widget_to_image_demo.dart';
+export '../功能/轻量级操作提示控件toolstip/tool_tips_demo.dart';

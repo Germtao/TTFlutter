@@ -281,6 +281,9 @@ class _EntryItemState extends State<EntryItem> {
       case '在flutter中截屏':
         _pageWidget = WidgetToImageDemo();
         break;
+      case '轻量级操作提示控件toolstip':
+        _pageWidget = ToolTipsDemo();
+        break;
       default:
         return;
     }
