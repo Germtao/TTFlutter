@@ -290,6 +290,9 @@ class _EntryItemState extends State<EntryItem> {
       case '去掉点击事件的水波纹效果':
         _pageWidget = WithOutSplashColorDemo();
         break;
+      case '在当前页面上覆盖新的组件overlay':
+        _pageWidget = OverlayDemo();
+        break;
       default:
         return;
     }
