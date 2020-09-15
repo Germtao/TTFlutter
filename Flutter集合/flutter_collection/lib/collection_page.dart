@@ -272,6 +272,9 @@ class _EntryItemState extends State<EntryItem> {
         // _pageWidget = GridViewRefreshDemo();
         _pageWidget = ListViewRefreshDemo();
         break;
+      case '左滑删除ListView中Item':
+        _pageWidget = SwipeToDismissDemo();
+        break;
       default:
         return;
     }
@@ -380,7 +383,6 @@ class CollectionPage extends StatelessWidget {
         Entry('返回上一页时弹出提示信息'),
         Entry('应用开启进入闪屏页'),
         Entry('上拉加载，下拉刷新'),
-        Entry('json自动反序列化'),
         Entry('左滑删除ListView中Item'),
         Entry('右滑返回上一页'),
         Entry('在flutter中截屏'),
