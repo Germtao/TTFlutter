@@ -291,7 +291,9 @@ class _EntryItemState extends State<EntryItem> {
         _pageWidget = WithOutSplashColorDemo();
         break;
       case '在当前页面上覆盖新的组件overlay':
-        _pageWidget = OverlayDemo();
+        // _pageWidget = OverlayDemo();
+        // _pageWidget = OverlayDemo2();
+        _pageWidget = OverlayDemo3();
         break;
       default:
         return;
