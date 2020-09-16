@@ -298,6 +298,9 @@ class _EntryItemState extends State<EntryItem> {
       case '在不同页面传递事件EventBus':
         _pageWidget = FirstScreen();
         break;
+      case '自定义 Navigator':
+        _pageWidget = CustomNavigatorApp();
+        break;
       default:
         return;
     }
