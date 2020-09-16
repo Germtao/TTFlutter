@@ -317,6 +317,9 @@ class _EntryItemState extends State<EntryItem> {
       case '转换动画':
         _pageWidget = TransformAnimationDemo();
         break;
+      case '价值转换动画':
+        _pageWidget = ValueChangeAnimationDemo();
+        break;
       default:
         return;
     }
@@ -440,7 +443,7 @@ class CollectionPage extends StatelessWidget {
         Entry('延迟动画'),
         Entry('父子动画'),
         Entry('转换动画'),
-        Entry('右滑返回上一页'),
+        Entry('价值转换动画'),
         Entry('在flutter中截屏'),
         Entry('轻量级操作提示控件toolstip'),
         Entry('可拖动组件draggable'),
