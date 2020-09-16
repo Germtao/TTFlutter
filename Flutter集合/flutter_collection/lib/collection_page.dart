@@ -320,6 +320,9 @@ class _EntryItemState extends State<EntryItem> {
       case '价值转换动画':
         _pageWidget = ValueChangeAnimationDemo();
         break;
+      case '动画隐藏显示小部件':
+        _pageWidget = HiddenWidgetAnimationDemo();
+        break;
       default:
         return;
     }
@@ -444,7 +447,7 @@ class CollectionPage extends StatelessWidget {
         Entry('父子动画'),
         Entry('转换动画'),
         Entry('价值转换动画'),
-        Entry('在flutter中截屏'),
+        Entry('动画隐藏显示小部件'),
         Entry('轻量级操作提示控件toolstip'),
         Entry('可拖动组件draggable'),
         Entry('去掉点击事件的水波纹效果'),
