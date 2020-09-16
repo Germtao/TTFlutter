@@ -310,6 +310,10 @@ class _EntryItemState extends State<EntryItem> {
       case '延迟动画':
         _pageWidget = DelayedAnimationDemo();
         break;
+      case '父子动画':
+        // _pageWidget = ParentAnimationDemo();
+        _pageWidget = AnotherParentAnimationDemo();
+        break;
       default:
         return;
     }
@@ -431,7 +435,7 @@ class CollectionPage extends StatelessWidget {
       Entry('动画', <Entry>[
         Entry('基础动画'),
         Entry('延迟动画'),
-        Entry('上拉加载，下拉刷新'),
+        Entry('父子动画'),
         Entry('左滑删除ListView中Item'),
         Entry('右滑返回上一页'),
         Entry('在flutter中截屏'),
