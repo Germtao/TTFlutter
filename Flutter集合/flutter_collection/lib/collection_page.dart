@@ -10,6 +10,7 @@ import 'index.dart';
 
 import 'package:flutter_collection/官方控件系列/视图/index.dart';
 import 'package:flutter_collection/官方控件系列/功能/index.dart';
+import './官方控件系列/动画/index.dart';
 
 class Entry {
   final String title;
@@ -301,6 +302,11 @@ class _EntryItemState extends State<EntryItem> {
       case '自定义 Navigator':
         _pageWidget = CustomNavigatorApp();
         break;
+
+      /// 动画
+      case '基础动画':
+        _pageWidget = BasicAnimationDemo();
+        break;
       default:
         return;
     }
@@ -407,6 +413,20 @@ class CollectionPage extends StatelessWidget {
       ]),
       Entry('功能', <Entry>[
         Entry('返回上一页时弹出提示信息'),
+        Entry('应用开启进入闪屏页'),
+        Entry('上拉加载，下拉刷新'),
+        Entry('左滑删除ListView中Item'),
+        Entry('右滑返回上一页'),
+        Entry('在flutter中截屏'),
+        Entry('轻量级操作提示控件toolstip'),
+        Entry('可拖动组件draggable'),
+        Entry('去掉点击事件的水波纹效果'),
+        Entry('在当前页面上覆盖新的组件overlay'),
+        Entry('在不同页面传递事件EventBus'),
+        Entry('自定义 Navigator'),
+      ]),
+      Entry('动画', <Entry>[
+        Entry('基础动画'),
         Entry('应用开启进入闪屏页'),
         Entry('上拉加载，下拉刷新'),
         Entry('左滑删除ListView中Item'),
