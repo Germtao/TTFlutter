@@ -307,6 +307,9 @@ class _EntryItemState extends State<EntryItem> {
       case '基础动画':
         _pageWidget = BasicAnimationDemo();
         break;
+      case '延迟动画':
+        _pageWidget = DelayedAnimationDemo();
+        break;
       default:
         return;
     }
@@ -427,7 +430,7 @@ class CollectionPage extends StatelessWidget {
       ]),
       Entry('动画', <Entry>[
         Entry('基础动画'),
-        Entry('应用开启进入闪屏页'),
+        Entry('延迟动画'),
         Entry('上拉加载，下拉刷新'),
         Entry('左滑删除ListView中Item'),
         Entry('右滑返回上一页'),
