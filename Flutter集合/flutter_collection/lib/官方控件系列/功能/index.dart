@@ -9,3 +9,4 @@ export '../功能/轻量级操作提示控件toolstip/tool_tips_demo.dart';
 export '../功能/可拖动组件draggable/draggable_demo.dart';
 export '../功能/去掉点击事件的水波纹效果/without_splash_color.dart';
 export '../功能/在当前页面上覆盖新的组件overlay/index.dart';
+export '../功能/在不同页面传递事件EventBus/index.dart';

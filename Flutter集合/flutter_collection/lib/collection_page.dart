@@ -295,6 +295,9 @@ class _EntryItemState extends State<EntryItem> {
         // _pageWidget = OverlayDemo2();
         _pageWidget = OverlayDemo3();
         break;
+      case '在不同页面传递事件EventBus':
+        _pageWidget = FirstScreen();
+        break;
       default:
         return;
     }
