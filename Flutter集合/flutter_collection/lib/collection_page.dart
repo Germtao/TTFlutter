@@ -331,6 +331,9 @@ class _EntryItemState extends State<EntryItem> {
       case 'AnimatedContainer':
         _pageWidget = AnimatedContainerDemo();
         break;
+      case 'AnimatedCrossFade':
+        _pageWidget = AnimatedCrossFadeDemo();
+        break;
       default:
         return;
     }
@@ -458,7 +461,7 @@ class CollectionPage extends StatelessWidget {
         Entry('动画隐藏显示小部件'),
         Entry('神奇的Hero动画'),
         Entry('AnimatedContainer'),
-        Entry('去掉点击事件的水波纹效果'),
+        Entry('AnimatedCrossFade'),
         Entry('在当前页面上覆盖新的组件overlay'),
         Entry('在不同页面传递事件EventBus'),
         Entry('自定义 Navigator'),

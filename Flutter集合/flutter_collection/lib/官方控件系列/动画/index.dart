@@ -10,3 +10,5 @@ export './神奇的Hero动画/basic_structure_hero.dart';
 export './神奇的Hero动画/photo_hero.dart';
 
 export './AnimatedContainer/animated_container_demo.dart';
+
+export './AnimatedCrossFade/animated_cross_fade_demo.dart';
