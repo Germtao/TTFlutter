@@ -10,7 +10,7 @@ import 'index.dart';
 
 import 'package:flutter_collection/官方控件系列/视图/index.dart';
 import 'package:flutter_collection/官方控件系列/功能/index.dart';
-import './官方控件系列/动画/index.dart';
+import '官方控件系列/动画/index.dart';
 
 class Entry {
   final String title;
@@ -323,6 +323,10 @@ class _EntryItemState extends State<EntryItem> {
       case '动画隐藏显示小部件':
         _pageWidget = HiddenWidgetAnimationDemo();
         break;
+      case '神奇的Hero动画':
+        // _pageWidget = SourceHeroPage();
+        _pageWidget = PhotoSourceHeroPage();
+        break;
       default:
         return;
     }
@@ -448,7 +452,7 @@ class CollectionPage extends StatelessWidget {
         Entry('转换动画'),
         Entry('价值转换动画'),
         Entry('动画隐藏显示小部件'),
-        Entry('轻量级操作提示控件toolstip'),
+        Entry('神奇的Hero动画'),
         Entry('可拖动组件draggable'),
         Entry('去掉点击事件的水波纹效果'),
         Entry('在当前页面上覆盖新的组件overlay'),
