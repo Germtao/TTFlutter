@@ -334,6 +334,9 @@ class _EntryItemState extends State<EntryItem> {
       case 'AnimatedCrossFade':
         _pageWidget = AnimatedCrossFadeDemo();
         break;
+      case 'Ripple路由转换动画':
+        _pageWidget = FirstScreenRippleDemo();
+        break;
       default:
         return;
     }
@@ -462,9 +465,7 @@ class CollectionPage extends StatelessWidget {
         Entry('神奇的Hero动画'),
         Entry('AnimatedContainer'),
         Entry('AnimatedCrossFade'),
-        Entry('在当前页面上覆盖新的组件overlay'),
-        Entry('在不同页面传递事件EventBus'),
-        Entry('自定义 Navigator'),
+        Entry('Ripple路由转换动画'),
       ]),
     ]),
   ];

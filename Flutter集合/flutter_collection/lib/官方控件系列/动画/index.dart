@@ -12,3 +12,5 @@ export './神奇的Hero动画/photo_hero.dart';
 export './AnimatedContainer/animated_container_demo.dart';
 
 export './AnimatedCrossFade/animated_cross_fade_demo.dart';
+
+export './Ripple路由转换动画/screens.dart';
