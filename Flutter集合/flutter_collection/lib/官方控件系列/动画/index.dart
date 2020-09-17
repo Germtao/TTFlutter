@@ -8,3 +8,5 @@ export './基本动画样例/动画隐藏显示小部件/hidden_widget_animation
 
 export './神奇的Hero动画/basic_structure_hero.dart';
 export './神奇的Hero动画/photo_hero.dart';
+
+export './AnimatedContainer/animated_container_demo.dart';

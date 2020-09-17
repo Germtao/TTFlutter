@@ -297,6 +297,7 @@ class _EntryItemState extends State<EntryItem> {
         _pageWidget = OverlayDemo3();
         break;
       case '在不同页面传递事件EventBus':
+        behaviorBus.fire(CountEvent(0));
         _pageWidget = FirstScreen();
         break;
       case '自定义 Navigator':
@@ -326,6 +327,9 @@ class _EntryItemState extends State<EntryItem> {
       case '神奇的Hero动画':
         // _pageWidget = SourceHeroPage();
         _pageWidget = PhotoSourceHeroPage();
+        break;
+      case 'AnimatedContainer':
+        _pageWidget = AnimatedContainerDemo();
         break;
       default:
         return;
@@ -453,7 +457,7 @@ class CollectionPage extends StatelessWidget {
         Entry('价值转换动画'),
         Entry('动画隐藏显示小部件'),
         Entry('神奇的Hero动画'),
-        Entry('可拖动组件draggable'),
+        Entry('AnimatedContainer'),
         Entry('去掉点击事件的水波纹效果'),
         Entry('在当前页面上覆盖新的组件overlay'),
         Entry('在不同页面传递事件EventBus'),
