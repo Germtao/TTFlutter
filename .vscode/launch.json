@@ -1,0 +1,104 @@
+{
+  // 使用 IntelliSense 了解相关属性。 
+  // 悬停以查看现有属性的描述。
+  // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "flutter_pro_cli_test",
+      "cwd": "flutter_pro_cli_test",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "flutter_widgets",
+      "cwd": "flutter_widgets",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "github_client_app",
+      "cwd": "github_client_app",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "ContainerWidget",
+      "cwd": "Flutter基础/ContainerWidget",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "Image",
+      "cwd": "Flutter基础/Image",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "TextWidget",
+      "cwd": "Flutter基础/TextWidget",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "flutter_cardwidget",
+      "cwd": "Flutter基础/flutter_cardwidget",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "flutter_columnwidget",
+      "cwd": "Flutter基础/flutter_columnwidget",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "flutter_gridview",
+      "cwd": "Flutter基础/flutter_gridview",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "flutter_listview",
+      "cwd": "Flutter基础/flutter_listview",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "flutter_navigator",
+      "cwd": "Flutter基础/flutter_navigator",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "flutter_navigator1",
+      "cwd": "Flutter基础/flutter_navigator1",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "flutter_rowwidget",
+      "cwd": "Flutter基础/flutter_rowwidget",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "flutter_stackwidget",
+      "cwd": "Flutter基础/flutter_stackwidget",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "helloworld",
+      "cwd": "Flutter基础/helloworld",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "flutter_collection",
+      "cwd": "Flutter集合/flutter_collection",
+      "request": "launch",
+      "type": "dart"
+    }
+  ]
+}
