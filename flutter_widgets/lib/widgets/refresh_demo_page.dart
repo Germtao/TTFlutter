@@ -21,6 +21,12 @@ class _RefreshDemoPageState extends State<RefreshDemoPage> {
   final GlobalKey<RefreshIndicatorState> refreshKey = GlobalKey();
 
   @override
+  void dispose() {
+    disposed = true;
+    super.dispose();
+  }
+
+  @override
   void initState() {
     super.initState();
 
