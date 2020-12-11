@@ -84,4 +84,7 @@ Map<String, WidgetBuilder> routes = {
   "简单上拉、下拉刷新": (context) {
     return RefreshDemoPage();
   },
+  "简单上拉、下拉刷新2": (context) {
+    return RefreshDemoPage2();
+  }
 };
