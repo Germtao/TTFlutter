@@ -80,5 +80,8 @@ Map<String, WidgetBuilder> routes = {
   },
   '计算另类文本行间距展示': (context) {
     return TextLineHeightDemoPage();
-  }
+  },
+  "简单上拉、下拉刷新": (context) {
+    return RefreshDemoPage();
+  },
 };
