@@ -1,3 +1,5 @@
+import 'dart:js';
+
 import 'package:flutter/material.dart';
 import './widgets/index.dart';
 
@@ -64,6 +66,6 @@ Map<String, WidgetBuilder> routes = {
     return ControllerDemoPage();
   },
   '实现控件圆角不同组合': (context) {
-    return ClipDemoPage();
+    return ClipDemoPage()l
   }
 };

@@ -1,3 +1,5 @@
+import 'dart:js';
+
 import 'package:flutter/material.dart';
 import './widgets/index.dart';
 
@@ -40,7 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         body: Container(
           child: ListView.builder(
-            itemCount: routes.length,
+            itemCount: routeLists.length,
             itemBuilder: (BuildContext context, int index) {
               return InkWell(
                 onTap: () => Navigator.of(context).pushNamed(routeLists[index]),
