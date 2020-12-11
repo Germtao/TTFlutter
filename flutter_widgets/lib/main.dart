@@ -77,5 +77,8 @@ Map<String, WidgetBuilder> routes = {
   },
   'Transform 效果展示': (context) {
     return TransformDemoPage();
+  },
+  '计算另类文本行间距展示': (context) {
+    return TextLineHeightDemoPage();
   }
 };
