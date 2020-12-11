@@ -68,5 +68,8 @@ Map<String, WidgetBuilder> routes = {
   },
   '列表滑动监听': (context) {
     return ScrollListenerDemoPage();
+  },
+  '滑动到指定位置': (context) {
+    return ScrollToIndexDemoPage();
   }
 };
