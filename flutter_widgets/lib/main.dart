@@ -65,5 +65,8 @@ Map<String, WidgetBuilder> routes = {
   },
   '实现控件圆角不同组合': (context) {
     return ClipDemoPage();
+  },
+  '列表滑动监听': (context) {
+    return ScrollListenerDemoPage();
   }
 };
