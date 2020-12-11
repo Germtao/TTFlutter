@@ -71,5 +71,8 @@ Map<String, WidgetBuilder> routes = {
   },
   '滑动到指定位置': (context) {
     return ScrollToIndexDemoPage();
+  },
+  '滑动到指定位置2': (context) {
+    return ScrollToIndexDemoPage2();
   }
 };
