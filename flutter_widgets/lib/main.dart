@@ -86,5 +86,8 @@ Map<String, WidgetBuilder> routes = {
   },
   "简单上拉、下拉刷新2": (context) {
     return RefreshDemoPage2();
+  },
+  "通过绝对定位布局": (context) {
+    return PositionedDemoPage();
   }
 };
