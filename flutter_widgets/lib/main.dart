@@ -101,5 +101,8 @@ Map<String, WidgetBuilder> routes = {
   },
   "状态栏颜色修改（仅 App）": (context) {
     return StatusBarDemoPage();
+  },
+  "键盘弹出与监听（仅 App）": (context) {
+    return KeyboardDemoPage();
   }
 };

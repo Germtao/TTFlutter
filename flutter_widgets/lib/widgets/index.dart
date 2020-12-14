@@ -13,3 +13,4 @@ export './bubble/bubble_demo_page.dart';
 export './tag_demo_page.dart';
 export './honor_demo_page.dart';
 export './statusbar_demo_page.dart';
+export './keyboard_demo_page.dart';
