@@ -10,3 +10,4 @@ export './refresh_demo_page2.dart';
 export './positioned_demo_page.dart';
 
 export './bubble/bubble_demo_page.dart';
+export './tag_demo_page.dart';

@@ -92,5 +92,8 @@ Map<String, WidgetBuilder> routes = {
   },
   "气泡提示框": (context) {
     return BubbleDemoPage();
+  },
+  "Tag 效果展示": (context) {
+    return TagDemoPage();
   }
 };
