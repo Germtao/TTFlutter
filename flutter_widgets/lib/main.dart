@@ -89,5 +89,8 @@ Map<String, WidgetBuilder> routes = {
   },
   "通过绝对定位布局": (context) {
     return PositionedDemoPage();
+  },
+  "气泡提示框": (context) {
+    return BubbleDemoPage();
   }
 };

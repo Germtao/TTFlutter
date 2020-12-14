@@ -8,3 +8,5 @@ export './text_line_height_demo_page.dart';
 export './refresh_demo_page.dart';
 export './refresh_demo_page2.dart';
 export './positioned_demo_page.dart';
+
+export './bubble/bubble_demo_page.dart';
