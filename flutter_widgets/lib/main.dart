@@ -107,5 +107,8 @@ Map<String, WidgetBuilder> routes = {
   },
   "控件动画组合展示（旋转加放大圆）": (context) {
     return AnimDemoPage();
+  },
+  "控件展开动画效果": (context) {
+    return AnimDemoPage2();
   }
 };
