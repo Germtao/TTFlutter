@@ -95,5 +95,8 @@ Map<String, WidgetBuilder> routes = {
   },
   "Tag 效果展示": (context) {
     return TagDemoPage();
+  },
+  "共享元素跳转效果": (context) {
+    return HonorDemoPage();
   }
 };
