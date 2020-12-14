@@ -98,5 +98,8 @@ Map<String, WidgetBuilder> routes = {
   },
   "共享元素跳转效果": (context) {
     return HonorDemoPage();
+  },
+  "状态栏颜色修改（仅 App）": (context) {
+    return StatusBarDemoPage();
   }
 };
