@@ -104,5 +104,8 @@ Map<String, WidgetBuilder> routes = {
   },
   "键盘弹出与监听（仅 App）": (context) {
     return KeyboardDemoPage();
+  },
+  "控件动画组合展示（旋转加放大圆）": (context) {
+    return AnimDemoPage();
   }
 };
