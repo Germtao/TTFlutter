@@ -116,5 +116,8 @@ Map<String, WidgetBuilder> routes = {
   },
   "全局设置字体大小": (context) {
     return TextSizeDemoPage();
+  },
+  "旧版实现富文本": (context) {
+    return RichTextDemoPage();
   }
 };
