@@ -113,5 +113,8 @@ Map<String, WidgetBuilder> routes = {
   },
   "全局悬浮按键效果": (context) {
     return FloatingTouchDemoPage();
+  },
+  "全局设置字体大小": (context) {
+    return TextSizeDemoPage();
   }
 };
