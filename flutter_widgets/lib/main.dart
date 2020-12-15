@@ -125,5 +125,8 @@ Map<String, WidgetBuilder> routes = {
   },
   "第三方 viewpager 封装实现": (context) {
     return ViewPagerDemoPage();
+  },
+  "列表滑动过程控件停靠效果": (context) {
+    return SliverListDemoPage();
   }
 };
