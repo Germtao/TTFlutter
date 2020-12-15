@@ -122,5 +122,8 @@ Map<String, WidgetBuilder> routes = {
   },
   "官方实现富文本": (context) {
     return RichTextDemoPage2();
+  },
+  "第三方 viewpager 封装实现": (context) {
+    return ViewPagerDemoPage();
   }
 };
