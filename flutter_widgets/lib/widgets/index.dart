@@ -17,3 +17,5 @@ export './keyboard_demo_page.dart';
 
 export './animation/anim_demo_page.dart';
 export './animation/anim_demo_page2.dart';
+
+export './floating_touch_demo_page.dart';

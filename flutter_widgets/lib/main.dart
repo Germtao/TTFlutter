@@ -110,5 +110,8 @@ Map<String, WidgetBuilder> routes = {
   },
   "控件展开动画效果": (context) {
     return AnimDemoPage2();
+  },
+  "全局悬浮按键效果": (context) {
+    return FloatingTouchDemoPage();
   }
 };
