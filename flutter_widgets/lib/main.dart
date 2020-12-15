@@ -119,5 +119,8 @@ Map<String, WidgetBuilder> routes = {
   },
   "旧版实现富文本": (context) {
     return RichTextDemoPage();
+  },
+  "官方实现富文本": (context) {
+    return RichTextDemoPage2();
   }
 };

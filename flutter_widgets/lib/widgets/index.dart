@@ -17,6 +17,7 @@ export './keyboard_demo_page.dart';
 export './text/text_line_height_demo_page.dart';
 export './text/text_size_demo_page.dart';
 export './text/rich_text_demo_page.dart';
+export './text/rich_text_demo_page2.dart';
 
 export './animation/anim_demo_page.dart';
 export './animation/anim_demo_page2.dart';
