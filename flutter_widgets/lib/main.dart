@@ -128,5 +128,8 @@ Map<String, WidgetBuilder> routes = {
   },
   "列表滑动过程控件停靠效果": (context) {
     return SliverListDemoPage();
+  },
+  "列表滑动停靠（Stick）": (context) {
+    return StickDemoPage();
   }
 };

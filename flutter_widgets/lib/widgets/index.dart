@@ -27,3 +27,4 @@ export './floating_touch_demo_page.dart';
 export './viewpager/view_pager_demo_page.dart';
 
 export './listview/sliver_list_demo_page.dart';
+export './listview/stick/stick_demo_page.dart';
