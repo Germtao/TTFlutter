@@ -140,5 +140,8 @@ Map<String, WidgetBuilder> routes = {
   },
   "验证码输入框": (context) {
     return VerificationCodeInputDemoPage();
+  },
+  "自定义布局展示效果": (context) {
+    return CustomMultiRenderDemoPage();
   }
 };

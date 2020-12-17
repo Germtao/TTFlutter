@@ -32,3 +32,5 @@ export './listview/stick/stick_demo_page2.dart';
 export './listview/sliver_stick_demo_page.dart';
 
 export './textfield/input/verification_code_input_demo_page.dart';
+
+export './custom_layout/custom_multi_render_demo_page.dart';
