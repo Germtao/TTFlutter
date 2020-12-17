@@ -12,7 +12,9 @@ export './bubble/bubble_demo_page.dart';
 export './tag_demo_page.dart';
 export './honor_demo_page.dart';
 export './statusbar_demo_page.dart';
-export './keyboard_demo_page.dart';
+
+export './keyboard/keyboard_demo_page.dart';
+export './keyboard/keyboard_input_bottom_demo_page.dart';
 
 export './text/text_line_height_demo_page.dart';
 export './text/text_size_demo_page.dart';
