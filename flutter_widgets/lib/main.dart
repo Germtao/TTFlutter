@@ -143,5 +143,8 @@ Map<String, WidgetBuilder> routes = {
   },
   "自定义布局展示效果": (context) {
     return CustomMultiRenderDemoPage();
+  },
+  "自定义布局实现云词图展示": (context) {
+    return CloudDemoPage();
   }
 };
