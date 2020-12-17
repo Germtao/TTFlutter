@@ -137,5 +137,8 @@ Map<String, WidgetBuilder> routes = {
   },
   "列表滑动停靠效果2 （Stick）": (context) {
     return SliverStickListDemoPage();
+  },
+  "验证码输入框": (context) {
+    return VerificationCodeInputDemoPage();
   }
 };
