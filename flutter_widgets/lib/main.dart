@@ -131,5 +131,8 @@ Map<String, WidgetBuilder> routes = {
   },
   "列表滑动停靠（Stick）": (context) {
     return StickDemoPage();
+  },
+  "列表滑动停靠 （Stick）+ 展开收回": (context) {
+    return StickExpandDemoPage();
   }
 };
