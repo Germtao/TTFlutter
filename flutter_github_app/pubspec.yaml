@@ -1,5 +1,5 @@
 name: flutter_github_app
-description: A new Flutter project.
+description: Github Application.
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
@@ -28,8 +28,20 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.3
+  # 网络框架
+  dio: ^3.0.10
+  # 定义 json_serializable 库用到的一些注解
+  json_annotation: 3.1.0
+  # redux
+  flutter_redux: 0.6.0
+  rxdart: 0.24.1
+
 
 dev_dependencies:
+  # 代码生成器
+  build_runner: 1.10.2
+  # 根据注解生成 Json 序列化和反序列化代码
+  json_serializable: 3.5.0
   flutter_test:
     sdk: flutter
 
