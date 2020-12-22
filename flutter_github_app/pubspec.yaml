@@ -35,6 +35,8 @@ dependencies:
   # redux
   flutter_redux: 0.6.0
   rxdart: 0.24.1
+  # 本地数据缓存
+  shared_preferences: 0.5.12
 
 
 dev_dependencies:
