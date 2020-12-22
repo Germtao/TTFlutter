@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../model/user.dart';
 
 /// 全局 Redux store 的对象，保存 State 数据
-class State {
+class TTState {
   /// 用户信息
   User userInfo;
 
@@ -18,7 +18,7 @@ class State {
   /// 是否登录
   bool login;
 
-  State({
+  TTState({
     this.userInfo,
     this.themeData,
     this.locale,
