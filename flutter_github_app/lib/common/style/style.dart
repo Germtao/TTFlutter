@@ -44,3 +44,218 @@ class TTColors {
   static const Color mainTextColor = primaryDarkValue;
   static const Color textColorWhite = white;
 }
+
+/// 文本样式
+class TTConstant {
+  static const String app_default_share_url = 'https://github.com/Germtao/flutter_github_app';
+
+  static const lagerTextSize = 30.0;
+  static const bigTextSize = 23.0;
+  static const normalTextSize = 18.0;
+  static const middleTextWhiteSize = 16.0;
+  static const smallTextSize = 14.0;
+  static const minTextSize = 12.0;
+
+  static const minText = TextStyle(
+    color: TTColors.subLightTextColor,
+    fontSize: minTextSize,
+  );
+
+  static const smallTextWhite = TextStyle(
+    color: TTColors.textColorWhite,
+    fontSize: smallTextSize,
+  );
+
+  static const smallText = TextStyle(
+    color: TTColors.mainTextColor,
+    fontSize: smallTextSize,
+  );
+
+  static const smallTextBold = TextStyle(
+    color: TTColors.mainTextColor,
+    fontSize: smallTextSize,
+    fontWeight: FontWeight.bold,
+  );
+
+  static const smallSubLightText = TextStyle(
+    color: TTColors.subLightTextColor,
+    fontSize: smallTextSize,
+  );
+
+  static const smallActionLightText = TextStyle(
+    color: TTColors.actionBlue,
+    fontSize: smallTextSize,
+  );
+
+  static const smallMiLightText = TextStyle(
+    color: TTColors.miWhite,
+    fontSize: smallTextSize,
+  );
+
+  static const smallSubText = TextStyle(
+    color: TTColors.subTextColor,
+    fontSize: smallTextSize,
+  );
+
+  static const middleText = TextStyle(
+    color: TTColors.mainTextColor,
+    fontSize: middleTextWhiteSize,
+  );
+
+  static const middleTextWhite = TextStyle(
+    color: TTColors.textColorWhite,
+    fontSize: middleTextWhiteSize,
+  );
+
+  static const middleSubText = TextStyle(
+    color: TTColors.subTextColor,
+    fontSize: middleTextWhiteSize,
+  );
+
+  static const middleSubLightText = TextStyle(
+    color: TTColors.subLightTextColor,
+    fontSize: middleTextWhiteSize,
+  );
+
+  static const middleTextBold = TextStyle(
+    color: TTColors.mainTextColor,
+    fontSize: middleTextWhiteSize,
+    fontWeight: FontWeight.bold,
+  );
+
+  static const middleTextWhiteBold = TextStyle(
+    color: TTColors.textColorWhite,
+    fontSize: middleTextWhiteSize,
+    fontWeight: FontWeight.bold,
+  );
+
+  static const middleSubTextBold = TextStyle(
+    color: TTColors.subTextColor,
+    fontSize: middleTextWhiteSize,
+    fontWeight: FontWeight.bold,
+  );
+
+  static const normalTextBold = TextStyle(
+    color: TTColors.mainTextColor,
+    fontSize: normalTextSize,
+    fontWeight: FontWeight.bold,
+  );
+
+  static const normalSubText = TextStyle(
+    color: TTColors.subTextColor,
+    fontSize: normalTextSize,
+  );
+
+  static const normalTextWhite = TextStyle(
+    color: TTColors.textColorWhite,
+    fontSize: normalTextSize,
+  );
+
+  static const normalTextMitWhiteBold = TextStyle(
+    color: TTColors.miWhite,
+    fontSize: normalTextSize,
+    fontWeight: FontWeight.bold,
+  );
+
+  static const normalTextActionWhiteBold = TextStyle(
+    color: TTColors.actionBlue,
+    fontSize: normalTextSize,
+    fontWeight: FontWeight.bold,
+  );
+
+  static const normalTextLight = TextStyle(
+    color: TTColors.primaryLightValue,
+    fontSize: normalTextSize,
+  );
+
+  static const largeText = TextStyle(
+    color: TTColors.mainTextColor,
+    fontSize: bigTextSize,
+  );
+
+  static const largeTextBold = TextStyle(
+    color: TTColors.mainTextColor,
+    fontSize: bigTextSize,
+    fontWeight: FontWeight.bold,
+  );
+
+  static const largeTextWhite = TextStyle(
+    color: TTColors.textColorWhite,
+    fontSize: bigTextSize,
+  );
+
+  static const largeTextWhiteBold = TextStyle(
+    color: TTColors.textColorWhite,
+    fontSize: bigTextSize,
+    fontWeight: FontWeight.bold,
+  );
+
+  static const largeLargeTextWhite = TextStyle(
+    color: TTColors.textColorWhite,
+    fontSize: lagerTextSize,
+    fontWeight: FontWeight.bold,
+  );
+
+  static const largeLargeText = TextStyle(
+    color: TTColors.primaryValue,
+    fontSize: lagerTextSize,
+    fontWeight: FontWeight.bold,
+  );
+}
+
+class TTIcons {
+  static const String FONT_FAMILY = 'wxcIconFont';
+
+  static const String DEFAULT_USER_ICON = 'static/images/logo.png';
+  static const String DEFAULT_IMAGE = 'static/images/default_img.png';
+  static const String DEFAULT_REMOTE_PIC =
+      'https://raw.githubusercontent.com/Germtao/flutter_github_app/master/static/images/logo.png';
+
+  static const IconData HOME = const IconData(0xe624, fontFamily: TTIcons.FONT_FAMILY);
+  static const IconData MORE = const IconData(0xe674, fontFamily: TTIcons.FONT_FAMILY);
+  static const IconData SEARCH = const IconData(0xe61c, fontFamily: TTIcons.FONT_FAMILY);
+
+  static const IconData MAIN_DT = const IconData(0xe684, fontFamily: TTIcons.FONT_FAMILY);
+  static const IconData MAIN_QS = const IconData(0xe818, fontFamily: TTIcons.FONT_FAMILY);
+  static const IconData MAIN_MY = const IconData(0xe6d0, fontFamily: TTIcons.FONT_FAMILY);
+  static const IconData MAIN_SEARCH = const IconData(0xe61c, fontFamily: TTIcons.FONT_FAMILY);
+
+  static const IconData LOGIN_USER = const IconData(0xe666, fontFamily: TTIcons.FONT_FAMILY);
+  static const IconData LOGIN_PASSWORD = const IconData(0xe60e, fontFamily: TTIcons.FONT_FAMILY);
+
+  static const IconData REPOS_ITEM_USER = const IconData(0xe63e, fontFamily: TTIcons.FONT_FAMILY);
+  static const IconData REPOS_ITEM_STAR = const IconData(0xe643, fontFamily: TTIcons.FONT_FAMILY);
+  static const IconData REPOS_ITEM_FORK = const IconData(0xe67e, fontFamily: TTIcons.FONT_FAMILY);
+  static const IconData REPOS_ITEM_ISSUE = const IconData(0xe661, fontFamily: TTIcons.FONT_FAMILY);
+
+  static const IconData REPOS_ITEM_STARED = const IconData(0xe698, fontFamily: TTIcons.FONT_FAMILY);
+  static const IconData REPOS_ITEM_WATCH = const IconData(0xe681, fontFamily: TTIcons.FONT_FAMILY);
+  static const IconData REPOS_ITEM_WATCHED = const IconData(0xe629, fontFamily: TTIcons.FONT_FAMILY);
+  static const IconData REPOS_ITEM_DIR = Icons.folder;
+  static const IconData REPOS_ITEM_FILE = const IconData(0xea77, fontFamily: TTIcons.FONT_FAMILY);
+  static const IconData REPOS_ITEM_NEXT = const IconData(0xe610, fontFamily: TTIcons.FONT_FAMILY);
+
+  static const IconData USER_ITEM_COMPANY = const IconData(0xe63e, fontFamily: TTIcons.FONT_FAMILY);
+  static const IconData USER_ITEM_LOCATION = const IconData(0xe7e6, fontFamily: TTIcons.FONT_FAMILY);
+  static const IconData USER_ITEM_LINK = const IconData(0xe670, fontFamily: TTIcons.FONT_FAMILY);
+  static const IconData USER_NOTIFY = const IconData(0xe600, fontFamily: TTIcons.FONT_FAMILY);
+
+  static const IconData ISSUE_ITEM_ISSUE = const IconData(0xe661, fontFamily: TTIcons.FONT_FAMILY);
+  static const IconData ISSUE_ITEM_COMMENT = const IconData(0xe6ba, fontFamily: TTIcons.FONT_FAMILY);
+  static const IconData ISSUE_ITEM_ADD = const IconData(0xe662, fontFamily: TTIcons.FONT_FAMILY);
+
+  static const IconData ISSUE_EDIT_H1 = Icons.filter_1;
+  static const IconData ISSUE_EDIT_H2 = Icons.filter_2;
+  static const IconData ISSUE_EDIT_H3 = Icons.filter_3;
+  static const IconData ISSUE_EDIT_BOLD = Icons.format_bold;
+  static const IconData ISSUE_EDIT_ITALIC = Icons.format_italic;
+  static const IconData ISSUE_EDIT_QUOTE = Icons.format_quote;
+  static const IconData ISSUE_EDIT_CODE = Icons.format_shapes;
+  static const IconData ISSUE_EDIT_LINK = Icons.insert_link;
+
+  static const IconData NOTIFY_ALL_READ = const IconData(0xe62f, fontFamily: TTIcons.FONT_FAMILY);
+
+  static const IconData PUSH_ITEM_EDIT = Icons.mode_edit;
+  static const IconData PUSH_ITEM_ADD = Icons.add_box;
+  static const IconData PUSH_ITEM_MIN = Icons.indeterminate_check_box;
+}
