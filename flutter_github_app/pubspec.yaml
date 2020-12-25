@@ -53,6 +53,8 @@ dependencies:
   flutter_spinkit: ^4.1.2+1
   event_bus: ^1.1.1
 
+  graphql: 3.1.0
+
 
 dev_dependencies:
   # 代码生成器
