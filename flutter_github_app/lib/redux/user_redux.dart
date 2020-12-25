@@ -1,5 +1,4 @@
 import 'package:redux/redux.dart';
-import 'package:rxdart/rxdart.dart';
 import '../model/user.dart';
 import 'state.dart';
 
