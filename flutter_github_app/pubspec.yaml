@@ -37,6 +37,20 @@ dependencies:
   rxdart: 0.24.1
   # 本地数据缓存
   shared_preferences: 0.5.12
+  # 本地路径
+  path_provider: ^1.6.18
+  # 权限
+  permission_handler: 5.0.1+1
+  # 缓存管理
+  flutter_cache_manager: 1.4.2
+  # 设备信息
+  device_info: 0.4.2+8
+  # toast
+  fluttertoast: ^7.1.1
+  # 启动外部浏览器
+  url_launcher: 5.7.2
+  # 加载框样式
+  flutter_spinkit: ^4.1.2+1
 
 
 dev_dependencies:
