@@ -34,6 +34,8 @@ dependencies:
   connectivity: 0.4.9+3
   # 定义 json_serializable 库用到的一些注解
   json_annotation: 3.1.0
+  # 用于不可变对象模型、用于序列化
+  built_value: 7.1.0
   # redux
   flutter_redux: 0.6.0
   rxdart: 0.24.1
@@ -59,6 +61,7 @@ dependencies:
 
 
 dev_dependencies:
+  built_value_generator: 7.1.0
   # 代码生成器
   build_runner: 1.10.2
   # 根据注解生成 Json 序列化和反序列化代码
