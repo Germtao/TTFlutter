@@ -1,4 +1,4 @@
-import '../sql_provider.dart';
+import '../../sql_provider.dart';
 
 /// 组织成员数据库表
 class OrgMemberDBProvider extends BaseDBProvider {

@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_github_app/common/utils/code_utils.dart';
 import 'package:sqflite/sqflite.dart';
 
-import '../sql_provider.dart';
+import '../../sql_provider.dart';
 import 'package:flutter_github_app/model/user_org.dart';
 
 /// 用户组织数据库表

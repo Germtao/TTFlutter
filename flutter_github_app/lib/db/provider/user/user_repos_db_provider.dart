@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:sqflite/sqflite.dart';
 
-import '../sql_provider.dart';
+import '../../sql_provider.dart';
 import 'package:flutter_github_app/model/repository.dart';
 import 'package:flutter_github_app/common/utils/code_utils.dart';
 

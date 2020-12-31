@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:sqflite/sqflite.dart';
 
 import 'package:flutter_github_app/model/repository.dart';
-import '../sql_provider.dart';
+import '../../sql_provider.dart';
 import 'package:flutter_github_app/common/utils/code_utils.dart';
 
 class UserStaredDBProvider extends BaseDBProvider {
@@ -22,14 +22,16 @@ class UserStaredDBProvider extends BaseDBProvider {
 
   @override
   tableName() {
-    // TODO: implement tableName
-    throw UnimplementedError();
+    return name;
   }
 
   @override
   tableSqlString() {
-    // TODO: implement tableSqlString
-    throw UnimplementedError();
+    return tableBaseString(name, columnId) +
+        '''
+        $columnUserName text not null,
+        $columnData text not null)
+      ''';
   }
 
   Map<String, dynamic> toMap(String fullName, String data) {
