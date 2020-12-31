@@ -1,15 +1,15 @@
-import 'dart:js';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'package:flutter_github_app/common/router/animation_route.dart';
 
 import 'package:flutter_github_app/page/home/home_page.dart';
+import 'package:flutter_github_app/page/issue/issue_detail_page.dart';
 import 'package:flutter_github_app/page/photo/photo_view_page.dart';
 import 'package:flutter_github_app/page/user/person_detail_page.dart';
 import 'package:flutter_github_app/page/repos/repos_detail_page.dart';
 import 'package:flutter_github_app/page/webview/tt_webview.dart';
+import 'package:flutter_github_app/page/push/push_detail_page.dart';
 
 class NavigatorUtils {
   /// 替换
@@ -46,6 +46,39 @@ class NavigatorUtils {
           RepositoryDetailPage(username, reposname),
           context,
         ),
+      ),
+    );
+  }
+
+  /// 跳转提交详情
+  static Future pushPushDetailPage(
+      BuildContext context, String userName, String reposName, String sha, bool needHomeIcon) {
+    return NavigatorRouter(
+      context,
+      PushDetailPage(
+        sha,
+        userName,
+        reposName,
+        needHomeIcon: needHomeIcon,
+      ),
+    );
+  }
+
+  /// 跳转 Issue 详情
+  static Future pushIssueDetailPage(
+    BuildContext context,
+    String userName,
+    String reposName,
+    String issueNum, {
+    bool needRightLocalIcon = false,
+  }) {
+    return NavigatorRouter(
+      context,
+      IssueDetailPage(
+        userName,
+        reposName,
+        issueNum,
+        needHomeIcon: needRightLocalIcon,
       ),
     );
   }
