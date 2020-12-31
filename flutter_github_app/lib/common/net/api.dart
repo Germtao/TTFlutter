@@ -82,6 +82,6 @@ class HttpManager {
   getAuthorization() async {
     return _tokenInterceptors.getAuthorization();
   }
-
-  final HttpManager httpManager = HttpManager();
 }
+
+final HttpManager httpManager = HttpManager();
