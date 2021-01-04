@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter_github_app/db/sql_provider.dart';
 import 'package:sqflite/sqflite.dart';
 
-/// 仓库 readme 表
+/// 仓库 readme 文件表
 class RepositoryDetailReadmeDBProvider extends BaseDBProvider {
   final String name = 'RepositoryDetailReadme';
 
