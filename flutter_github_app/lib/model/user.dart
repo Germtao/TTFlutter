@@ -4,43 +4,43 @@ part 'user.g.dart';
 
 @JsonSerializable()
 class User {
-  final String login;
-  final int id;
-  final String node_id;
-  final String avatar_url;
-  final String gravatar_id;
-  final String url;
-  final String html_url;
-  final String followers_url;
-  final String following_url;
-  final String gists_url;
-  final String starred_url;
-  final String subscriptions_url;
-  final String organizations_url;
-  final String repos_url;
-  final String events_url;
-  final String received_events_url;
-  final String type;
-  final bool site_admin;
-  final String name;
-  final String company;
-  final String blog;
-  final String location;
-  final String email;
-  final String starred;
-  final String bio;
-  final int public_repos;
-  final int public_gists;
-  final int followers;
-  final int following;
-  final DateTime created_at;
-  final DateTime updated_at;
-  final int private_gists;
-  final int total_private_repos;
-  final int owned_private_repos;
-  final int disk_usage;
-  final int collaborators;
-  final bool two_factor_authentication;
+  String login;
+  int id;
+  String node_id;
+  String avatar_url;
+  String gravatar_id;
+  String url;
+  String html_url;
+  String followers_url;
+  String following_url;
+  String gists_url;
+  String starred_url;
+  String subscriptions_url;
+  String organizations_url;
+  String repos_url;
+  String events_url;
+  String received_events_url;
+  String type;
+  bool site_admin;
+  String name;
+  String company;
+  String blog;
+  String location;
+  String email;
+  String starred;
+  String bio;
+  int public_repos;
+  int public_gists;
+  int followers;
+  int following;
+  DateTime created_at;
+  DateTime updated_at;
+  int private_gists;
+  int total_private_repos;
+  int owned_private_repos;
+  int disk_usage;
+  int collaborators;
+  bool two_factor_authentication;
 
   User({
     this.login,
@@ -89,5 +89,5 @@ class User {
   Map<String, dynamic> toJson() => _$UserToJson(this);
 
   // 命名构造函数
-  // User.empty();
+  User.empty();
 }
