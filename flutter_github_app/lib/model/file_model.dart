@@ -29,4 +29,8 @@ class FileModel {
     this.downloadUrl,
     this.type,
   );
+
+  factory FileModel.fromJson(Map<String, dynamic> json) => _$FileModelFromJson(json);
+
+  Map<String, dynamic> toJson() => _$FileModelToJson(this);
 }
