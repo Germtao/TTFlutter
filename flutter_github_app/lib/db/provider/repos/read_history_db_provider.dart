@@ -19,13 +19,17 @@ class ReadHistoryDBProvider extends BaseDBProvider {
 
   int id;
   String fullName;
-  String readDate;
+  int readDate;
   String data;
 
   ReadHistoryDBProvider();
 
-  Map<String, dynamic> toMap(String fullName, String readDate, String data) {
-    Map<String, dynamic> map = {columnFullName: fullName, columnReadDate: readDate, columnData: data};
+  Map<String, dynamic> toMap(String fullName, DateTime readDate, String data) {
+    Map<String, dynamic> map = {
+      columnFullName: fullName,
+      columnReadDate: readDate.millisecondsSinceEpoch,
+      columnData: data,
+    };
     if (id != null) {
       map[columnId] = id;
     }
@@ -75,13 +79,13 @@ class ReadHistoryDBProvider extends BaseDBProvider {
     return maps.length > 0 ? ReadHistoryDBProvider.fromMap(maps.first) : null;
   }
 
-  Future insert(String fullName, String readDate, String dataMapString) async {
+  Future insert(String fullName, DateTime dateTime, String dataMapString) async {
     Database db = await getDatabase();
     var provider = await _getProviderInsert(db, fullName);
     if (provider != null) {
       await db.delete(name, where: '$columnFullName = ?', whereArgs: [fullName]);
     }
-    return await db.insert(name, toMap(fullName, readDate, dataMapString));
+    return await db.insert(name, toMap(fullName, dateTime, dataMapString));
   }
 
   /// 获取本地已读历史列表数据
