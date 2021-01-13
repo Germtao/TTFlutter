@@ -1,14 +1,22 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter_github_app/common/net/transformer.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:package_info/package_info.dart';
+import 'package:pub_semver/pub_semver.dart';
 
 import '../../common/net/graphql/client.dart';
 import '../../common/net/address.dart';
 import '../../common/net/api.dart';
 import '../../common/net/trending/github.trending.dart';
+import '../../common/net/transformer.dart';
+import '../../common/dao/dao_result.dart';
+import '../../common/config/config.dart';
+import '../../common/utils/common_utils.dart';
+import '../../common/localization/default_localizations.dart';
+
 import '../../db/provider/repos/trend_repository_db_provider.dart';
 import '../../db/provider/repos/repository_detail_db_provider.dart';
 import '../../db/provider/repos/read_history_db_provider.dart';
@@ -17,11 +25,10 @@ import '../../db/provider/repos/repository_commits_db_provider.dart';
 import '../../db/provider/repos/repository_watch_db_provider.dart';
 import '../../db/provider/repos/repository_star_db_provider.dart';
 import '../../db/provider/repos/repository_fork_db_provider.dart';
+import '../../db/provider/repos/repository_detail_readme_db_provider.dart';
+
 import '../../db/provider/user/user_stared_db_provider.dart';
 import '../../db/provider/user/user_repos_db_provider.dart';
-
-import '../../common/dao/dao_result.dart';
-import '../../common/config/config.dart';
 
 import '../../model/trending_repo.dart';
 import '../../model/repository_ql.dart';
@@ -31,6 +38,8 @@ import '../../model/file_model.dart';
 import '../../model/user.dart';
 import '../../model/repository.dart';
 import '../../model/branch.dart';
+import '../../model/push_commit.dart';
+import '../../model/release.dart';
 
 class ReposDao {
   /// 获取趋势数据
@@ -480,6 +489,226 @@ class ReposDao {
     } else {
       return new DataResult(null, false);
     }
+  }
+
+  /// 获取用户前100仓库
+  static getUserRepository100StatusDao(userName) async {
+    String url = Address.userRepos(userName, 'pushed') + '&page=1&per_page=100';
+    var res = await httpManager.netFetch(url, null, null, null);
+    List<Repository> honorList = List();
+    if (res != null && res.result && res.data.length > 0) {
+      int stared = 0;
+      for (int i = 0; i < res.data.length; i++) {
+        Repository repository = Repository.fromJson(res.data[i]);
+        stared += repository.watchersCount;
+        honorList.add(repository);
+      }
+      // 排序
+      honorList.sort((r1, r2) => r2.watchersCount - r1.watchersCount);
+      return new DataResult({'stared': stared, 'list': honorList}, true);
+    }
+    return new DataResult(null, false);
+  }
+
+  /// 仓库详情 readme 数据
+  static getRepositoryDetailReadmeDao(userName, reposName, branch, {needDb = true}) async {
+    String fullName = userName + '/' + reposName;
+    RepositoryDetailReadmeDBProvider provider = RepositoryDetailReadmeDBProvider();
+
+    next() async {
+      String url = Address.readmeFile(fullName, branch);
+      var res = await httpManager.netFetch(
+        url,
+        null,
+        {"Accept": 'application/vnd.github.VERSION.raw'},
+        Options(contentType: "text/plain; charset=utf-8"),
+      );
+      if (res != null && res.result) {
+        if (needDb) {
+          provider.insert(fullName, branch, res.data);
+        }
+        return new DataResult(res.data, true);
+      } else {
+        return new DataResult(null, false);
+      }
+    }
+
+    if (needDb) {
+      String readme = await provider.getRepositoryReadme(fullName, branch);
+      if (readme == null) {
+        return await next();
+      }
+      return new DataResult(readme, true, next: next);
+    }
+    return await next();
+  }
+
+  /// 搜索仓库
+  /// @param q 搜索关键字
+  /// @param sort 分类排序，beat match、most star等
+  /// @param order 倒序或者正序
+  /// @param type 搜索类型，人或者仓库 null \ 'user',
+  /// @param page
+  /// @param pageSize
+  static searchRepositoryDao(q, language, sort, order, type, page, pageSize) async {
+    if (language != null) {
+      q = q + '%2Blanguage%3A$language';
+    }
+    String url = Address.search(q, sort, order, type, page, pageSize);
+    var res = await httpManager.netFetch(url, null, null, null);
+    if (res != null && res.result && res.data['items'] != null) {
+      var dataList = res.data['items'];
+      if (dataList == null || dataList.length == 0) {
+        return new DataResult(null, false);
+      }
+      if (type == null) {
+        List<Repository> list = List();
+        for (int i = 0; i < dataList.length; i++) {
+          list.add(Repository.fromJson(dataList[i]));
+        }
+        return new DataResult(list, true);
+      } else {
+        List<User> list = List();
+        for (int i = 0; i < dataList.length; i++) {
+          list.add(User.fromJson(dataList[i]));
+        }
+        return new DataResult(list, true);
+      }
+    } else {
+      return new DataResult(null, false);
+    }
+  }
+
+  /// 获取仓库单个提交详情
+  static getRepositoryCommitsDetailDao(userName, reposName, sha) async {
+    String url = Address.getReposCommitsDetail(userName, reposName, sha);
+    var res = await httpManager.netFetch(url, null, null, null);
+    if (res != null && res.result) {
+      PushCommit pushCommit = PushCommit.fromJson(res.data);
+      return new DataResult(pushCommit, true);
+    } else {
+      return new DataResult(null, false);
+    }
+  }
+
+  /// 获取仓库的 release 列表
+  static getRepositoryReleaseDao(userName, reposName, page, {release = true}) async {
+    String url = release
+        ? Address.getReposRelease(userName, reposName) + Address.getPageParams('?', page)
+        : Address.getReposTag(userName, reposName) + Address.getPageParams('?', page);
+
+    var res = await httpManager.netFetch(
+      url,
+      null,
+      {'Accept': 'application/vnd.github.html,application/vnd.github.VERSION.raw'},
+      null,
+    );
+    if (res != null && res.result) {
+      List<Release> list = List();
+      var dataList = res.data;
+      if (dataList == null || dataList.length == 0) {
+        return new DataResult(null, false);
+      }
+      for (int i = 0; i < dataList.length; i++) {
+        list.add(Release.fromJson(dataList[i]));
+      }
+      return new DataResult(list, true);
+    } else {
+      return new DataResult(null, false);
+    }
+  }
+
+  /// 版本更新
+  static getNewsVersion(context, showTip) async {
+    // iOS 不检查更新
+    if (Platform.isIOS) {
+      return;
+    }
+
+    var res = await getRepositoryReleaseDao('Germtao', 'flutter_github_app', 1);
+    if (res != null && res.result && res.data.length > 0) {
+      Release release = res.data[0];
+      String versionName = release.name;
+      if (versionName != null) {
+        if (Config.DEBUG) {
+          print('versionName = $versionName');
+        }
+
+        PackageInfo packageInfo = await PackageInfo.fromPlatform();
+        var appVersion = packageInfo.version;
+
+        if (Config.DEBUG) {
+          print('appVersion = $appVersion');
+        }
+
+        Version versionNameNum = Version.parse(versionName);
+        Version currentNum = Version.parse(appVersion);
+        int result = versionNameNum.compareTo(currentNum);
+        if (Config.DEBUG) {
+          print('versionNameNum = ${versionNameNum.toString()} \n currentNum = ${currentNum.toString()}');
+          print('### newsHad = ${result.toString()}');
+        }
+
+        if (result > 0) {
+          CommonUtils.showUpdateDialog(context, '${release.name}: ${release.body}');
+        } else {
+          if (showTip) {
+            Fluttertoast.showToast(msg: TTLocalizations.i18n(context).app_not_new_version);
+          }
+        }
+      }
+    }
+  }
+
+  /// 获取 issue 总数
+  static getRepositoryIssueStatusDao(userName, reposName) async {
+    String url = Address.getReposIssue(userName, reposName, null, null, null) + '&per_page=1';
+    var res = await httpManager.netFetch(url, null, null, null);
+    if (res != null && res.result && res.headers != null) {
+      try {
+        List<String> links = res.headers['link'];
+        if (links != null) {
+          int indexStart = links[0].lastIndexOf('page=') + 5;
+          int indexEnd = links[0].lastIndexOf('>');
+          if (indexStart >= 0 && indexEnd >= 0) {
+            String count = links[0].substring(indexStart, indexEnd);
+            return new DataResult(count, true);
+          }
+        }
+      } catch (e) {
+        print('获取 issue 总数 error: $e');
+      }
+    }
+    return new DataResult(null, false);
+  }
+
+  /// 搜索话题
+  static searchTopicRepositoryDao(searchTopic, {page = 0}) async {
+    String url = Address.searchTopic(searchTopic) + Address.getPageParams('&', page);
+    var res = await httpManager.netFetch(url, null, null, null);
+    if (res != null && res.result) {
+      List<Repository> list = List();
+      var dataList = (res.data != null && res.data['items'] != null) ? res.data['items'] : res.data;
+      if (dataList == null || dataList.length == 0) {
+        return new DataResult(null, false);
+      }
+      for (int i = 0; i < dataList.length; i++) {
+        list.add(Repository.fromJson(dataList[i]));
+      }
+      return new DataResult(list, true);
+    } else {
+      return new DataResult(null, false);
+    }
+  }
+
+  /// 获取阅读历史
+  static getHistoryDao(page) async {
+    ReadHistoryDBProvider provider = ReadHistoryDBProvider();
+    List<RepositoryQL> list = await provider.getReadHistory(page);
+    if (list == null || list.length == 0) {
+      return DataResult(null, false);
+    }
+    return DataResult(list, true);
   }
 
   /// 保存阅读历史
