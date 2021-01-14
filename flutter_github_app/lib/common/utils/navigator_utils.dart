@@ -6,10 +6,13 @@ import 'package:flutter_github_app/common/router/animation_route.dart';
 import 'package:flutter_github_app/page/home/home_page.dart';
 import 'package:flutter_github_app/page/issue/issue_detail_page.dart';
 import 'package:flutter_github_app/page/photo/photo_view_page.dart';
-import 'package:flutter_github_app/page/user/person_detail_page.dart';
 import 'package:flutter_github_app/page/repos/repos_detail_page.dart';
 import 'package:flutter_github_app/page/webview/tt_webview.dart';
 import 'package:flutter_github_app/page/push/push_detail_page.dart';
+
+import '../../page/common/index.dart';
+import '../../page/user/index.dart';
+import '../../page/debug/index.dart';
 
 class NavigatorUtils {
   /// 替换
@@ -35,6 +38,11 @@ class NavigatorUtils {
   /// 个人详情
   static pushPersonDetailPage(BuildContext context, String username) {
     NavigatorRouter(context, PersonDetailPage(username));
+  }
+
+  /// 跳转用户个人信息界面
+  static pushUserProfileInfoPage(BuildContext context) {
+    NavigatorRouter(context, UserProfileInfoPage());
   }
 
   /// 仓库详情
@@ -83,6 +91,32 @@ class NavigatorUtils {
     );
   }
 
+  /// 跳转通用列表界面
+  static pushCommonListPage(
+    BuildContext context,
+    String title,
+    String showType,
+    String dataType, {
+    String userName,
+    String reposName,
+  }) {
+    NavigatorRouter(
+      context,
+      CommonListPage(
+        title,
+        showType,
+        dataType,
+        userName: userName,
+        reposName: reposName,
+      ),
+    );
+  }
+
+  /// 跳转 调试数据界面
+  static pushDebugDataPage(BuildContext context) {
+    NavigatorRouter(context, DebugDataPage());
+  }
+
   /// 全屏 web 页面
   static Future pushTTWebView(BuildContext context, String urlStr, String title) {
     return NavigatorRouter(context, TTWebView(urlStr, title));
@@ -91,10 +125,11 @@ class NavigatorUtils {
   /// 公共打开方式
   static NavigatorRouter(BuildContext context, Widget widget) {
     return Navigator.push(
-        context,
-        CupertinoPageRoute(
-          builder: (context) => pageContainer(widget, context),
-        ));
+      context,
+      CupertinoPageRoute(
+        builder: (context) => pageContainer(widget, context),
+      ),
+    );
   }
 
   /// Page页面的容器，做一次通用自定义

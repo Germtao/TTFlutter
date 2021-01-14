@@ -135,6 +135,11 @@ class TTConstant {
     fontWeight: FontWeight.bold,
   );
 
+  static const normalText = TextStyle(
+    color: TTColors.mainTextColor,
+    fontSize: normalTextSize,
+  );
+
   static const normalTextBold = TextStyle(
     color: TTColors.mainTextColor,
     fontSize: normalTextSize,

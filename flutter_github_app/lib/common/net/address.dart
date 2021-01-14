@@ -1,4 +1,5 @@
 import '../config/config.dart';
+import '../config/ignore_config.dart';
 
 /// 地址数据
 class Address {
