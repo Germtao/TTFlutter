@@ -5,6 +5,7 @@ import 'package:flutter_github_app/common/router/animation_route.dart';
 
 import 'package:flutter_github_app/page/home/home_page.dart';
 import 'package:flutter_github_app/page/issue/issue_detail_page.dart';
+import 'package:flutter_github_app/page/login/login_page.dart';
 import 'package:flutter_github_app/page/photo/photo_view_page.dart';
 import 'package:flutter_github_app/page/repos/repos_detail_page.dart';
 import 'package:flutter_github_app/page/webview/tt_webview.dart';
@@ -28,6 +29,11 @@ class NavigatorUtils {
   /// 主页
   static pushHome(BuildContext context) {
     Navigator.pushReplacementNamed(context, HomePage.className);
+  }
+
+  /// 跳转 登录页
+  static pushLoginPage(BuildContext context) {
+    Navigator.pushReplacementNamed(context, LoginPage.className);
   }
 
   /// 图片预览
@@ -116,6 +122,9 @@ class NavigatorUtils {
   static pushDebugDataPage(BuildContext context) {
     NavigatorRouter(context, DebugDataPage());
   }
+
+  /// 跳转 搜索界面
+  static pushSearchPage(BuildContext context, Offset centerPosition) {}
 
   /// 全屏 web 页面
   static Future pushTTWebView(BuildContext context, String urlStr, String title) {

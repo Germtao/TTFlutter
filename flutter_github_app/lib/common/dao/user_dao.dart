@@ -31,7 +31,7 @@ import '../../model/search_user_ql.dart';
 
 class UserDao {
   /// 授权
-  static oAuth(code, Store store) async {
+  static oAuth(code, store) async {
     httpManager.clearAuthorization();
 
     var res = await httpManager.netFetch(
