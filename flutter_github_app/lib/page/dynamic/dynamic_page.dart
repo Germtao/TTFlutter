@@ -10,6 +10,7 @@ import '../../common/dao/repos_dao.dart';
 import '../../common/utils/event_utils.dart';
 
 import '../../widget/event/event_item.dart';
+import '../../widget/pull/pull_load_widget.dart';
 
 /// 主页动态页面
 class DynamicPage extends StatefulWidget {
@@ -138,6 +139,19 @@ class DynamicPageState extends State<DynamicPage>
   Widget build(BuildContext context) {
     // See AutomaticKeepAliveClientMixin.
     super.build(context);
+    var content = PullLoadWidget(
+      dynamicBloc.pullLoadWidgetControl,
+      (context, index) => _renderEventItem(dynamicBloc.dataList[index]),
+      requestRefresh,
+      requestLoadMore,
+      refreshKey: refreshIndicatorKey,
+      scrollController: scrollController,
+      useIOS: true,
+    );
+    return IgnorePointer(
+      ignoring: _ignoring,
+      child: content,
+    );
   }
 
   @override

@@ -13,6 +13,7 @@ import '../../page/trend/trend_page.dart';
 import '../../page/common/my_page.dart';
 
 import '../../widget/tab_bar/tab_bar_widget.dart';
+import '../../widget/tab_bar/title_bar.dart';
 
 class HomePage extends StatefulWidget {
   static final String className = 'home';
@@ -71,6 +72,22 @@ class _HomePageState extends State<HomePage> {
           TrendPage(key: trendKey),
           MyPage(key: myKey),
         ],
+        onDoublePress: (index) {
+          switch (index) {
+            case 0:
+              dynamicKey.currentState.scrollToTop();
+              break;
+            default:
+          }
+        },
+        backgroundColor: TTColors.primarySwatch,
+        indicatorColor: TTColors.white,
+        title: TitleBar(
+          TTLocalizations.of(context).currentLocalized.app_name,
+          iconData: TTIcons.MAIN_SEARCH,
+          needRightLocalIcon: true,
+          onRightIconPressed: (centerPosition) => NavigatorUtils.pushSearchPage(context, centerPosition),
+        ),
       ),
     );
   }
