@@ -1,6 +1,9 @@
+import 'package:flutter_github_app/common/dao/user_dao.dart';
+import 'package:flutter_github_app/redux/middleware/epic_store.dart';
 import 'package:redux/redux.dart';
 import '../model/user.dart';
 import 'state.dart';
+import 'package:rxdart/rxdart.dart';
 
 /** 用户相关 redux */
 
@@ -37,4 +40,19 @@ class UserInfoMiddleware extends MiddlewareClass<TTState> {
     // 确保将操作转发到链中的下一个中间件！
     next(action);
   }
+}
+
+Stream<dynamic> userInfoEpic(Stream<dynamic> actions, EpicStore<TTState> store) {
+  // 使用 async* 功能使操作更轻松
+  Stream<dynamic> _loadUserInfo() async* {
+    print("*********** userInfoEpic _loadUserInfo ***********");
+    var res = await UserDao.getUserInfo(null);
+    yield UpdateUserAction(res.data);
+  }
+
+  return actions
+      .whereType<FetchUserAction>()
+      // 直到 10ms 才开始
+      .debounce(((_) => TimerStream(true, const Duration(milliseconds: 10))))
+      .switchMap((action) => _loadUserInfo());
 }

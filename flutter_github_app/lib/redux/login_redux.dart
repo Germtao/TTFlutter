@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_github_app/common/dao/user_dao.dart';
 import 'package:flutter_github_app/common/utils/common_utils.dart';
 import 'package:flutter_github_app/common/utils/navigator_utils.dart';
+import 'package:flutter_github_app/db/sql_manager.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 import '../redux/middleware/epic_store.dart';
 
 import 'package:flutter_github_app/redux/state.dart';
 
 import 'package:redux/redux.dart';
+import 'package:rxdart/rxdart.dart';
 
 /// 登录相关 Redux
 final LoginReducer = combineReducers<bool>([
@@ -56,17 +60,35 @@ class LoginMiddleware implements MiddlewareClass<TTState> {
   @override
   call(Store<TTState> store, action, next) {
     if (action is LogoutAction) {
-      // Userd
+      UserDao.clearAll(store);
+      CookieManager().clearCookies();
+      SqlManager.close();
+      NavigatorUtils.pushLoginPage(action.context);
     }
 
     // 确保将操作转发到链中的下一个中间件
     next(action);
   }
+}
 
-  Stream<dynamic> loginEpic(Stream<dynamic> actions, EpicStore<TTState> store) {
-    Stream<dynamic> _login(LoginAction action, EpicStore<TTState> store) async* {
-      CommonUtils.showLoadingDialog(action.context);
-      // var result = await
-    }
+Stream<dynamic> loginEpic(Stream<dynamic> actions, EpicStore<TTState> store) {
+  Stream<dynamic> _login(LoginAction action, EpicStore<TTState> store) async* {
+    CommonUtils.showLoadingDialog(action.context);
+    var result = await UserDao.login(action.username.trim(), action.password.trim(), store);
+    Navigator.pop(action.context);
+    yield LoginSuccessAction(action.context, (result != null && result.result));
   }
+
+  return actions.whereType<LoginAction>().switchMap((action) => _login(action, store));
+}
+
+Stream<dynamic> oAuthEpic(Stream<dynamic> actions, EpicStore<TTState> store) {
+  Stream<dynamic> _login(OAuthAction action, EpicStore<TTState> store) async* {
+    CommonUtils.showLoadingDialog(action.context);
+    var res = await UserDao.oAuth(action.code, store);
+    Navigator.pop(action.context);
+    yield LoginSuccessAction(action.context, (res != null && res.result));
+  }
+
+  return actions.whereType<OAuthAction>().switchMap((action) => _login(action, store));
 }
