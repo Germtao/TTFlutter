@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:json_annotation/json_annotation.dart';
 import 'release_asset.dart';
 import 'user.dart';
