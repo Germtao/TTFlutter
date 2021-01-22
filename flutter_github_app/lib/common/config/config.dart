@@ -1,5 +1,6 @@
 /// 配置相关
 class Config {
+  // ignore: non_constant_identifier_names
   static bool DEBUG = true;
 
   static const PAGE_SIZE = 20;
