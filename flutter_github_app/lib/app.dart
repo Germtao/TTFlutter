@@ -1,16 +1,21 @@
 import 'dart:async';
 
+import 'package:flutter_github_app/common/localization/tt_localizations_delegate.dart';
 import 'package:flutter_github_app/common/style/style.dart';
 import 'package:flutter_github_app/common/utils/common_utils.dart';
 import 'package:flutter_github_app/model/user.dart';
+import 'package:flutter_github_app/page/common/welcome_page.dart';
+import 'package:flutter_github_app/widget/debug/debug_label.dart';
 import 'package:redux/redux.dart';
+import 'package:flutter_redux/flutter_redux.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_github_app/redux/state.dart';
 import 'package:flutter_github_app/common/event/http_error_event.dart';
 import 'package:flutter_github_app/common/event/index.dart';
 import 'package:flutter_github_app/common/localization/default_localizations.dart';
 import 'package:flutter_github_app/common/net/code.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
 class FlutterReduxApp extends StatefulWidget {
   @override
@@ -34,8 +39,52 @@ class _FlutterReduxAppState extends State<FlutterReduxApp> with HttpErrorListene
   );
 
   @override
+  void initState() {
+    super.initState();
+    Future.delayed(Duration(seconds: 0), () {
+      // 通过 with NavigatorObserver ，在这里可以获取可以往上获取到
+      // MaterialApp 和 StoreProvider 的 context
+      // 还可以获取到 navigator;
+      // 比如在这里增加一个监听，如果 token 失效就退回登陆页
+      navigator.context;
+      navigator;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Container();
+    // 使用 flutter_redux 做全局状态共享
+    // 通过 StoreProvider 应用 store
+    return StoreProvider(
+      store: store,
+      child: StoreBuilder<TTState>(
+        builder: (context, store) {
+          // 使用 StoreBuilder 获取 store 中的 theme 、locale
+          store.state.platformLocale = WidgetsBinding.instance.window.locale;
+          return MaterialApp(
+            localizationsDelegates: [
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              TTLocalizationsDelegate.delegate,
+            ],
+            supportedLocales: [store.state.locale],
+            locale: store.state.locale,
+            theme: store.state.themeData,
+            navigatorObservers: [this],
+
+            // 命名式路由
+            // "/" 和 MaterialApp 的 home 参数一个效果
+            routes: {
+              WelcomePage.className: (context) {
+                _context = context;
+                DebugLabel.show(context);
+                return WelcomePage();
+              }
+            },
+          );
+        },
+      ),
+    );
   }
 }
 
@@ -70,29 +119,29 @@ mixin HttpErrorListener on State<FlutterReduxApp> {
   handleError(int code, message) {
     switch (code) {
       case Code.NETWORK_ERROR:
-        showToast(TTLocalizations.i18n(context).network_error);
+        showToast(TTLocalizations.i18n(context).networkError);
         break;
       case 401:
-        showToast(TTLocalizations.i18n(context).network_error_401);
+        showToast(TTLocalizations.i18n(context).networkError_401);
         break;
       case 403:
-        showToast(TTLocalizations.i18n(context).network_error_403);
+        showToast(TTLocalizations.i18n(context).networkError_403);
         break;
       case 404:
-        showToast(TTLocalizations.i18n(context).network_error_404);
+        showToast(TTLocalizations.i18n(context).networkError_404);
         break;
       case 422:
-        showToast(TTLocalizations.i18n(context).network_error_422);
+        showToast(TTLocalizations.i18n(context).networkError_422);
         break;
       case Code.NETWORK_TIMEOUT:
-        showToast(TTLocalizations.i18n(context).network_error_timeout);
+        showToast(TTLocalizations.i18n(context).networkErrorTimeout);
         break;
       case Code.GITHUB_API_REFUSED:
         // github api 异常
-        showToast(TTLocalizations.i18n(context).github_refused);
+        showToast(TTLocalizations.i18n(context).githubRefused);
         break;
       default:
-        showToast(TTLocalizations.i18n(context).network_error_unknown + ' $message');
+        showToast(TTLocalizations.i18n(context).networkErrorUnknown + ' $message');
         break;
     }
   }
