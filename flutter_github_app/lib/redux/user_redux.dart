@@ -8,6 +8,7 @@ import 'package:rxdart/rxdart.dart';
 /** 用户相关 redux */
 
 /// redux 的 combineReducers, 通过 TypedReducer 将 UpdateUserAction 与 reducers 关联起来
+// ignore: non_constant_identifier_names
 final UserReducer = combineReducers<User>([
   TypedReducer<User, UpdateUserAction>(_updateLoaded),
 ]);

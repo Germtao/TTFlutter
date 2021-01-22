@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:redux/redux.dart';
 
 /// 语言 Redux
+// ignore: non_constant_identifier_names
 final LocaleReducer = combineReducers<Locale>([
   TypedReducer<Locale, RefreshLocaleAction>(_refresh),
 ]);

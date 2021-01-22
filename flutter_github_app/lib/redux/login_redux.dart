@@ -12,6 +12,7 @@ import 'package:redux/redux.dart';
 import 'package:rxdart/rxdart.dart';
 
 /// 登录相关 Redux
+// ignore: non_constant_identifier_names
 final LoginReducer = combineReducers<bool>([
   TypedReducer<bool, LoginSuccessAction>(_loginResult),
   TypedReducer<bool, LogoutAction>(_logoutResult),
@@ -19,7 +20,7 @@ final LoginReducer = combineReducers<bool>([
 
 bool _loginResult(bool result, LoginSuccessAction action) {
   if (action.success == true) {
-    NavigatorUtils.pushHome(action.context);
+    NavigatorUtils.pushHomePage(action.context);
   }
   return action.success;
 }

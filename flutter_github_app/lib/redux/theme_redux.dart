@@ -3,6 +3,7 @@ import 'package:redux/redux.dart';
 
 /// 主题 Redux
 /// 通过 redux 的 combineReducers，实现 Reducer 方法
+// ignore: non_constant_identifier_names
 final ThemeDataReducer = combineReducers<ThemeData>([
   // 将 Action 、处理 Action 的方法、State 绑定
   TypedReducer<ThemeData, RefreshThemeDataAction>(_refresh),
