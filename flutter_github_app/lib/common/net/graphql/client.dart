@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:graphql/client.dart';
 
 import 'users.dart';
