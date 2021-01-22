@@ -653,7 +653,7 @@ class ReposDao {
           CommonUtils.showUpdateDialog(context, '${release.name}: ${release.body}');
         } else {
           if (showTip) {
-            Fluttertoast.showToast(msg: TTLocalizations.i18n(context).app_not_new_version);
+            Fluttertoast.showToast(msg: TTLocalizations.i18n(context).appNotNewVersion);
           }
         }
       }
