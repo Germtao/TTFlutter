@@ -98,7 +98,7 @@ class EventViewModel {
   EventViewModel.fromEventMap(Event event) {
     actionTime = CommonUtils.getNewsTimeStr(event.createdAt);
     actionUser = event.actor.login;
-    actionUserPic = event.actor.avatar_url;
+    actionUserPic = event.actor.avatarUrl;
     var other = EventUtils.getActionAndDesc(event);
     actionDes = other['des'];
     actionTarget = other['actionStr'];
@@ -116,11 +116,11 @@ class EventViewModel {
     actionUser = notify.repository.fullName;
     String type = notify.subject.type;
     String status =
-        notify.unread ? TTLocalizations.i18n(context).notify_unread : TTLocalizations.i18n(context).notify_readed;
+        notify.unread ? TTLocalizations.i18n(context).notifyUnread : TTLocalizations.i18n(context).notifyReaded;
     actionDes = notify.reason +
-        TTLocalizations.i18n(context).notify_type +
+        TTLocalizations.i18n(context).notifyType +
         '：$type' +
-        TTLocalizations.i18n(context).notify_status +
+        TTLocalizations.i18n(context).notifyStatus +
         '：$status';
     actionTarget = notify.subject.title;
   }

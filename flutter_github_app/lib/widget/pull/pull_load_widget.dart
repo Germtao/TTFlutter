@@ -280,7 +280,7 @@ class _PullLoadWidgetState extends State<PullLoadWidget> with FlarePullControlle
           ),
           Container(
             child: Text(
-              TTLocalizations.i18n(context).app_empty,
+              TTLocalizations.i18n(context).appEmpty,
               style: TTConstant.normalText,
             ),
           )
@@ -301,7 +301,7 @@ class _PullLoadWidgetState extends State<PullLoadWidget> with FlarePullControlle
               Container(width: 5.0),
               // 加载文本
               Text(
-                TTLocalizations.i18n(context).load_more_text,
+                TTLocalizations.i18n(context).loadMoreText,
                 style: TextStyle(
                   color: Color(0xFF121917),
                   fontSize: 14,
