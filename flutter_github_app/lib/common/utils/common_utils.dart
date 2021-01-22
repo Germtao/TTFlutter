@@ -27,14 +27,19 @@ import 'package:flutter_github_app/redux/state.dart';
 import 'package:flutter_github_app/page/issue/issue_edit_dialog.dart';
 
 class CommonUtils {
+  // ignore: non_constant_identifier_names
   static final double MILLIS_LIMIT = 1000.0;
 
+  // ignore: non_constant_identifier_names
   static final double SECONDS_LIMIT = 60 * MILLIS_LIMIT;
 
+  // ignore: non_constant_identifier_names
   static final double MINUTES_LIMIT = 60 * SECONDS_LIMIT;
 
+  // ignore: non_constant_identifier_names
   static final double HOURS_LIMIT = 24 * MINUTES_LIMIT;
 
+  // ignore: non_constant_identifier_names
   static final double DAYS_LIMIT = 30 * HOURS_LIMIT;
 
   static Locale currentLocale;
@@ -199,9 +204,9 @@ class CommonUtils {
   /// 显示语言弹窗
   static showLanguageDialog(BuildContext context) {
     List<String> list = [
-      TTLocalizations.i18n(context).home_language_default,
-      TTLocalizations.i18n(context).home_language_zh,
-      TTLocalizations.i18n(context).home_language_en,
+      TTLocalizations.i18n(context).homeLanguageDefault,
+      TTLocalizations.i18n(context).homeLanguageZh,
+      TTLocalizations.i18n(context).homeLanguageEn,
     ];
     CommonUtils.showCommitOptionDialog(context, list, (index) {
       CommonUtils.changeLocale(StoreProvider.of<TTState>(context), index);
@@ -297,7 +302,7 @@ class CommonUtils {
 
   static copy(String data, BuildContext context) {
     Clipboard.setData(ClipboardData(text: data));
-    Fluttertoast.showToast(msg: TTLocalizations.i18n(context).option_share_copy_success);
+    Fluttertoast.showToast(msg: TTLocalizations.i18n(context).optionShareCopySuccess);
   }
 
   static launchUrl(context, String urlStr) {
@@ -359,7 +364,7 @@ class CommonUtils {
       await launch(urlStr);
     } else {
       Fluttertoast.showToast(
-        msg: TTLocalizations.i18n(context).option_web_launcher_error + ': $urlStr',
+        msg: TTLocalizations.i18n(context).optionWebLauncherError + ': $urlStr',
       );
     }
   }
@@ -395,7 +400,7 @@ class CommonUtils {
                     ),
                     Container(
                       child: Text(
-                        TTLocalizations.i18n(context).loading_text,
+                        TTLocalizations.i18n(context).loadingText,
                         style: TTConstant.normalTextWhite,
                       ),
                     )
@@ -444,19 +449,19 @@ class CommonUtils {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text(TTLocalizations.i18n(context).app_version_title),
+          title: Text(TTLocalizations.i18n(context).appVersionTitle),
           content: Text(contentMsg),
           actions: [
             FlatButton(
               onPressed: () => Navigator.pop(context),
-              child: Text(TTLocalizations.i18n(context).app_cancel),
+              child: Text(TTLocalizations.i18n(context).appCancel),
             ),
             FlatButton(
               onPressed: () {
                 launch(Address.updateUrl);
                 Navigator.pop(context);
               },
-              child: Text(TTLocalizations.i18n(context).app_ok),
+              child: Text(TTLocalizations.i18n(context).appOk),
             )
           ],
         );

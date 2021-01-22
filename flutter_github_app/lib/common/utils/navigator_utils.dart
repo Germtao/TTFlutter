@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'package:flutter_github_app/common/router/animation_route.dart';
+import 'package:flutter_github_app/page/common/honor_list_page.dart';
 
 import 'package:flutter_github_app/page/home/home_page.dart';
 import 'package:flutter_github_app/page/issue/issue_detail_page.dart';
 import 'package:flutter_github_app/page/login/login_page.dart';
+import 'package:flutter_github_app/page/notify/notify_page.dart';
 import 'package:flutter_github_app/page/photo/photo_view_page.dart';
 import 'package:flutter_github_app/page/repos/repos_detail_page.dart';
 import 'package:flutter_github_app/page/webview/tt_webview.dart';
@@ -27,7 +29,7 @@ class NavigatorUtils {
   }
 
   /// 主页
-  static pushHome(BuildContext context) {
+  static pushHomePage(BuildContext context) {
     Navigator.pushReplacementNamed(context, HomePage.className);
   }
 
@@ -118,6 +120,21 @@ class NavigatorUtils {
     );
   }
 
+  /// 跳转 通知消息页面
+  static pushNotifyPage(BuildContext context) {
+    return NavigatorRouter(context, NotifyPage());
+  }
+
+  /// 跳转 荣耀列表页面
+  static pushHonorListPage(BuildContext context, List list) {
+    return Navigator.push(
+      context,
+      SizeRoute(
+        widget: pageContainer(HonorListPage(list), context),
+      ),
+    );
+  }
+
   /// 跳转 调试数据界面
   static pushDebugDataPage(BuildContext context) {
     NavigatorRouter(context, DebugDataPage());
@@ -132,6 +149,7 @@ class NavigatorUtils {
   }
 
   /// 公共打开方式
+  // ignore: non_constant_identifier_names
   static NavigatorRouter(BuildContext context, Widget widget) {
     return Navigator.push(
       context,
