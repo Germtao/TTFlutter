@@ -1,265 +1,265 @@
 abstract class TTStringBase {
   String get welcomeMessage;
 
-  String get app_name;
+  String get appName;
 
-  String get app_ok;
+  String get appOk;
 
-  String get app_cancel;
+  String get appCancel;
 
-  String get app_empty;
+  String get appEmpty;
 
-  String get app_licenses;
+  String get appLicenses;
 
-  String get app_close;
+  String get appClose;
 
-  String get app_version;
+  String get appVersion;
 
-  String get app_back_tip;
+  String get appBackTip;
 
-  String get app_not_new_version;
+  String get appNotNewVersion;
 
-  String get app_version_title;
+  String get appVersionTitle;
 
-  String get nothing_now;
+  String get nothingNow;
 
-  String get loading_text;
+  String get loadingText;
 
-  String get option_web;
+  String get optionWeb;
 
-  String get option_copy;
+  String get optionCopy;
 
-  String get option_share;
+  String get optionShare;
 
-  String get option_web_launcher_error;
+  String get optionWebLauncherError;
 
-  String get option_share_title;
+  String get optionShareTitle;
 
-  String get option_share_copy_success;
+  String get optionShareCopySuccess;
 
-  String get login_text;
+  String get loginText;
 
-  String get oauth_text;
+  String get oauthText;
 
-  String get Login_out;
+  String get loginOut;
 
-  String get Login_deprecated;
+  String get loginDeprecated;
 
-  String get home_reply;
+  String get homeReply;
 
-  String get home_change_language;
+  String get homeChangeLanguage;
 
-  String get home_about;
+  String get homeAbout;
 
-  String get home_check_update;
+  String get homeCheckUpdate;
 
-  String get home_history;
+  String get homeHistory;
 
-  String get home_user_info;
+  String get homeUserInfo;
 
-  String get home_change_theme;
+  String get homeChangeTheme;
 
-  String get home_language_default;
+  String get homeLanguageDefault;
 
-  String get home_language_zh;
+  String get homeLanguageZh;
 
-  String get home_language_en;
+  String get homeLanguageEn;
 
-  String get switch_language;
+  String get switchLanguage;
 
-  String get home_theme_default;
+  String get homeThemeDefault;
 
-  String get home_theme_1;
+  String get homeTheme_1;
 
-  String get home_theme_2;
+  String get homeTheme_2;
 
-  String get home_theme_3;
+  String get homeTheme_3;
 
-  String get home_theme_4;
+  String get homeTheme_4;
 
-  String get home_theme_5;
+  String get homeTheme_5;
 
-  String get home_theme_6;
+  String get homeTheme_6;
 
-  String get login_username_hint_text;
+  String get loginUsernameHintText;
 
-  String get login_password_hint_text;
+  String get loginPasswordHintText;
 
-  String get login_success;
+  String get loginSuccess;
 
-  String get network_error_401;
+  String get networkError_401;
 
-  String get network_error_403;
+  String get networkError_403;
 
-  String get network_error_404;
+  String get networkError_404;
 
-  String get network_error_422;
+  String get networkError_422;
 
-  String get network_error_timeout;
+  String get networkErrorTimeout;
 
-  String get network_error_unknown;
+  String get networkErrorUnknown;
 
-  String get network_error;
+  String get networkError;
 
-  String get github_refused;
+  String get githubRefused;
 
-  String get load_more_not;
+  String get loadMoreNot;
 
-  String get load_more_text;
+  String get loadMoreText;
 
-  String get home_dynamic;
+  String get homeDynamic;
 
-  String get home_trend;
+  String get homeTrend;
 
-  String get home_my;
+  String get homeMy;
 
-  String get trend_user_title;
+  String get trendUserTitle;
 
-  String get trend_day;
+  String get trendDay;
 
-  String get trend_week;
+  String get trendWeek;
 
-  String get trend_month;
+  String get trendMonth;
 
-  String get trend_all;
+  String get trendAll;
 
-  String get user_tab_repos;
+  String get userTabRepos;
 
-  String get user_tab_fans;
+  String get userTabFans;
 
-  String get user_tab_focus;
+  String get userTabFocus;
 
-  String get user_tab_star;
+  String get userTabStar;
 
-  String get user_tab_honor;
+  String get userTabHonor;
 
-  String get user_dynamic_group;
+  String get userDynamicGroup;
 
-  String get user_dynamic_title;
+  String get userDynamicTitle;
 
-  String get user_focus;
+  String get userFocus;
 
-  String get user_un_focus;
+  String get userUnFocus;
 
-  String get user_focus_no_support;
+  String get userFocusNoSupport;
 
-  String get user_create_at;
+  String get userCreateAt;
 
-  String get user_orgs_title;
+  String get userOrgsTitle;
 
-  String get repos_tab_readme;
+  String get reposTabReadme;
 
-  String get repos_tab_info;
+  String get reposTabInfo;
 
-  String get repos_tab_file;
+  String get reposTabFile;
 
-  String get repos_tab_issue;
+  String get reposTabIssue;
 
-  String get repos_tab_activity;
+  String get reposTabActivity;
 
-  String get repos_tab_commits;
+  String get reposTabCommits;
 
-  String get repos_tab_issue_all;
+  String get reposTabIssueAll;
 
-  String get repos_tab_issue_open;
+  String get reposTabIssueOpen;
 
-  String get repos_tab_issue_closed;
+  String get reposTabIssueClosed;
 
-  String get repos_option_release;
+  String get reposOptionRelease;
 
-  String get repos_option_branch;
+  String get reposOptionBranch;
 
-  String get repos_fork_at;
+  String get reposForkAt;
 
-  String get repos_create_at;
+  String get reposCreateAt;
 
-  String get repos_last_commit;
+  String get reposLastCommit;
 
-  String get repos_all_issue_count;
+  String get reposAllIssueCount;
 
-  String get repos_open_issue_count;
+  String get reposOpenIssueCount;
 
-  String get repos_close_issue_count;
+  String get reposCloseIssueCount;
 
-  String get repos_issue_search;
+  String get reposIssueSearch;
 
-  String get repos_no_support_issue;
+  String get reposNoSupportIssue;
 
-  String get issue_reply;
+  String get issueReply;
 
-  String get issue_edit;
+  String get issueEdit;
 
-  String get issue_open;
+  String get issueOpen;
 
-  String get issue_close;
+  String get issueClose;
 
-  String get issue_lock;
+  String get issueLock;
 
-  String get issue_unlock;
+  String get issueUnlock;
 
-  String get issue_reply_issue;
+  String get issueReplyIssue;
 
-  String get issue_commit_issue;
+  String get issueCommitIssue;
 
-  String get issue_edit_issue;
+  String get issueEditIssue;
 
-  String get issue_edit_issue_commit;
+  String get issueEditIssueCommit;
 
-  String get issue_edit_issue_edit_commit;
+  String get issueEditIssueEditCommit;
 
-  String get issue_edit_issue_delete_commit;
+  String get issueEditIssueDeleteCommit;
 
-  String get issue_edit_issue_copy_commit;
+  String get issueEditIssueCopyCommit;
 
-  String get issue_edit_issue_content_not_be_null;
+  String get issueEditIssueContentNotBeNull;
 
-  String get issue_edit_issue_title_not_be_null;
+  String get issueEditIssueTitleNotBeNull;
 
-  String get issue_edit_issue_title_tip;
+  String get issueEditIssueTitleTip;
 
-  String get issue_edit_issue_content_tip;
+  String get issueEditIssueContentTip;
 
-  String get notify_title;
+  String get notifyTitle;
 
-  String get notify_tab_all;
+  String get notifyTabAll;
 
-  String get notify_tab_part;
+  String get notifyTabPart;
 
-  String get notify_tab_unread;
+  String get notifyTabUnread;
 
-  String get notify_unread;
+  String get notifyUnread;
 
-  String get notify_readed;
+  String get notifyReaded;
 
-  String get notify_status;
+  String get notifyStatus;
 
-  String get notify_type;
+  String get notifyType;
 
-  String get search_title;
+  String get searchTitle;
 
-  String get search_tab_repos;
+  String get searchTabRepos;
 
-  String get search_tab_user;
+  String get searchTabUser;
 
-  String get release_tab_release;
+  String get releaseTabRelease;
 
-  String get release_tab_tag;
+  String get releaseTabTag;
 
-  String get user_profile_name;
+  String get userProfileName;
 
-  String get user_profile_email;
+  String get userProfileEmail;
 
-  String get user_profile_link;
+  String get userProfileLink;
 
-  String get user_profile_org;
+  String get userProfileOrg;
 
-  String get user_profile_location;
+  String get userProfileLocation;
 
-  String get user_profile_info;
+  String get userProfileInfo;
 
-  String get search_type;
+  String get searchType;
 
-  String get search_sort;
+  String get searchSort;
 
-  String get search_language;
+  String get searchLanguage;
 }

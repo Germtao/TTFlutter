@@ -5,290 +5,290 @@ class TTStringZh extends TTStringBase {
   String welcomeMessage = "Welcome To Flutter";
 
   @override
-  String app_name = "TTGithubApp";
+  String appName = "TTGithubApp";
 
   @override
-  String app_ok = "确定";
+  String appOk = "确定";
   @override
-  String app_cancel = "取消";
+  String appCancel = "取消";
   @override
-  String app_empty = "目前什么也没有哟";
+  String appEmpty = "目前什么也没有哟";
   @override
-  String app_licenses = "协议";
+  String appLicenses = "协议";
   @override
-  String app_close = "关闭";
+  String appClose = "关闭";
   @override
-  String app_version = "版本";
+  String appVersion = "版本";
   @override
-  String app_back_tip = "确定要退出应用？";
+  String appBackTip = "确定要退出应用？";
 
   @override
-  String app_not_new_version = "当前没有新版本";
+  String appNotNewVersion = "当前没有新版本";
   @override
-  String app_version_title = "版本更新";
+  String appVersionTitle = "版本更新";
 
   @override
-  String nothing_now = "目前什么都没有。";
+  String nothingNow = "目前什么都没有。";
   @override
-  String loading_text = "努力加载中···";
+  String loadingText = "努力加载中···";
 
   @override
-  String option_web = "浏览器打开";
+  String optionWeb = "浏览器打开";
   @override
-  String option_copy = "复制链接";
+  String optionCopy = "复制链接";
   @override
-  String option_share = "分享";
+  String optionShare = "分享";
   @override
-  String option_web_launcher_error = "url异常";
+  String optionWebLauncherError = "url异常";
   @override
-  String option_share_title = "分享自GSYGitHubFlutter： ";
+  String optionShareTitle = "分享自GSYGitHubFlutter： ";
   @override
-  String option_share_copy_success = "已经复制到粘贴板";
+  String optionShareCopySuccess = "已经复制到粘贴板";
 
   @override
-  String login_text = "账号登录";
+  String loginText = "账号登录";
 
   @override
-  String oauth_text = "安全登陆";
+  String oauthText = "安全登陆";
 
   @override
-  String Login_out = "退出登录";
+  String loginOut = "退出登录";
 
   @override
-  String Login_deprecated = "账号密码登陆的 API 将被 Github 弃用，建议使用尝试使用安全登陆。";
+  String loginDeprecated = "账号密码登陆的 API 将被 Github 弃用，建议使用尝试使用安全登陆。";
 
   @override
-  String home_reply = "问题反馈";
+  String homeReply = "问题反馈";
   @override
-  String home_change_language = "语言切换";
+  String homeChangeLanguage = "语言切换";
   @override
-  String home_about = "关于";
+  String homeAbout = "关于";
   @override
-  String home_check_update = "检测更新";
+  String homeCheckUpdate = "检测更新";
   @override
-  String home_history = "阅读历史";
+  String homeHistory = "阅读历史";
   @override
-  String home_user_info = "个人信息";
+  String homeUserInfo = "个人信息";
   @override
-  String home_change_theme = "切换主题";
+  String homeChangeTheme = "切换主题";
   @override
-  String home_language_default = "默认";
+  String homeLanguageDefault = "默认";
   @override
-  String home_language_zh = "中文";
+  String homeLanguageZh = "中文";
   @override
-  String home_language_en = "English";
+  String homeLanguageEn = "English";
 
   @override
-  String switch_language = "切换语言";
+  String switchLanguage = "切换语言";
 
   @override
-  String home_theme_default = "默认主题";
+  String homeThemeDefault = "默认主题";
   @override
-  String home_theme_1 = "主题1";
+  String homeTheme_1 = "主题1";
   @override
-  String home_theme_2 = "主题2";
+  String homeTheme_2 = "主题2";
   @override
-  String home_theme_3 = "主题3";
+  String homeTheme_3 = "主题3";
   @override
-  String home_theme_4 = "主题4";
+  String homeTheme_4 = "主题4";
   @override
-  String home_theme_5 = "主题5";
+  String homeTheme_5 = "主题5";
   @override
-  String home_theme_6 = "主题6";
+  String homeTheme_6 = "主题6";
 
   @override
-  String login_username_hint_text = "github用户名，清不要用邮箱";
+  String loginUsernameHintText = "github用户名，清不要用邮箱";
   @override
-  String login_password_hint_text = "请输入密码";
+  String loginPasswordHintText = "请输入密码";
   @override
-  String login_success = "登录成功";
+  String loginSuccess = "登录成功";
 
   @override
-  String network_error_401 = "[401错误可能: 未授权 \\ 授权登录失败 \\ 登录过期]";
+  String networkError_401 = "[401错误可能: 未授权 \\ 授权登录失败 \\ 登录过期]";
   @override
-  String network_error_403 = "403权限错误";
+  String networkError_403 = "403权限错误";
   @override
-  String network_error_404 = "404错误";
+  String networkError_404 = "404错误";
   @override
-  String network_error_422 = "请求实体异常，请确保 Github ClientId 、账号秘密等信息正确。";
+  String networkError_422 = "请求实体异常，请确保 Github ClientId 、账号秘密等信息正确。";
   @override
-  String network_error_timeout = "请求超时";
+  String networkErrorTimeout = "请求超时";
   @override
-  String network_error_unknown = "其他异常";
+  String networkErrorUnknown = "其他异常";
   @override
-  String network_error = "网络错误";
+  String networkError = "网络错误";
   @override
-  String github_refused = "Github Api 出现异常[Connection refused]，建议换个网络环境或者稍后再试";
+  String githubRefused = "Github Api 出现异常[Connection refused]，建议换个网络环境或者稍后再试";
   @override
-  String load_more_not = "没有更多数据";
+  String loadMoreNot = "没有更多数据";
   @override
-  String load_more_text = "正在加载更多";
+  String loadMoreText = "正在加载更多";
 
   @override
-  String home_dynamic = "动态";
+  String homeDynamic = "动态";
   @override
-  String home_trend = "趋势";
+  String homeTrend = "趋势";
   @override
-  String home_my = "我的";
+  String homeMy = "我的";
 
   @override
-  String trend_user_title = "中国用户趋势";
+  String trendUserTitle = "中国用户趋势";
   @override
-  String trend_day = '今日';
+  String trendDay = '今日';
   @override
-  String trend_week = '本周';
+  String trendWeek = '本周';
   @override
-  String trend_month = '本月';
+  String trendMonth = '本月';
   @override
-  String trend_all = '全部';
+  String trendAll = '全部';
 
   @override
-  String user_tab_repos = "仓库";
+  String userTabRepos = "仓库";
   @override
-  String user_tab_fans = "粉丝";
+  String userTabFans = "粉丝";
   @override
-  String user_tab_focus = "关注";
+  String userTabFocus = "关注";
   @override
-  String user_tab_star = "星标";
+  String userTabStar = "星标";
   @override
-  String user_tab_honor = "荣耀";
+  String userTabHonor = "荣耀";
   @override
-  String user_dynamic_group = "组织成员";
+  String userDynamicGroup = "组织成员";
   @override
-  String user_dynamic_title = "个人动态";
+  String userDynamicTitle = "个人动态";
   @override
-  String user_focus = "已关注";
+  String userFocus = "已关注";
   @override
-  String user_un_focus = "关注";
+  String userUnFocus = "关注";
   @override
-  String user_focus_no_support = "不支持关注组织。";
+  String userFocusNoSupport = "不支持关注组织。";
   @override
-  String user_create_at = "创建于：";
+  String userCreateAt = "创建于：";
   @override
-  String user_orgs_title = "所在组织";
+  String userOrgsTitle = "所在组织";
 
   @override
-  String repos_tab_readme = "详情";
+  String reposTabReadme = "详情";
   @override
-  String repos_tab_info = "动态";
+  String reposTabInfo = "动态";
   @override
-  String repos_tab_file = "文件";
+  String reposTabFile = "文件";
   @override
-  String repos_tab_issue = "ISSUE";
+  String reposTabIssue = "ISSUE";
   @override
-  String repos_tab_activity = "动态";
+  String reposTabActivity = "动态";
   @override
-  String repos_tab_commits = "提交";
+  String reposTabCommits = "提交";
   @override
-  String repos_tab_issue_all = "所有";
+  String reposTabIssueAll = "所有";
   @override
-  String repos_tab_issue_open = "打开";
+  String reposTabIssueOpen = "打开";
   @override
-  String repos_tab_issue_closed = "关闭";
+  String reposTabIssueClosed = "关闭";
   @override
-  String repos_option_release = "版本";
+  String reposOptionRelease = "版本";
   @override
-  String repos_option_branch = "分支";
+  String reposOptionBranch = "分支";
   @override
-  String repos_fork_at = "Fork于 ";
+  String reposForkAt = "Fork于 ";
   @override
-  String repos_create_at = "创建于 ";
+  String reposCreateAt = "创建于 ";
   @override
-  String repos_last_commit = "最后提交于 ";
+  String reposLastCommit = "最后提交于 ";
   @override
-  String repos_all_issue_count = "所有Issue数：";
+  String reposAllIssueCount = "所有Issue数：";
   @override
-  String repos_open_issue_count = "开启Issue数：";
+  String reposOpenIssueCount = "开启Issue数：";
   @override
-  String repos_close_issue_count = "关闭Issue数：";
+  String reposCloseIssueCount = "关闭Issue数：";
 
   @override
-  String repos_issue_search = "搜索";
+  String reposIssueSearch = "搜索";
 
   @override
-  String repos_no_support_issue = "该项目没有开启 Issue";
+  String reposNoSupportIssue = "该项目没有开启 Issue";
 
   @override
-  String issue_reply = "回复";
+  String issueReply = "回复";
   @override
-  String issue_edit = "编辑";
+  String issueEdit = "编辑";
   @override
-  String issue_open = "打开";
+  String issueOpen = "打开";
   @override
-  String issue_close = "关闭";
+  String issueClose = "关闭";
   @override
-  String issue_lock = "锁定";
+  String issueLock = "锁定";
   @override
-  String issue_unlock = "解锁";
+  String issueUnlock = "解锁";
   @override
-  String issue_reply_issue = "回复Issue";
+  String issueReplyIssue = "回复Issue";
   @override
-  String issue_commit_issue = "提交Issue";
+  String issueCommitIssue = "提交Issue";
   @override
-  String issue_edit_issue = "编译Issue";
+  String issueEditIssue = "编译Issue";
   @override
-  String issue_edit_issue_commit = "编译回复";
+  String issueEditIssueCommit = "编译回复";
   @override
-  String issue_edit_issue_edit_commit = "编辑";
+  String issueEditIssueEditCommit = "编辑";
   @override
-  String issue_edit_issue_delete_commit = "删除";
+  String issueEditIssueDeleteCommit = "删除";
   @override
-  String issue_edit_issue_copy_commit = "复制";
+  String issueEditIssueCopyCommit = "复制";
   @override
-  String issue_edit_issue_content_not_be_null = "内容不能为空";
+  String issueEditIssueContentNotBeNull = "内容不能为空";
   @override
-  String issue_edit_issue_title_not_be_null = "标题不能为空";
+  String issueEditIssueTitleNotBeNull = "标题不能为空";
   @override
-  String issue_edit_issue_title_tip = "请输入标题";
+  String issueEditIssueTitleTip = "请输入标题";
   @override
-  String issue_edit_issue_content_tip = "请输入内容";
+  String issueEditIssueContentTip = "请输入内容";
 
   @override
-  String notify_title = "通知";
+  String notifyTitle = "通知";
   @override
-  String notify_tab_all = "所有";
+  String notifyTabAll = "所有";
   @override
-  String notify_tab_part = "参与";
+  String notifyTabPart = "参与";
   @override
-  String notify_tab_unread = "未读";
+  String notifyTabUnread = "未读";
   @override
-  String notify_unread = "未读";
+  String notifyUnread = "未读";
   @override
-  String notify_readed = "已读";
+  String notifyReaded = "已读";
   @override
-  String notify_status = "状态";
+  String notifyStatus = "状态";
   @override
-  String notify_type = "类型";
+  String notifyType = "类型";
 
   @override
-  String search_title = "搜索";
+  String searchTitle = "搜索";
   @override
-  String search_tab_repos = "仓库";
+  String searchTabRepos = "仓库";
   @override
-  String search_tab_user = "用户";
+  String searchTabUser = "用户";
 
   @override
-  String release_tab_release = "版本";
+  String releaseTabRelease = "版本";
   @override
-  String release_tab_tag = "标记";
+  String releaseTabTag = "标记";
 
   @override
-  String user_profile_name = "名字";
+  String userProfileName = "名字";
   @override
-  String user_profile_email = "邮箱";
+  String userProfileEmail = "邮箱";
   @override
-  String user_profile_link = "链接";
+  String userProfileLink = "链接";
   @override
-  String user_profile_org = "公司";
+  String userProfileOrg = "公司";
   @override
-  String user_profile_location = "位置";
+  String userProfileLocation = "位置";
   @override
-  String user_profile_info = "简介";
+  String userProfileInfo = "简介";
 
   @override
-  String search_type = "类型";
+  String searchType = "类型";
   @override
-  String search_sort = "排序";
+  String searchSort = "排序";
   @override
-  String search_language = "语言";
+  String searchLanguage = "语言";
 }
