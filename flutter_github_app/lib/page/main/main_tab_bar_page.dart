@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:redux/redux.dart';
-import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_github_app/common/style/style.dart';
 
 class MainTabBarPage extends StatefulWidget {

@@ -26,8 +26,8 @@ class HomeDrawer extends StatelessWidget {
     NavigatorUtils.showTTDialog(
       context: context,
       builder: (context) => AboutDialog(
-        applicationName: TTLocalizations.i18n(context).app_name,
-        applicationVersion: TTLocalizations.i18n(context).app_version + ': ' + versionName,
+        applicationName: TTLocalizations.i18n(context).appName,
+        applicationVersion: TTLocalizations.i18n(context).appVersion + ': ' + versionName,
         applicationIcon: Image(
           image: AssetImage(TTIcons.DEFAULT_USER_ICON),
           width: 50.0,
@@ -40,13 +40,13 @@ class HomeDrawer extends StatelessWidget {
 
   showThemeDialog(BuildContext context, Store store) {
     List<String> list = [
-      TTLocalizations.i18n(context).home_theme_default,
-      TTLocalizations.i18n(context).home_theme_1,
-      TTLocalizations.i18n(context).home_theme_2,
-      TTLocalizations.i18n(context).home_theme_3,
-      TTLocalizations.i18n(context).home_theme_4,
-      TTLocalizations.i18n(context).home_theme_5,
-      TTLocalizations.i18n(context).home_theme_6,
+      TTLocalizations.i18n(context).homeThemeDefault,
+      TTLocalizations.i18n(context).homeTheme_1,
+      TTLocalizations.i18n(context).homeTheme_2,
+      TTLocalizations.i18n(context).homeTheme_3,
+      TTLocalizations.i18n(context).homeTheme_4,
+      TTLocalizations.i18n(context).homeTheme_5,
+      TTLocalizations.i18n(context).homeTheme_6,
     ];
     CommonUtils.showCommitOptionDialog(
       context,
@@ -90,7 +90,7 @@ class HomeDrawer extends StatelessWidget {
                           currentAccountPicture: GestureDetector(
                             onTap: () {},
                             child: CircleAvatar(
-                              backgroundImage: NetworkImage(user.avatar_url ?? TTIcons.DEFAULT_REMOTE_PIC),
+                              backgroundImage: NetworkImage(user.avatarUrl ?? TTIcons.DEFAULT_REMOTE_PIC),
                             ),
                           ),
                           decoration: BoxDecoration(
@@ -99,14 +99,14 @@ class HomeDrawer extends StatelessWidget {
                         ),
                         ListTile(
                           title: Text(
-                            TTLocalizations.i18n(context).home_reply,
+                            TTLocalizations.i18n(context).homeReply,
                             style: TTConstant.normalText,
                           ),
                           onTap: () {
                             String _content = '';
                             CommonUtils.showEditDialog(
                               context,
-                              TTLocalizations.i18n(context).home_reply,
+                              TTLocalizations.i18n(context).homeReply,
                               (title) {},
                               (content) => _content = content,
                               () {
@@ -118,7 +118,7 @@ class HomeDrawer extends StatelessWidget {
                                   'Germtao',
                                   'flutter_github_app',
                                   {
-                                    'title': TTLocalizations.i18n(context).home_reply,
+                                    'title': TTLocalizations.i18n(context).homeReply,
                                     'body': _content,
                                   },
                                 ).then((result) {
@@ -134,13 +134,13 @@ class HomeDrawer extends StatelessWidget {
                         ),
                         ListTile(
                           title: Text(
-                            TTLocalizations.i18n(context).home_history,
+                            TTLocalizations.i18n(context).homeHistory,
                             style: TTConstant.normalText,
                           ),
                           onTap: () {
                             NavigatorUtils.pushCommonListPage(
                               context,
-                              TTLocalizations.i18n(context).home_history,
+                              TTLocalizations.i18n(context).homeHistory,
                               'repositoryql',
                               'history',
                               userName: '',
@@ -154,7 +154,7 @@ class HomeDrawer extends StatelessWidget {
                             child: Material(
                               color: Colors.transparent,
                               child: Text(
-                                TTLocalizations.i18n(context).home_user_info,
+                                TTLocalizations.i18n(context).homeUserInfo,
                                 style: TTConstant.normalTextBold,
                               ),
                             ),
@@ -163,28 +163,28 @@ class HomeDrawer extends StatelessWidget {
                         ),
                         ListTile(
                           title: Text(
-                            TTLocalizations.i18n(context).home_change_theme,
+                            TTLocalizations.i18n(context).homeChangeTheme,
                             style: TTConstant.normalText,
                           ),
                           onTap: () => showThemeDialog(context, store),
                         ),
                         ListTile(
                           title: Text(
-                            TTLocalizations.i18n(context).home_change_language,
+                            TTLocalizations.i18n(context).homeChangeLanguage,
                             style: TTConstant.normalText,
                           ),
                           onTap: () => CommonUtils.showLanguageDialog(context),
                         ),
                         ListTile(
                           title: Text(
-                            TTLocalizations.i18n(context).home_check_update,
+                            TTLocalizations.i18n(context).homeCheckUpdate,
                             style: TTConstant.normalText,
                           ),
                           onTap: () => ReposDao.getNewsVersion(context, true),
                         ),
                         ListTile(
                           title: Text(
-                            TTLocalizations.of(context).currentLocalized.home_about,
+                            TTLocalizations.of(context).currentLocalized.homeAbout,
                             style: TTConstant.normalText,
                           ),
                           onLongPress: () => NavigatorUtils.pushDebugDataPage(context),
@@ -197,7 +197,7 @@ class HomeDrawer extends StatelessWidget {
                         ),
                         ListTile(
                           title: TTFlexButton(
-                            text: TTLocalizations.i18n(context).Login_out,
+                            text: TTLocalizations.i18n(context).loginOut,
                             color: Colors.redAccent,
                             textColor: TTColors.textWhite,
                             onPress: () => store.dispatch(LogoutAction(context)),

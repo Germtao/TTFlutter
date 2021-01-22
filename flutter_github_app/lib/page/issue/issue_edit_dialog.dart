@@ -43,7 +43,7 @@ class _IssueEditDialogState extends State<IssueEditDialog> {
             child: TTInputWidget(
               onChanged: widget.onTitleChanged,
               controller: widget.titleController,
-              hintText: TTLocalizations.i18n(context).issue_edit_issue_title_tip,
+              hintText: TTLocalizations.i18n(context).issueEditIssueTitleTip,
               obscureText: false,
             ),
           )
@@ -103,7 +103,7 @@ class _IssueEditDialogState extends State<IssueEditDialog> {
               onChanged: widget.onContentChanged,
               controller: widget.valueController,
               decoration: InputDecoration(
-                hintText: TTLocalizations.i18n(context).issue_edit_issue_title_tip,
+                hintText: TTLocalizations.i18n(context).issueEditIssueTitleTip,
                 hintStyle: TTConstant.middleSubText,
                 isDense: true,
                 border: InputBorder.none,
@@ -126,7 +126,7 @@ class _IssueEditDialogState extends State<IssueEditDialog> {
                   padding: EdgeInsets.all(4.0),
                   constraints: BoxConstraints(minWidth: 0.0, minHeight: 0.0),
                   child: Text(
-                    TTLocalizations.i18n(context).app_cancel,
+                    TTLocalizations.i18n(context).appCancel,
                     style: TTConstant.normalSubText,
                   ),
                   onPressed: () => Navigator.pop(context),
@@ -143,7 +143,7 @@ class _IssueEditDialogState extends State<IssueEditDialog> {
                   padding: EdgeInsets.all(4.0),
                   constraints: BoxConstraints(minWidth: 0.0, minHeight: 0.0),
                   child: Text(
-                    TTLocalizations.i18n(context).app_ok,
+                    TTLocalizations.i18n(context).appOk,
                     style: TTConstant.normalTextBold,
                   ),
                   onPressed: widget.onPressed,
@@ -210,6 +210,7 @@ class _IssueEditDialogState extends State<IssueEditDialog> {
   }
 }
 
+// ignore: non_constant_identifier_names
 var FAST_INPUT_LIST = [
   FastInputIconModel(TTIcons.ISSUE_EDIT_H1, '\n# '),
   FastInputIconModel(TTIcons.ISSUE_EDIT_H2, '\n## '),

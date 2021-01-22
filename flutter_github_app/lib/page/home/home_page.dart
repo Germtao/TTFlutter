@@ -55,9 +55,9 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     List<Widget> tabItems = [
-      _renderTab(TTIcons.MAIN_DT, TTLocalizations.i18n(context).home_dynamic),
-      _renderTab(TTIcons.MAIN_QS, TTLocalizations.i18n(context).home_trend),
-      _renderTab(TTIcons.MAIN_MY, TTLocalizations.i18n(context).home_my),
+      _renderTab(TTIcons.MAIN_DT, TTLocalizations.i18n(context).homeDynamic),
+      _renderTab(TTIcons.MAIN_QS, TTLocalizations.i18n(context).homeTrend),
+      _renderTab(TTIcons.MAIN_MY, TTLocalizations.i18n(context).homeMy),
     ];
 
     /// 增加返回按键监听
@@ -77,13 +77,16 @@ class _HomePageState extends State<HomePage> {
             case 0:
               dynamicKey.currentState.scrollToTop();
               break;
+            case 1:
+              trendKey.currentState.scrollToTop();
+              break;
             default:
           }
         },
         backgroundColor: TTColors.primarySwatch,
         indicatorColor: TTColors.white,
         title: TitleBar(
-          TTLocalizations.of(context).currentLocalized.app_name,
+          TTLocalizations.of(context).currentLocalized.appName,
           iconData: TTIcons.MAIN_SEARCH,
           needRightLocalIcon: true,
           onRightIconPressed: (centerPosition) => NavigatorUtils.pushSearchPage(context, centerPosition),
