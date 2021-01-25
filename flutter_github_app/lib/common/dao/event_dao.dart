@@ -31,7 +31,7 @@ class EventDao {
           list.add(Event.fromJson(data[i]));
         }
         if (needDb) {
-          provider.insert(json.encode(data));
+          await provider.insert(json.encode(data));
         }
         return new DataResult(list, true);
       } else {
