@@ -1,5 +1,3 @@
-import 'dart:js';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_github_app/common/style/style.dart';
 import 'package:flutter_github_app/common/utils/common_utils.dart';
