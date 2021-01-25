@@ -3,8 +3,11 @@ import 'dart:async';
 import 'package:flutter_github_app/common/localization/tt_localizations_delegate.dart';
 import 'package:flutter_github_app/common/style/style.dart';
 import 'package:flutter_github_app/common/utils/common_utils.dart';
+import 'package:flutter_github_app/common/utils/navigator_utils.dart';
 import 'package:flutter_github_app/model/user.dart';
 import 'package:flutter_github_app/page/common/welcome_page.dart';
+import 'package:flutter_github_app/page/home/home_page.dart';
+import 'package:flutter_github_app/page/login/login_page.dart';
 import 'package:flutter_github_app/widget/debug/debug_label.dart';
 import 'package:redux/redux.dart';
 import 'package:flutter_redux/flutter_redux.dart';
@@ -79,6 +82,14 @@ class _FlutterReduxAppState extends State<FlutterReduxApp> with HttpErrorListene
                 _context = context;
                 DebugLabel.show(context);
                 return WelcomePage();
+              },
+              HomePage.className: (context) {
+                _context = context;
+                return NavigatorUtils.pageContainer(HomePage(), context);
+              },
+              LoginPage.className: (context) {
+                _context = context;
+                return NavigatorUtils.pageContainer(LoginPage(), context);
               }
             },
           );
