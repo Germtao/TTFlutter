@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_github_app/common/localization/default_localizations.dart';
 import 'package:flutter_github_app/common/style/style.dart';
