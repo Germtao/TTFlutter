@@ -7,6 +7,7 @@ import 'package:flutter_github_app/page/common/honor_list_page.dart';
 import 'package:flutter_github_app/page/home/home_page.dart';
 import 'package:flutter_github_app/page/issue/issue_detail_page.dart';
 import 'package:flutter_github_app/page/login/login_page.dart';
+import 'package:flutter_github_app/page/login/login_web_view.dart';
 import 'package:flutter_github_app/page/notify/notify_page.dart';
 import 'package:flutter_github_app/page/photo/photo_view_page.dart';
 import 'package:flutter_github_app/page/repos/repos_detail_page.dart';
@@ -146,6 +147,10 @@ class NavigatorUtils {
   /// 全屏 web 页面
   static Future pushTTWebView(BuildContext context, String urlStr, String title) {
     return NavigatorRouter(context, TTWebView(urlStr, title));
+  }
+
+  static Future pushLoginWebView(BuildContext context, String urlStr, String title) {
+    return NavigatorRouter(context, LoginWebView(urlStr, title));
   }
 
   /// 公共打开方式
