@@ -80,7 +80,9 @@ class _HomePageState extends State<HomePage> {
             case 1:
               trendKey.currentState.scrollToTop();
               break;
-            default:
+            case 2:
+              myKey.currentState.scrollToTop();
+              break;
           }
         },
         backgroundColor: TTColors.primarySwatch,
