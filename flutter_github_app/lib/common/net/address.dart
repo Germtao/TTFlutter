@@ -268,7 +268,7 @@ class Address {
   static getOAuthUrl() {
     return "https://github.com/login/oauth/authorize?client_id"
         "=${NetConfig.CLIENT_ID}&state=app&"
-        "redirect_uri=gsygithubapp://authed";
+        "redirect_uri=ttfluttergithubapp://authed";
   }
 
   /// 趋势 get
