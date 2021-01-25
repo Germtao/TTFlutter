@@ -90,6 +90,13 @@ class _MoleWidgetState extends State<MoleWidget> {
   _hitMole() {
     Iterable.generate(50).forEach((i) => particles.add(MoleParticle()));
   }
+
+  @override
+  void setState(fn) {
+    if (mounted) {
+      super.setState(fn);
+    }
+  }
 }
 
 // ignore: unused_field
