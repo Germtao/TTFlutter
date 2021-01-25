@@ -46,7 +46,7 @@ class UserDao {
     var resultData;
     if (res != null && res.result) {
       print('#### ${res.data}');
-      var result = Uri.parse('gsy://oauth?${res.data}');
+      var result = Uri.parse('tt://oauth?${res.data}');
       var token = result.queryParameters['access_token'];
       var _token = 'token $token';
       await LocalStorage.save(Config.TOKEN_KEY, _token);
@@ -166,7 +166,7 @@ class UserDao {
         User user = User.fromJson(res.data);
         user.starred = starred;
         if (userName == null) {
-          LocalStorage.save(Config.USER_INFO, json.encode(user.toJson));
+          LocalStorage.save(Config.USER_INFO, json.encode(user.toJson()));
         } else {
           if (needDb) {
             provider.insert(userName, json.encode(user.toJson()));
