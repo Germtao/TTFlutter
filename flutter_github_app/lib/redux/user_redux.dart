@@ -31,7 +31,7 @@ class UpdateUserAction {
 
 class FetchUserAction {}
 
-class UserInfoMiddleware extends MiddlewareClass<TTState> {
+class UserInfoMiddleware implements MiddlewareClass<TTState> {
   @override
   call(Store<TTState> store, action, next) {
     if (action is UpdateUserAction) {
