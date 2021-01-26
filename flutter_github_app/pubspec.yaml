@@ -140,5 +140,12 @@ flutter:
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
   #
+  fonts:
+    - family: wxcIconFont
+      fonts:
+        - asset: static/fonts/iconfont.ttf
+    - family: google_kavivanar
+      fonts:
+        - asset: static/fonts/google_kavivanar.ttf
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
