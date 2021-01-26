@@ -130,29 +130,29 @@ mixin HttpErrorListener on State<FlutterReduxApp> {
   handleError(int code, message) {
     switch (code) {
       case Code.NETWORK_ERROR:
-        showToast(TTLocalizations.i18n(context).networkError);
+        showToast(TTLocalizations.i18n(_context).networkError);
         break;
       case 401:
-        showToast(TTLocalizations.i18n(context).networkError_401);
+        showToast(TTLocalizations.i18n(_context).networkError_401);
         break;
       case 403:
-        showToast(TTLocalizations.i18n(context).networkError_403);
+        showToast(TTLocalizations.i18n(_context).networkError_403);
         break;
       case 404:
-        showToast(TTLocalizations.i18n(context).networkError_404);
+        showToast(TTLocalizations.i18n(_context).networkError_404);
         break;
       case 422:
-        showToast(TTLocalizations.i18n(context).networkError_422);
+        showToast(TTLocalizations.i18n(_context).networkError_422);
         break;
       case Code.NETWORK_TIMEOUT:
-        showToast(TTLocalizations.i18n(context).networkErrorTimeout);
+        showToast(TTLocalizations.i18n(_context).networkErrorTimeout);
         break;
       case Code.GITHUB_API_REFUSED:
         // github api 异常
-        showToast(TTLocalizations.i18n(context).githubRefused);
+        showToast(TTLocalizations.i18n(_context).githubRefused);
         break;
       default:
-        showToast(TTLocalizations.i18n(context).networkErrorUnknown + ' $message');
+        showToast(TTLocalizations.i18n(_context).networkErrorUnknown + ' $message');
         break;
     }
   }
