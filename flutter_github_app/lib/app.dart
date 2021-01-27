@@ -8,6 +8,7 @@ import 'package:flutter_github_app/model/user.dart';
 import 'package:flutter_github_app/page/common/welcome_page.dart';
 import 'package:flutter_github_app/page/home/home_page.dart';
 import 'package:flutter_github_app/page/login/login_page.dart';
+import 'package:flutter_github_app/page/photo/photo_view_page.dart';
 import 'package:flutter_github_app/widget/debug/debug_label.dart';
 import 'package:redux/redux.dart';
 import 'package:flutter_redux/flutter_redux.dart';
@@ -90,6 +91,9 @@ class _FlutterReduxAppState extends State<FlutterReduxApp> with HttpErrorListene
               LoginPage.className: (context) {
                 _context = context;
                 return NavigatorUtils.pageContainer(LoginPage(), context);
+              },
+              PhotoViewPage.className: (context) {
+                return PhotoViewPage();
               }
             },
           );
