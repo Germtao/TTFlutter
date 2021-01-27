@@ -59,7 +59,7 @@ class DynamicPageState extends State<DynamicPage>
             duration: Duration(milliseconds: 600),
             curve: Curves.linear,
           )
-          .then((_) => showRefreshLoading);
+          .then((_) => showRefreshLoading());
     } else {
       scrollController.animateTo(
         0,
