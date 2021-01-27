@@ -27,7 +27,13 @@ class HttpManager {
     _dio.interceptors.add(ResponseInterceptor());
   }
 
-  Future<ResultData> netFetch(url, params, Map<String, dynamic> header, Options options, {noTip = false}) async {
+  Future<ResultData> netFetch(
+    url,
+    params,
+    Map<String, dynamic> header,
+    Options options, {
+    noTip = false,
+  }) async {
     Map<String, dynamic> headers = HashMap();
     if (header != null) {
       headers.addAll(header);
