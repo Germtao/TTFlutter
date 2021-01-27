@@ -18,7 +18,7 @@ class ReposItem extends StatelessWidget {
   ReposItem(
     this.reposViewModel, {
     this.onPressed,
-  });
+  }) : super();
 
   /// 仓库 item 的底部状态，比如 star 数量等
   _renderBottomItem(
@@ -140,7 +140,7 @@ class ReposItem extends StatelessWidget {
         child: FlatButton(
           onPressed: onPressed,
           child: Padding(
-            padding: EdgeInsets.only(left: 0.0, top: 0.0, right: 10.0, bottom: 10.0),
+            padding: EdgeInsets.only(left: 0.0, top: 10.0, right: 10.0, bottom: 10.0),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -183,7 +183,7 @@ class ReposViewModel {
     ownerName = map.owner.login;
     ownerPic = map.owner.avatarUrl;
     repositoryName = map.name;
-    repositoryStar = map.stargazersCount.toString();
+    repositoryStar = map.watchersCount.toString();
     repositoryFork = map.forksCount.toString();
     repositoryIssue = map.openIssuesCount.toString();
     repositoryType = map.language ?? '---';
