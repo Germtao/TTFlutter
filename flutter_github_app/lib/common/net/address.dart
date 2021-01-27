@@ -280,7 +280,7 @@ class Address {
   }
 
   /// 趋势Api get
-  static trandingApi(since, languageType) {
+  static trendingApi(since, languageType) {
     if (languageType != null) {
       return 'https://guoshuyu.cn/github/trend/list?languageType=$languageType&since=$since';
     }
