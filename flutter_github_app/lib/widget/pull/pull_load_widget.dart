@@ -216,7 +216,7 @@ class _PullLoadWidgetState extends State<PullLoadWidget> with FlarePullControlle
         width: MediaQuery.of(context).size.width,
         height: pulledExtent > iOSRefreshHeight ? pulledExtent : iOSRefreshHeight,
         child: FlareActor(
-          'static/file/loading_world_now.flr',
+          'static/files/loading_world_now.flr',
           alignment: Alignment.topCenter,
           fit: BoxFit.cover,
           controller: this,
