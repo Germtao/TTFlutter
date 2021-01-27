@@ -13,6 +13,7 @@ import '../../model/notification.dart' as Model;
 import '../../widget/icon/icon_user_widget.dart';
 import '../../widget/card/tt_card_item.dart';
 
+/// 事件 item
 class EventItem extends StatelessWidget {
   final EventViewModel eventViewModel;
   final VoidCallback onPressed;
@@ -40,9 +41,10 @@ class EventItem extends StatelessWidget {
 
     Widget userImage = needImage
         ? UserIconWidget(
-            padding: EdgeInsets.only(left: 0.0, top: 0.0, right: 5.0),
+            padding: const EdgeInsets.only(left: 0.0, top: 0.0, right: 5.0),
             width: 30.0,
             height: 30.0,
+            image: eventViewModel.actionUserPic,
             onPressed: () => NavigatorUtils.pushPersonDetailPage(context, eventViewModel.actionUser),
           )
         : Container();
@@ -52,7 +54,7 @@ class EventItem extends StatelessWidget {
         child: FlatButton(
           onPressed: onPressed,
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 0.0, vertical: 10.0),
+            padding: const EdgeInsets.symmetric(horizontal: 0.0, vertical: 10.0),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -78,7 +80,8 @@ class EventItem extends StatelessWidget {
                   ),
                   margin: EdgeInsets.only(top: 6.0, bottom: 2.0),
                   alignment: Alignment.topLeft,
-                )
+                ),
+                des
               ],
             ),
           ),
@@ -100,7 +103,7 @@ class EventViewModel {
     actionUser = event.actor.login;
     actionUserPic = event.actor.avatarUrl;
     var other = EventUtils.getActionAndDesc(event);
-    actionDes = other['des'];
+    actionDes = other['desc'];
     actionTarget = other['actionStr'];
   }
 
