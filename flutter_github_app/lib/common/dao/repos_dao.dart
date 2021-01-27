@@ -51,8 +51,14 @@ class ReposDao {
     String languageTypeDB = languageType ?? '*';
 
     next() async {
-      String url = Address.trending(since, languageType);
-      var res = await httpManager.netFetch(url, null, {'api-token': Config.API_TOKEN}, null, noTip: true);
+      String url = Address.trendingApi(since, languageType);
+      var res = await httpManager.netFetch(
+        url,
+        null,
+        {'api-token': Config.API_TOKEN},
+        null,
+        noTip: true,
+      );
       if (res != null && res.result && res.data is List) {
         List<TrendingRepo> list = List();
         var data = res.data;
