@@ -13,7 +13,7 @@ class ErrorInterceptors extends InterceptorsWrapper {
   ErrorInterceptors(this._dio);
 
   @override
-  Future onRequest(RequestOptions options) async {
+  onRequest(RequestOptions options) async {
     var connectivityResult = await Connectivity().checkConnectivity();
     // 没有网络
     if (connectivityResult == ConnectivityResult.none) {

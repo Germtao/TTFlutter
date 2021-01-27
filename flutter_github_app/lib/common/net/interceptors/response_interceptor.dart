@@ -5,7 +5,7 @@ import 'package:flutter_github_app/common/net/result_data.dart';
 /// Response 拦截器
 class ResponseInterceptor extends InterceptorsWrapper {
   @override
-  Future onResponse(Response response) async {
+  onResponse(Response response) async {
     RequestOptions options = response.request;
     var value;
     try {

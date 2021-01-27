@@ -15,7 +15,7 @@ class LogInterceptors extends InterceptorsWrapper {
   static List<String> sErrorHttpUrl = List<String>();
 
   @override
-  Future onRequest(RequestOptions options) async {
+  onRequest(RequestOptions options) async {
     if (Config.DEBUG) {
       print('请求url: ${options.path}');
       print('请求头: ${options.headers.toString()}');
@@ -33,7 +33,7 @@ class LogInterceptors extends InterceptorsWrapper {
         data = Map<String, dynamic>();
       }
       var map = {
-        'header': {...options.headers}
+        "header:": {...options.headers}
       };
       if (options.method == 'POST') {
         map['data'] = data;
@@ -46,7 +46,7 @@ class LogInterceptors extends InterceptorsWrapper {
   }
 
   @override
-  Future onResponse(Response response) async {
+  onResponse(Response response) async {
     if (Config.DEBUG) {
       if (response != null) {
         print('返回参数: ${response.toString()}');
@@ -56,7 +56,7 @@ class LogInterceptors extends InterceptorsWrapper {
     if (response.data is Map || response.data is List) {
       try {
         var data = Map<String, dynamic>();
-        data['data'] = data;
+        data['data'] = response.data;
         addLogic(sResponsesHttpUrl, response?.request?.uri?.toString() ?? '');
         addLogic(sHttpResponses, data);
       } catch (e) {
@@ -65,7 +65,7 @@ class LogInterceptors extends InterceptorsWrapper {
     } else if (response.data is String) {
       try {
         var data = Map<String, dynamic>();
-        data['data'] = data;
+        data['data'] = response.data;
         addLogic(sResponsesHttpUrl, response?.request?.uri?.toString() ?? '');
         addLogic(sHttpResponses, data);
       } catch (e) {
@@ -84,7 +84,7 @@ class LogInterceptors extends InterceptorsWrapper {
   }
 
   @override
-  Future onError(DioError err) async {
+  onError(DioError err) async {
     if (Config.DEBUG) {
       print('请求异常: ${err.toString()}');
       print('请求异常信息: ${err.response?.toString() ?? ''}');

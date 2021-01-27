@@ -8,7 +8,7 @@ class TokenInterceptors extends InterceptorsWrapper {
   String _token;
 
   @override
-  Future onRequest(RequestOptions options) async {
+  onRequest(RequestOptions options) async {
     // 授权码
     if (_token == null) {
       var authorizationCode = await getAuthorization();
