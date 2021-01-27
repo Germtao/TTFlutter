@@ -29,11 +29,11 @@ class TrendPage extends StatefulWidget {
 class TrendPageState extends State<TrendPage>
     with AutomaticKeepAliveClientMixin<TrendPage>, SingleTickerProviderStateMixin {
   /// 显示数据时间
-  TrendTypeModel selectTime = null;
+  TrendTypeModel selectTime;
   int selectTimeIndex = 0;
 
   /// 显示过滤语言
-  TrendTypeModel selectType = null;
+  TrendTypeModel selectType;
   int selectTypeIndex = 0;
 
   /// NestedScrollView 的刷新状态 GlobalKey ，方便主动刷新使
