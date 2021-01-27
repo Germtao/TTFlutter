@@ -13,10 +13,10 @@ class SizeRoute extends PageRouteBuilder {
           ) =>
               widget,
           transitionsBuilder: (
-            context,
-            animation,
-            secondaryAnimation,
-            child,
+            BuildContext context,
+            Animation<double> animation,
+            Animation<double> secondaryAnimation,
+            Widget child,
           ) =>
               Align(
             child: SizeTransition(
@@ -32,17 +32,22 @@ class NoAnimationRoute extends PageRouteBuilder {
 
   NoAnimationRoute({this.widget})
       : super(
-          pageBuilder: (context, animation, secondaryAnimation) => widget,
+          pageBuilder: (
+            BuildContext context,
+            Animation<double> animation,
+            Animation<double> secondaryAnimation,
+          ) =>
+              widget,
           transitionsBuilder: (
-            context,
-            animation,
-            secondaryAnimation,
-            child,
+            BuildContext context,
+            Animation<double> animation,
+            Animation<double> secondaryAnimation,
+            Widget child,
           ) =>
               SlideTransition(
             position: Tween<Offset>(
-              begin: Offset.zero,
-              end: Offset.zero,
+              begin: const Offset(0.0, 0.0),
+              end: const Offset(0.0, 0.0),
             ).animate(animation),
             child: child,
           ),
