@@ -16,7 +16,7 @@ class HttpManager {
   final TokenInterceptors _tokenInterceptors = TokenInterceptors();
 
   HttpManager() {
-    _dio.interceptors.add(HeaderInterceptor());
+    _dio.interceptors.add(HeaderInterceptors());
 
     _dio.interceptors.add(_tokenInterceptors);
 
