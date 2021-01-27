@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+/// isolate 的 compute 需要静态方
 class CodeUtils {
   /// 解码 list result
   static List<dynamic> decodeListResult(String data) {
