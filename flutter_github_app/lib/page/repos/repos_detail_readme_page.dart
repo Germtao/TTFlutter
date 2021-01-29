@@ -73,11 +73,12 @@ class ReposDetailReadmePageState extends State<ReposDetailReadmePage> with Autom
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SpinKitDoubleBounce(color: Theme.of(context).primaryColor,),
-          Container(width: 10.0)
+          Container(width: 10.0),
           Container(child: Text(TTLocalizations.i18n(context).loadingText, style: TTConstant.middleText,),)
         ],
       ),),
     )
+    : 
     return Container();
   }
 
