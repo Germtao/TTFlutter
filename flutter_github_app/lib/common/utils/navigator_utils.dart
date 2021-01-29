@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'package:flutter_github_app/common/router/animation_route.dart';
+import 'package:flutter_github_app/page/common/code_detail_page_web.dart';
 import 'package:flutter_github_app/page/common/honor_list_page.dart';
 
 import 'package:flutter_github_app/page/home/home_page.dart';
@@ -143,6 +144,54 @@ class NavigatorUtils {
 
   /// 跳转 搜索界面
   static pushSearchPage(BuildContext context, Offset centerPosition) {}
+
+  /// 跳转 文件代码详情 web
+  static pushCodeDetailPageWeb(
+    BuildContext context, {
+    String title,
+    String userName,
+    String reposName,
+    String path,
+    String data,
+    String branch,
+    String htmlUrl,
+  }) {
+    NavigatorRouter(
+      context,
+      CodeDetailPageWeb(
+        title: title,
+        userName: userName,
+        reposName: reposName,
+        path: path,
+        data: data,
+        branch: branch,
+        htmlUrl: htmlUrl,
+      ),
+    );
+  }
+
+  /// 根据平台跳转文件代码详情Web
+  static pushCodeDetailWebForPlatform(
+    BuildContext context, {
+    String title,
+    String userName,
+    String reposName,
+    String path,
+    String data,
+    String branch,
+    String htmlUrl,
+  }) {
+    NavigatorUtils.pushCodeDetailPageWeb(
+      context,
+      title: title,
+      userName: userName,
+      reposName: reposName,
+      path: path,
+      data: data,
+      branch: branch,
+      htmlUrl: htmlUrl,
+    );
+  }
 
   /// 全屏 web 页面
   static Future pushTTWebView(BuildContext context, String urlStr, String title) {
