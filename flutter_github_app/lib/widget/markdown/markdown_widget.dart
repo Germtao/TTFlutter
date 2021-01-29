@@ -168,6 +168,24 @@ class MarkdownWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(
+      color: _getBackgroundColor(context),
+      padding: const EdgeInsets.all(5.0),
+      child: SingleChildScrollView(
+        child: MarkdownBody(
+          styleSheet: _getStyleSheet(context),
+          // syntaxHighlighter: TTHig,
+        ),
+      ),
+    );
+  }
+}
+
+class TTHighlighter extends SyntaxHighlighter {
+  @override
+  TextSpan format(String source) {
+    String showSource = source.replaceAll("&lt;", "<");
+    showSource = showSource.replaceAll("&gt;", ">");
+    // return Dartsyn
   }
 }

@@ -4,7 +4,13 @@ abstract class SyntaxCustomHightlighter {
   TextSpan format(String src);
 }
 
-class DarkSyntaxHighlighter extends SyntaxCustomHightlighter {}
+class DarkSyntaxHighlighter extends SyntaxCustomHightlighter {
+  @override
+  TextSpan format(String src) {
+    // TODO: implement format
+    throw UnimplementedError();
+  }
+}
 
 class SyntaxHighlighterStyle {
   final TextStyle baseStyle;
