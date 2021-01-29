@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_github_app/common/dao/repos_dao.dart';
 import 'package:flutter_github_app/common/localization/default_localizations.dart';
 import 'package:flutter_github_app/common/style/style.dart';
+import 'package:flutter_github_app/common/utils/common_utils.dart';
+import 'package:flutter_github_app/common/utils/navigator_utils.dart';
 import 'package:flutter_github_app/model/file_model.dart';
 import 'package:flutter_github_app/page/repos/scope/repos_detail_model.dart';
+import 'package:flutter_github_app/widget/card/tt_card_item.dart';
 import 'package:flutter_github_app/widget/pull/pull_load_old_widget.dart';
 import 'package:flutter_github_app/widget/pull/state/common_list_state.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -21,10 +25,10 @@ class RepositoryFileListPage extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _RepositoryFileListPageState createState() => _RepositoryFileListPageState();
+  RepositoryFileListPageState createState() => RepositoryFileListPageState();
 }
 
-class _RepositoryFileListPageState extends State<RepositoryFileListPage>
+class RepositoryFileListPageState extends State<RepositoryFileListPage>
     with AutomaticKeepAliveClientMixin<RepositoryFileListPage>, CommonListState<RepositoryFileListPage> {
   String path = '';
 
@@ -92,11 +96,67 @@ class _RepositoryFileListPageState extends State<RepositoryFileListPage>
     }
   }
 
+  _resolveItemClick(FileItemViewModel fileItemViewModel) {
+    if (fileItemViewModel.type == 'dir') {
+      if (isLoading) {
+        Fluttertoast.showToast(msg: TTLocalizations.i18n(context).loadingText);
+        return;
+      }
+      setState(() {
+        headerList.add(fileItemViewModel.name);
+      });
+      String path = headerList.sublist(1, headerList.length).join('/');
+      setState(() {
+        this.path = path;
+      });
+      showRefreshLoading();
+    } else {
+      String path = headerList.sublist(1, headerList.length).join('/') + '/' + fileItemViewModel.name;
+      if (CommonUtils.isImageEnd(fileItemViewModel.name)) {
+        NavigatorUtils.pushPhotoViewPage(context, fileItemViewModel.htmlUrl + '?raw=true');
+      } else {
+        NavigatorUtils.pushCodeDetailWebForPlatform(
+          context,
+          title: fileItemViewModel.name,
+          reposName: widget.reposName,
+          userName: widget.userName,
+          path: path,
+          branch: ReposDetailModel.of(context).currentBranch,
+        );
+      }
+    }
+  }
+
   /// 绘制 文件item
   _renderFileItem(index) {
     FileItemViewModel fileItemViewModel = FileItemViewModel.fromMap(pullLoadOldWidgetControl.dataList[index]);
     IconData iconData = fileItemViewModel.type == 'file' ? TTIcons.REPOS_ITEM_FILE : TTIcons.REPOS_ITEM_DIR;
     Widget trailing = fileItemViewModel.type == 'file' ? null : Icon(TTIcons.REPOS_ITEM_NEXT, size: 12.0);
+
+    return TTCardItem(
+      margin: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
+      child: ListTile(
+        title: Text(
+          fileItemViewModel.name,
+          style: TTConstant.smallSubText,
+        ),
+        leading: Icon(
+          iconData,
+          size: 16.0,
+        ),
+        onTap: () => _resolveItemClick(fileItemViewModel),
+        trailing: trailing,
+      ),
+    );
+  }
+
+  _getDataLogic(String searchText) async {
+    return await ReposDao.getRepositoryFileDirsDao(
+      widget.userName,
+      widget.reposName,
+      path: path,
+      branch: ReposDetailModel.of(context).currentBranch,
+    );
   }
 
   @override
@@ -118,7 +178,10 @@ class _RepositoryFileListPageState extends State<RepositoryFileListPage>
           builder: (context, child, model) {
             return PullLoadOldWidget(
               pullLoadOldWidgetControl,
-              // (context, index) => ,
+              (context, index) => _renderFileItem(index),
+              handleRefresh,
+              onLoadMore,
+              refreshKey: refreshIndicatorKey,
             );
           },
         ),
@@ -134,6 +197,16 @@ class _RepositoryFileListPageState extends State<RepositoryFileListPage>
 
   @override
   bool get isRefreshFirst => true;
+
+  @override
+  requestRefresh() async {
+    return await _getDataLogic(searchText);
+  }
+
+  @override
+  requestLoadMore() async {
+    return await _getDataLogic(searchText);
+  }
 }
 
 class FileItemViewModel {
